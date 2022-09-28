@@ -1,4 +1,4 @@
-from bisect import insort
+from bisect import insort, bisect_left
 
 # Approaches:
 # 1. Testar uniformemente
@@ -33,17 +33,17 @@ def cria_linhas_uniforme():
     '8012': Linha(
         '8012',
         calcular_horarios_saidas([ 2, 1, 1, 1, 3, 5, 7, 7, 6, 6, 5, 4, 5, 7, 7, 6, 7, 6, 7, 6, 4, 5, 6, 5 ]),
-        65,
+        MediaPercurso([(0, 75)]),
     ),
     '8022': Linha(
         '8022',
         calcular_horarios_saidas([ 3, 2, 1, 1, 3, 5, 8, 8, 6, 7, 6, 6, 8, 5, 8, 8, 8, 7, 6, 7, 6, 5, 6, 4 ]),
-        70,
+        MediaPercurso([(0, 80)]),
     ),
     '8032': Linha(
         '8032',
         calcular_horarios_saidas([ 2, 0, 0, 0, 0, 2, 5, 5, 4, 4, 4, 4, 6, 5, 4, 4, 5, 5, 6, 5, 4, 4, 6, 2 ]),
-        35
+        MediaPercurso([(0, 35)]),
     )
 }
 
@@ -52,17 +52,17 @@ def cria_linhas_sptrans():
     '8012': Linha(
         '8012',
         [0*60 + 15, 0*60 + 35, 1*60 + 25, 2*60 + 8, 3*60 + 10, 4*60 + 00, 4*60 + 30, 4*60 + 55, 5*60 + 10, 5*60 + 20, 5*60 + 29, 5*60 + 39, 5*60 + 50, 6*60 + 00, 6*60 + 8, 6*60 + 17, 6*60 + 26, 6*60 + 34, 6*60 + 43, 6*60 + 52, 7*60 + 00, 7*60 + 9, 7*60 + 18, 7*60 + 27, 7*60 + 36, 7*60 + 45, 7*60 + 54, 8*60 + 4, 8*60 + 14, 8*60 + 24, 8*60 + 34, 8*60 + 44, 8*60 + 55, 9*60 + 6, 9*60 + 16, 9*60 + 26, 9*60 + 37, 9*60 + 48, 9*60 + 58, 10*60 + 8, 10*60 + 18, 10*60 + 28, 10*60 + 41, 10*60 + 54, 11*60 + 7, 11*60 + 20, 11*60 + 34, 11*60 + 49, 12*60 + 2, 12*60 + 15, 12*60 + 27, 12*60 + 39, 12*60 + 51, 13*60 + 3, 13*60 + 12, 13*60 + 20, 13*60 + 29, 13*60 + 38, 13*60 + 45, 13*60 + 54, 14*60 + 2, 14*60 + 11, 14*60 + 21, 14*60 + 30, 14*60 + 37, 14*60 + 44, 14*60 + 54, 15*60 + 5, 15*60 + 15, 15*60 + 25, 15*60 + 35, 15*60 + 44, 15*60 + 52, 16*60 + 00, 16*60 + 8, 16*60 + 17, 16*60 + 27, 16*60 + 37, 16*60 + 46, 16*60 + 54, 17*60 + 2, 17*60 + 10, 17*60 + 19, 17*60 + 29, 17*60 + 40, 17*60 + 51, 18*60 + 1, 18*60 + 11, 18*60 + 20, 18*60 + 29, 18*60 + 38, 18*60 + 47, 18*60 + 56, 19*60 + 5, 19*60 + 14, 19*60 + 23, 19*60 + 32, 19*60 + 41, 19*60 + 50, 20*60 + 5, 20*60 + 20, 20*60 + 35, 20*60 + 50, 21*60 + 4, 21*60 + 18, 21*60 + 31, 21*60 + 43, 21*60 + 55, 22*60 + 5, 22*60 + 15, 22*60 + 25, 22*60 + 35, 22*60 + 45, 22*60 + 55, 23*60 + 10, 23*60 + 25, 23*60 + 40, 23*60 + 47, 23*60 + 55],
-        75,
+        MediaPercurso([(0, 75)]),
     ),
     '8022': Linha(
         '8022',
         [0*60 + 15, 0*60 + 34, 0*60 + 52, 1*60 + 11, 1*60 + 36, 2*60 + 23, 3*60 + 15, 4*60 + 5, 4*60 + 30, 4*60 + 55, 5*60 + 10, 5*60 + 24, 5*60 + 33, 5*60 + 42, 5*60 + 51, 6*60 + 0, 6*60 + 6, 6*60 + 15, 6*60 + 24, 6*60 + 32, 6*60 + 39, 6*60 + 46, 6*60 + 52, 6*60 + 58, 7*60 + 5, 7*60 + 12, 7*60 + 18, 7*60 + 24, 7*60 + 32, 7*60 + 40, 7*60 + 47, 7*60 + 54, 7*60 + 59, 8*60 + 9, 8*60 + 19, 8*60 + 28, 8*60 + 37, 8*60 + 45, 8*60 + 53, 9*60 + 1, 9*60 + 9, 9*60 + 17, 9*60 + 26, 9*60 + 35, 9*60 + 44, 9*60 + 54, 10*60 + 4, 10*60 + 13, 10*60 + 23, 10*60 + 33, 10*60 + 42, 10*60 + 50, 11*60 + 0, 11*60 + 10, 11*60 + 20, 11*60 + 29, 11*60 + 39, 11*60 + 50, 12*60 + 0, 12*60 + 7, 12*60 + 14, 12*60 + 21, 12*60 + 29, 12*60 + 37, 12*60 + 46, 12*60 + 56, 13*60 + 7, 13*60 + 18, 13*60 + 31, 13*60 + 43, 13*60 + 54, 14*60 + 3, 14*60 + 10, 14*60 + 17, 14*60 + 25, 14*60 + 33, 14*60 + 42, 14*60 + 50, 14*60 + 57, 15*60 + 5, 15*60 + 12, 15*60 + 19, 15*60 + 27, 15*60 + 33, 15*60 + 41, 15*60 + 49, 15*60 + 57, 16*60 + 3, 16*60 + 10, 16*60 + 17, 16*60 + 24, 16*60 + 32, 16*60 + 41, 16*60 + 50, 16*60 + 58, 17*60 + 5, 17*60 + 12, 17*60 + 20, 17*60 + 28, 17*60 + 36, 17*60 + 44, 17*60 + 53, 18*60 + 3, 18*60 + 12, 18*60 + 21, 18*60 + 31, 18*60 + 42, 18*60 + 53, 19*60 + 2, 19*60 + 12, 19*60 + 22, 19*60 + 32, 19*60 + 41, 19*60 + 50, 19*60 + 58, 20*60 + 8, 20*60 + 18, 20*60 + 25, 20*60 + 33, 20*60 + 43, 20*60 + 54, 21*60 + 6, 21*60 + 17, 21*60 + 27, 21*60 + 38, 21*60 + 50, 22*60 + 1, 22*60 + 12, 22*60 + 22, 22*60 + 31, 22*60 + 41, 22*60 + 53, 23*60 + 9, 23*60 + 29, 23*60 + 43, 23*60 + 57],
-        80,
+        MediaPercurso([(0, 80)]),
     ),
     '8032': Linha(
         '8032',
         [0*60 + 15, 0*60 + 40, 5*60 + 0, 5*60 + 30, 6*60 + 5, 6*60 + 17, 6*60 + 29, 6*60 + 41, 6*60 + 53, 7*60 + 5, 7*60 + 17, 7*60 + 29, 7*60 + 41, 7*60 + 53, 8*60 + 8, 8*60 + 23, 8*60 + 38, 8*60 + 53, 9*60 + 8, 9*60 + 23, 9*60 + 38, 9*60 + 53, 10*60 + 8, 10*60 + 23, 10*60 + 38, 10*60 + 53, 11*60 + 8, 11*60 + 23, 11*60 + 38, 11*60 + 53, 12*60 + 3, 12*60 + 13, 12*60 + 23, 12*60 + 33, 12*60 + 43, 12*60 + 53, 13*60 + 5, 13*60 + 16, 13*60 + 27, 13*60 + 38, 13*60 + 49, 14*60 + 3, 14*60 + 17, 14*60 + 34, 14*60 + 53, 15*60 + 8, 15*60 + 23, 15*60 + 40, 15*60 + 55, 16*60 + 6, 16*60 + 17, 16*60 + 29, 16*60 + 41, 16*60 + 53, 17*60 + 4, 17*60 + 16, 17*60 + 28, 17*60 + 39, 17*60 + 51, 18*60 + 3, 18*60 + 14, 18*60 + 25, 18*60 + 36, 18*60 + 47, 18*60 + 57, 19*60 + 7, 19*60 + 18, 19*60 + 29, 19*60 + 40, 19*60 + 50, 20*60 + 5, 20*60 + 20, 20*60 + 35, 20*60 + 50, 21*60 + 6, 21*60 + 22, 21*60 + 38, 21*60 + 54, 22*60 + 4, 22*60 + 14, 22*60 + 24, 22*60 + 34, 22*60 + 44, 22*60 + 54, 23*60 + 6, 23*60 + 41],
-        35
+        MediaPercurso([(0, 35)]),
     )
 }
 
@@ -77,7 +77,6 @@ def formata_hora(minutos):
     return str(minutos // 60) + ":" + str(minutos % 60)
 
 def modifica_onibus_ativos(num_ativos, evento, op):
-
     ultimo_ativo = num_ativos[-1]
     horario = evento.horario
     ativo_atual = num_ativos[-1][1][:]
@@ -98,8 +97,7 @@ def modifica_onibus_ativos(num_ativos, evento, op):
 #    - Se tem onibus disponivel,
 #      - Decrementar os onibus disponiveis e tirar da lista dos horarios de saida e adiciona na lista de horários de chegada
 #    - Se minutos % 60, verifico se tem algum onibus que nao saiu naquela hora
-def simula_saidas(saidas, num_frota):
-
+def simula_saidas(linhas, saidas, num_frota):
     num_onibus_ativos = [(0, [0, 0, 0], 0)]
 
     onibus_disponiveis = num_frota
@@ -122,8 +120,8 @@ def simula_saidas(saidas, num_frota):
 
         if onibus_disponiveis == 0:
             ultima_saida = chegadas[0].horario + 1
-            #if ultima_saida // 60 > saida.horario // 60:
-                #print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista))
+            if ultima_saida // 60 > saida.horario // 60:
+                print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista))
                 #exit()
 
             saida.horario = ultima_saida
@@ -131,7 +129,8 @@ def simula_saidas(saidas, num_frota):
             modifica_onibus_ativos(num_onibus_ativos, chegadas[0], -1)
             onibus_disponiveis += 1
 
-        evento_chegada = Evento(saida.linha, saida.horario + linhas[saida.linha].media)
+        media_percurso = linhas[saida.linha].media.em(saida.horario)
+        evento_chegada = Evento(saida.linha, saida.horario + media_percurso)
         insort(chegadas, evento_chegada)
         modifica_onibus_ativos(num_onibus_ativos, saida, +1)
         onibus_disponiveis -= 1
@@ -146,6 +145,17 @@ class Linha:
         self.horarios_de_saida = horarios_de_saida
         self.media = media
 
+class MediaPercurso:
+    def __init__(self, media_por_horario):
+        self.media_por_horario = media_por_horario
+    
+    def em(self, horario):
+        horarios_iniciais = list(map(lambda x: x[0], self.media_por_horario))
+        index = bisect_left(horarios_iniciais, horario)
+        if index == len(horarios_iniciais) or horarios_iniciais[index] != horario:
+            index = index-1
+        return self.media_por_horario[index][1]
+
 class Evento:
     def __init__(self, linha, horario):
         self.linha = linha
@@ -159,20 +169,19 @@ class Evento:
 
 # Simulacao
 
-SIMULACAO = "UNIFORME"
+def main():
+    SIMULACAO = "UNIFORME"
 
-if SIMULACAO == "UNIFORME":
+    if SIMULACAO == "UNIFORME":
+        linhas = cria_linhas_uniforme()
+    elif SIMULACAO == "SPTRANS":
+        linhas = cria_linhas_sptrans()
+    saidas = calcula_saidas(linhas)
 
-    linhas = cria_linhas_uniforme()
+    a = simula_saidas(linhas, saidas, 24)
+    for i in a:
+        print(i)
 
-elif SIMULACAO == "SPTRANS":
+    # Plot: ônibus por linha com ônibus como infinitos (entender picos)
 
-    linhas = cria_linhas_sptrans()
-
-saidas = calcula_saidas(linhas)
-
-a = simula_saidas(saidas, 24)
-for i in a:
-    print(i)
-
-# Plot: ônibus por linha com ônibus como infinitos (entender picos)
+main()
