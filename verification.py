@@ -1,4 +1,5 @@
 from bisect import insort, bisect_left
+import matplotlib.pyplot as plt
 
 # Approaches:
 # 1. Testar uniformemente
@@ -77,8 +78,6 @@ def formata_hora(minutos):
     return str(minutos // 60) + ":" + str(minutos % 60)
 
 def modifica_onibus_ativos(num_ativos, evento, op):
-    print('Linha ' + evento.linha + ' -> ' + ('Saiu' if op == 1 else 'Chegou') + ' as ' + formata_hora(evento.horario))
-
     ultimo_ativo = num_ativos[-1]
     horario = evento.horario
     ativo_atual = num_ativos[-1][1][:]
@@ -142,6 +141,38 @@ def simula_saidas(linhas, saidas, num_frota):
 
     return num_onibus_ativos
 
+def dados_por_minuto(dados):
+    minutos = []
+    i_dados = 0
+    for minuto_atual in range(1, 60*24):
+        if i_dados+1 < len(dados):
+            proximo_minuto = dados[i_dados+1][0]
+            if minuto_atual >= proximo_minuto:
+                i_dados += 1
+        minutos.append((minuto_atual, dados[i_dados][1], dados[i_dados][2]))
+    return minutos
+
+def plot_dados(dados):
+    dados = dados_por_minuto(dados)
+    dados_x = list(map(lambda x: x[0], dados))
+    dados_l1 = list(map(lambda x: x[1][0], dados))
+    dados_l2 = list(map(lambda x: x[1][1], dados))
+    dados_l3 = list(map(lambda x: x[1][2], dados))
+    dados_total = list(map(lambda x: x[2], dados))
+
+    fig = plt.figure(figsize=(16,9), dpi=100)
+    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+    ax.plot(dados_x, dados_l1, 'r', dados_x, dados_l2, 'g', dados_x, dados_l3, 'b', dados_x, dados_total, 'k')
+
+    ax.set_xticks(range(0, 1441, 60))
+    ax.set_xticklabels([f'{i:2}:00' for i in range(25)])
+
+    max_total = max(dados_total)
+    ax.set_yticks(range(0, max_total + 1, 2))
+    ax.set_yticklabels(range(0, max_total + 1, 2))
+
+    plt.show()
+
 # Classes
 
 class Linha:
@@ -175,23 +206,22 @@ class Evento:
 # Simulacao
 
 def main():
-    SIMULACAO = "UNIFORME"
+    SIMULACAO = "SPTRANS"
 
     if SIMULACAO == "UNIFORME":
         linhas = cria_linhas_uniforme()
     elif SIMULACAO == "SPTRANS":
         linhas = cria_linhas_sptrans()
     saidas = calcula_saidas(linhas)
-
-    dados = simula_saidas(linhas, saidas, 24)
-    for dado in dados:
-        print(dado)
     
+    dados = simula_saidas(linhas, saidas, 24)
+
     horario_dados = list(map(lambda x: x[0], dados))
     horario_ordenados = sorted(horario_dados)
     for i in range(0,len(dados)):
-        print(str(dados[i][0]) + ', ' + str(horario_ordenados[i]))
         assert dados[i][0] == horario_ordenados[i]
+
+    plot_dados(dados)
 
     # Plot: ônibus por linha com ônibus como infinitos (entender picos)
 
