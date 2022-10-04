@@ -24,9 +24,11 @@ def calcular_horarios_saidas(saidas_por_hora):
     ret = []
     for hour, num_saidas in enumerate(saidas_por_hora):
         if num_saidas > 0:
-            saidas_a_cada = 60 // num_saidas # TODO: nao completamente uniforme
-            for minute in range(0, 60, saidas_a_cada):
-                ret.append(60*hour + minute)
+            saidas_a_cada = 60 / num_saidas
+            minuto = 0
+            while round(minuto) < 60:
+                ret.append(60*hour + round(minuto))
+                minuto += saidas_a_cada
     return ret
 
 def cria_linhas_uniforme():
@@ -67,7 +69,7 @@ def cria_linhas_sptrans():
         )
     }
 
-def calcula_saidas(linhas):
+def cria_eventos_saidas(linhas):
     saidas = []
     for id, linha in linhas.items():
         saidas += list(map(lambda n: Evento(id, n), linha.horarios_de_saida))
@@ -75,7 +77,7 @@ def calcula_saidas(linhas):
     return saidas
 
 def formata_hora(minutos):
-    return str(minutos // 60) + ":" + str(minutos % 60)
+    return f'{(minutos // 60):02}:{(minutos % 60):02}'
 
 def modifica_onibus_ativos(num_ativos, evento, op):
     ultimo_ativo = num_ativos[-1]
@@ -89,7 +91,6 @@ def modifica_onibus_ativos(num_ativos, evento, op):
 
     num_ativos.append((horario, ativo_atual, sum(ativo_atual)))
 
-    
 # Algoritmo:
 # 1. Calcular os horários de saída
 # 2. for incrementando os minutos
@@ -197,8 +198,10 @@ class Evento:
         self.linha = linha
         self.horario = horario
     def __eq__(self, other):
-        return self.horario == other.horario
+        return self.horario == other.horario and self.linha == other.linha
     def __lt__(self, other):
+        if (self.horario == other.horario):
+            return self.linha < other.linha
         return self.horario < other.horario
     def __repr__(self):
         return '(' + self.linha + ', ' + str(self.horario) + ')'
@@ -225,4 +228,5 @@ def main():
 
     # Plot: ônibus por linha com ônibus como infinitos (entender picos)
 
-main()
+if __name__ == "__main__":
+    main()
