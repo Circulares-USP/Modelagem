@@ -5,6 +5,7 @@ from verification import cria_linhas_uniforme
 from verification import formata_hora
 from verification import modifica_onibus_ativos
 from verification import Evento, Linha, MediaPercurso
+import pytest
 
 def mock_linhas():
     return {
@@ -40,7 +41,15 @@ class TestClassMediaPercurso:
 
     media_percurso = MediaPercurso([(0, 10), (5, 20), (10, 30), (15, 40), (20, 50)])
 
-    def test_em(self):
+    @pytest.mark.parametrize("horario, expected", [
+        (0, 10),
+        (4, 10),
+        (5, 20),
+        (8, 20),
+        (10, 30),
+        (50, 50),]
+    )
+    def test_em(self, horario, expected):
         assert self.media_percurso.em(0) == 10
         assert self.media_percurso.em(4) == 10
         assert self.media_percurso.em(5) == 20
@@ -50,20 +59,13 @@ class TestClassMediaPercurso:
 
 class TestCalcularHorariosSaidas:
 
-    def test_base(self):
-        saidas = [1, 2, 3, 4, 5]
-        expected = [0, 60, 90, 120, 140, 160, 180, 195, 210, 225, 240, 252, 264, 276, 288]
-        horarios = calcular_horarios_saidas(saidas)
-        assert horarios == expected
-
-    def test_empty(self):
-        assert calcular_horarios_saidas([]) == []
-
-    def test_not_round(self):
-        saidas = [7]
-        expected = [0, 9, 17, 26, 34, 43, 51]
-        horarios = calcular_horarios_saidas(saidas)
-        assert horarios == expected
+    @pytest.mark.parametrize("saidas, expected", [
+        ([1, 2, 3, 4, 5], [0, 60, 90, 120, 140, 160, 180, 195, 210, 225, 240, 252, 264, 276, 288]),
+        ([], []),
+        ([7], [0, 9, 17, 26, 34, 43, 51]),]
+        )
+    def test_saidas(self, saidas, expected):
+        assert calcular_horarios_saidas(saidas) == expected
 
 class TestCriaEventosSaidas:
 
@@ -84,41 +86,26 @@ class TestCriaEventosSaidas:
 
 class TestCriaLinhas:
 
-    def test_uniforme(self):
-        linhas = cria_linhas_uniforme()
-
+    @pytest.mark.parametrize("linhas", [
+        (cria_linhas_uniforme()),
+        (cria_linhas_sptrans()),]
+        )
+    def test_all_linhas(self, linhas):
         assert '8012' in linhas
         assert '8022' in linhas
         assert '8032' in linhas
 
-    def test_uniforme_types(self):
-
-        linhas = cria_linhas_uniforme()
-
+    @pytest.mark.parametrize("linhas", [
+        (cria_linhas_uniforme()),
+        (cria_linhas_sptrans()),]
+        )
+    def test_tipos(self, linhas):
         for ind_linha in (['8012', '8022', '8032']):
             linha = linhas[ind_linha]
 
             assert linha.id == ind_linha
             assert type(linha.horarios_de_saida) == list
             assert type(linha.media) == MediaPercurso 
-
-    def test_sptrans(self):
-        linhas = cria_linhas_sptrans()
-
-        assert '8012' in linhas
-        assert '8022' in linhas
-        assert '8032' in linhas
-
-    def test_sptrans_types(self):
-
-        linhas = cria_linhas_sptrans()
-
-        for ind_linha in (['8012', '8022', '8032']):
-            linha = linhas[ind_linha]
-
-            assert linha.id == ind_linha
-            assert type(linha.horarios_de_saida) is list
-            assert type(linha.media) is MediaPercurso 
 
 class TestFormataHora:
 
