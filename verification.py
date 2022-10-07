@@ -91,6 +91,38 @@ def modifica_onibus_ativos(num_ativos, evento, op):
 
     num_ativos.append((horario, ativo_atual, sum(ativo_atual)))
 
+def verifica_chegadas(horario_saida, state):
+
+    novos_onibus = 0
+
+    ind_chegadas = 0
+    while ind_chegadas < len(state.chegadas):
+        hora_chegada = state.chegadas[ind_chegadas].horario
+        if hora_chegada < horario_saida:
+            modifica_onibus_ativos(state.onibus_ativos, state.chegadas[ind_chegadas], -1)
+            novos_onibus += 1
+        else:
+            break
+        ind_chegadas += 1
+    
+    state.chegadas = state.chegadas[novos_onibus:]
+    state.onibus_disponiveis += novos_onibus
+
+    return novos_onibus
+
+def atrasa_saida(saida, novo_horario, state):
+    saida.horario = novo_horario
+    modifica_onibus_ativos(state.onibus_ativos, state.chegadas[0], -1)
+    state.chegadas = state.chegadas[1:]
+    state.onibus_disponiveis += 1
+
+def handle_saida(linhas, saida, state):
+    media_percurso = linhas[saida.linha].media.em(saida.horario)
+    evento_chegada = Evento(saida.linha, saida.horario + media_percurso)
+    insort(state.chegadas, evento_chegada)
+    modifica_onibus_ativos(state.onibus_ativos, saida, +1)
+    state.onibus_disponiveis -= 1
+
 # Algoritmo:
 # 1. Calcular os horários de saída
 # 2. for incrementando os minutos
@@ -100,47 +132,32 @@ def modifica_onibus_ativos(num_ativos, evento, op):
 #      - Decrementar os onibus disponiveis e tirar da lista dos horarios de saida e adiciona na lista de horários de chegada
 #    - Se minutos % 60, verifico se tem algum onibus que nao saiu naquela hora
 def simula_saidas(linhas, saidas, num_frota):
-    num_onibus_ativos = [(0, [0, 0, 0], 0)]
 
+    onibus_ativos = [(0, [0, 0, 0], 0)]
     onibus_disponiveis = num_frota
     chegadas = []
     ultima_saida = 0
+    state = State(onibus_disponiveis, onibus_ativos, chegadas)
+    
     for saida in saidas:
         partida_prevista = saida.horario
         saida.horario = max(ultima_saida, saida.horario)
 
-        ind_chegadas = 0
-        while ind_chegadas < len(chegadas):
-            hora_chegada = chegadas[ind_chegadas].horario
-            if hora_chegada < saida.horario:
-                modifica_onibus_ativos(num_onibus_ativos, chegadas[ind_chegadas], -1)
-                onibus_disponiveis += 1
-            else:
-                break
-            ind_chegadas += 1
-        chegadas = chegadas[ind_chegadas:]
+        novos_onibus = verifica_chegadas(saida.horario, state)
 
-        if onibus_disponiveis == 0:
-            proxima_chegada = chegadas[0].horario
+        if state.onibus_disponiveis == 0:
 
+            proxima_chegada = state.chegadas[0].horario
             if proxima_chegada // 60 > saida.horario // 60:
                 print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista))
-                #exit()
 
-            saida.horario = proxima_chegada
-            modifica_onibus_ativos(num_onibus_ativos, chegadas[0], -1)
-            chegadas = chegadas[1:]
-            onibus_disponiveis += 1
+            atrasa_saida(saida, proxima_chegada, state)
 
         ultima_saida = saida.horario
 
-        media_percurso = linhas[saida.linha].media.em(saida.horario)
-        evento_chegada = Evento(saida.linha, saida.horario + media_percurso)
-        insort(chegadas, evento_chegada)
-        modifica_onibus_ativos(num_onibus_ativos, saida, +1)
-        onibus_disponiveis -= 1
+        handle_saida(linhas, saida, state)
 
-    return num_onibus_ativos
+    return state.onibus_ativos
 
 def dados_por_minuto(dados):
     minutos = []
@@ -206,17 +223,25 @@ class Evento:
     def __repr__(self):
         return '(' + self.linha + ', ' + str(self.horario) + ')'
 
+class State:
+
+    def __init__(self, onibus_disponiveis, onibus_ativos, chegadas):
+        self.onibus_disponiveis = onibus_disponiveis
+        self.onibus_ativos = onibus_ativos
+        self.chegadas = chegadas
+
+
 # Simulacao
 
 def main():
-    SIMULACAO = "UNIFORME"
+    SIMULACAO = "SPTRANS"
 
     if SIMULACAO == "UNIFORME":
         linhas = cria_linhas_uniforme()
     elif SIMULACAO == "SPTRANS":
         linhas = cria_linhas_sptrans()
-    saidas = calcula_saidas(linhas)
-    
+    saidas = cria_eventos_saidas(linhas)
+
     dados = simula_saidas(linhas, saidas, 24)
 
     horario_dados = list(map(lambda x: x[0], dados))
