@@ -1,5 +1,6 @@
 from bisect import insort, bisect_left
 import matplotlib.pyplot as plt
+import sys
 
 # Approaches:
 # 1. Testar uniformemente
@@ -234,7 +235,9 @@ class State:
 # Simulacao
 
 def main():
-    SIMULACAO = "UNIFORME"
+    SIMULACAO = sys.argv[1].upper()
+
+    print("SIMULANDO MODELO " + SIMULACAO)
 
     if SIMULACAO == "UNIFORME":
         linhas = cria_linhas_uniforme()
