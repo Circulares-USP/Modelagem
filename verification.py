@@ -2,24 +2,8 @@ from bisect import insort, bisect_left
 import matplotlib.pyplot as plt
 import sys
 
-# Approaches:
-# 1. Testar uniformemente
-# 2. Testar "de qualquer forma" (podendo sair de qualquer forma)
-
-# Dados:
-# - O número de saídas por horário
-# - Média do Percurso (dependendo do horário)
-
-# Definicoes:
-# - Estamos usando o approach 1
-# - 
-
-# TODO: Verificar dados
-# - Descobrir se tem tempo de parada mínimo
-# - Verificar dados das saídas com Hermes
-# - Verificar a média de tempo com os dados da API
-
 # Utils
+
 
 def calcular_horarios_saidas(saidas_por_hora):
     ret = []
@@ -28,7 +12,7 @@ def calcular_horarios_saidas(saidas_por_hora):
             saidas_a_cada = 60 / num_saidas
             minuto = 0
             while round(minuto) < 60:
-                ret.append(60*hour + round(minuto))
+                ret.append(60 * hour + round(minuto))
                 minuto += saidas_a_cada
     return ret
 
@@ -93,7 +77,6 @@ def modifica_onibus_ativos(num_ativos, evento, op):
     num_ativos.append((horario, ativo_atual, sum(ativo_atual)))
 
 def verifica_chegadas(horario_saida, state):
-
     novos_onibus = 0
 
     ind_chegadas = 0
@@ -105,7 +88,7 @@ def verifica_chegadas(horario_saida, state):
         else:
             break
         ind_chegadas += 1
-    
+
     state.chegadas = state.chegadas[novos_onibus:]
     state.onibus_disponiveis += novos_onibus
 
@@ -133,29 +116,24 @@ def handle_saida(linhas, saida, state):
 #      - Decrementar os onibus disponiveis e tirar da lista dos horarios de saida e adiciona na lista de horários de chegada
 #    - Se minutos % 60, verifico se tem algum onibus que nao saiu naquela hora
 def simula_saidas(linhas, saidas, num_frota):
-
     onibus_ativos = [(0, [0, 0, 0], 0)]
     onibus_disponiveis = num_frota
     chegadas = []
     ultima_saida = 0
     state = State(onibus_disponiveis, onibus_ativos, chegadas)
-    
+
     for saida in saidas:
         partida_prevista = saida.horario
         saida.horario = max(ultima_saida, saida.horario)
-
-        novos_onibus = verifica_chegadas(saida.horario, state)
+        verifica_chegadas(saida.horario, state)
 
         if state.onibus_disponiveis == 0:
-
             proxima_chegada = state.chegadas[0].horario
             if proxima_chegada // 60 > saida.horario // 60:
                 print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista))
-
             atrasa_saida(saida, proxima_chegada, state)
 
         ultima_saida = saida.horario
-
         handle_saida(linhas, saida, state)
 
     return state.onibus_ativos
@@ -171,7 +149,8 @@ def dados_por_minuto(dados):
         minutos.append((minuto_atual, dados[i_dados][1], dados[i_dados][2]))
     return minutos
 
-def plot_dados(dados):
+
+def plot_dados(dados, title):
     dados = dados_por_minuto(dados)
     dados_x = list(map(lambda x: x[0], dados))
     dados_l1 = list(map(lambda x: x[1][0], dados))
@@ -179,17 +158,26 @@ def plot_dados(dados):
     dados_l3 = list(map(lambda x: x[1][2], dados))
     dados_total = list(map(lambda x: x[2], dados))
 
-    fig = plt.figure(figsize=(16,9), dpi=100)
+    max_total = max(dados_total)
+
+    fig = plt.figure(figsize=(16, 9), dpi=100)
     ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
-    ax.plot(dados_x, dados_l1, 'r', dados_x, dados_l2, 'g', dados_x, dados_l3, 'b', dados_x, dados_total, 'k')
+    ax.plot(dados_x, dados_l1, 'r', label='Linha 8012')
+    ax.plot(dados_x, dados_l2, 'g', label='Linha 8022')
+    ax.plot(dados_x, dados_l3, 'b', label='Linha 8032')
+    ax.plot(dados_x, dados_total, 'k', label='Todas Linhas')
+    ax.plot([0, dados_x[-1]], [max_total, max_total], 'k--')
+    ax.legend(loc='upper right')
 
     ax.set_xticks(range(0, 1441, 60))
     ax.set_xticklabels([f'{i:2}:00' for i in range(25)])
+    ax.set_title(title)
 
-    max_total = max(dados_total)
-    ax.set_yticks(range(0, max_total + 1, 2))
-    ax.set_yticklabels(range(0, max_total + 1, 2))
+    ax.set_yticks(list(range(0, max_total + 1, 2)) + [max_total])
+    ax.set_yticklabels(list(range(0, max_total + 1, 2)) + [max_total])
 
+    plt.xlim(0, 24*60)
+    plt.ylim(0, max_total+1)
     plt.show()
 
 # Classes
@@ -203,7 +191,7 @@ class Linha:
 class MediaPercurso:
     def __init__(self, media_por_horario):
         self.media_por_horario = media_por_horario
-    
+
     def em(self, horario):
         horarios_iniciais = list(map(lambda x: x[0], self.media_por_horario))
         index = bisect_left(horarios_iniciais, horario)
@@ -225,7 +213,6 @@ class Evento:
         return '(' + self.linha + ', ' + str(self.horario) + ')'
 
 class State:
-
     def __init__(self, onibus_disponiveis, onibus_ativos, chegadas):
         self.onibus_disponiveis = onibus_disponiveis
         self.onibus_ativos = onibus_ativos
@@ -235,26 +222,29 @@ class State:
 # Simulacao
 
 def main():
-    SIMULACAO = sys.argv[1].upper()
+    SIMULACAO = sys.argv[1].lower()
 
     print("SIMULANDO MODELO " + SIMULACAO)
 
-    if SIMULACAO == "UNIFORME":
+    if SIMULACAO == "uniforme":
         linhas = cria_linhas_uniforme()
-    elif SIMULACAO == "SPTRANS":
+    elif SIMULACAO == "sptrans":
         linhas = cria_linhas_sptrans()
+    else:
+        exit(1)
     saidas = cria_eventos_saidas(linhas)
 
-    dados = simula_saidas(linhas, saidas, 24)
+    dados = simula_saidas(linhas, saidas, 1000)
 
     horario_dados = list(map(lambda x: x[0], dados))
     horario_ordenados = sorted(horario_dados)
-    for i in range(0,len(dados)):
+    for i in range(0, len(dados)):
         assert dados[i][0] == horario_ordenados[i]
 
-    plot_dados(dados)
+    plot_dados(dados, "Simulando Modelo com dados " + SIMULACAO)
 
     # Plot: ônibus por linha com ônibus como infinitos (entender picos)
+
 
 if __name__ == "__main__":
     main()
