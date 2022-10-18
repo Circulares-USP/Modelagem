@@ -1,11 +1,13 @@
+import pytest
+
 from verification import calcular_horarios_saidas
 from verification import cria_eventos_saidas
 from verification import cria_linhas_sptrans
 from verification import cria_linhas_uniforme
 from verification import formata_hora
 from verification import modifica_onibus_ativos
-from verification import Evento, Linha, MediaPercurso
-import pytest
+from verification import verifica_chegadas
+from verification import Evento, Linha, MediaPercurso, State
 
 def mock_linhas():
     return {
@@ -56,6 +58,9 @@ class TestClassMediaPercurso:
         assert self.media_percurso.em(8) == 20
         assert self.media_percurso.em(10) == 30
         assert self.media_percurso.em(50) == 50
+
+    def test_novo(self, horario):
+        assert horario == horario
 
 class TestCalcularHorariosSaidas:
 
@@ -168,4 +173,45 @@ class TestModificaOnibusAtivos:
         assert len(num_onibus_ativos) == 2
         assert num_onibus_ativos[-1] == (20, [0, 0 ,0], 0)
 
-   
+class TestVerificaChegadas:
+
+    chegadas1 = [Evento('8032', 10), Evento('8022', 20), Evento('8012', 30), Evento('8032', 40)]
+    state1 = State(onibus_disponiveis, onibus_ativos, chegadas)
+
+    chegadas2 = []
+    state2 = State(onibus_disponiveis, onibus_ativos, chegadas)
+
+    chegadas3 = [Evento('8012', 30), Evento('8032', 40)]
+    state3 = State(onibus_disponiveis, onibus_ativos, chegadas)
+
+    chegadas4 = [Evento('8032', 10), Evento('8022', 20)]
+    state4 = State(onibus_disponiveis, onibus_ativos, chegadas)
+
+
+
+    @pytest.mark.parametrize('chegadas', [()])
+    @pytest.fixture(params = [chegadas1, chegadas2, chegadas3, chegadas4])
+    def state(self):
+        onibus_disponiveis = 14
+        onibus_ativos = [(5, [1, 1, 2], 4)]
+
+        chegadas = [Evento('8032', 10), Evento('8022', 20), Evento('8012', 30), Evento('8032', 40)]
+        return State(onibus_disponiveis, onibus_ativos, chegadas)
+
+    def test_calcula_novos_onibus(self, state):
+        assert verifica_chegadas(25, state) == 2
+
+    def test_adiciona_novos_onibus(self, state):
+        verifica_chegadas(25, state)
+        assert state.onibus_disponiveis == 16
+
+    def test_remove_chegadas_anteriores(self, state):
+        verifica_chegadas(25, state)
+        assert state.chegadas == [Evento('8012', 30), Evento('8032', 40)]
+
+    def test_modifica_onibus_ativos(self, state):
+        verifica_chegadas(25, state)
+        assert state.onibus_ativos == [(5, [1, 1, 2], 4), (10, [1, 1, 1], 3), (20, [1, 0, 1], 2)]
+
+
+
