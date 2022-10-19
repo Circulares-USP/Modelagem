@@ -4,7 +4,6 @@ import sys
 
 # Utils
 
-
 def calcular_horarios_saidas(saidas_por_hora):
     ret = []
     for hour, num_saidas in enumerate(saidas_por_hora):
@@ -115,12 +114,10 @@ def handle_saida(linhas, saida, state):
 #    - Se tem onibus disponivel,
 #      - Decrementar os onibus disponiveis e tirar da lista dos horarios de saida e adiciona na lista de horários de chegada
 #    - Se minutos % 60, verifico se tem algum onibus que nao saiu naquela hora
-def simula_saidas(linhas, saidas, num_frota):
-    onibus_ativos = [(0, [0, 0, 0], 0)]
+def simula_saidas(linhas, saidas, num_frota, aceita_erros, atraso_permitido):
     onibus_disponiveis = num_frota
-    chegadas = []
     ultima_saida = 0
-    state = State(onibus_disponiveis, onibus_ativos, chegadas)
+    state = State(onibus_disponiveis, [(0, [0, 0, 0], 0)], [])
 
     for saida in saidas:
         partida_prevista = saida.horario
@@ -129,14 +126,17 @@ def simula_saidas(linhas, saidas, num_frota):
 
         if state.onibus_disponiveis == 0:
             proxima_chegada = state.chegadas[0].horario
-            if proxima_chegada // 60 > saida.horario // 60:
-                print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista))
+            if proxima_chegada // 60 > partida_prevista // 60 and proxima_chegada > partida_prevista + atraso_permitido:
+                print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista) + ', vai sair: ' + formata_hora(proxima_chegada))
+                state.erros.append(partida_prevista)
+                if aceita_erros:
+                    continue
             atrasa_saida(saida, proxima_chegada, state)
 
         ultima_saida = saida.horario
         handle_saida(linhas, saida, state)
 
-    return state.onibus_ativos
+    return state
 
 def dados_por_minuto(dados):
     minutos = []
@@ -217,12 +217,20 @@ class State:
         self.onibus_disponiveis = onibus_disponiveis
         self.onibus_ativos = onibus_ativos
         self.chegadas = chegadas
+        self.erros = []
 
 
 # Simulacao
 
 def main():
+    if len(sys.argv) < 5:
+        print('Passe todos os parâmetros!')
+        exit(1)
+
     SIMULACAO = sys.argv[1].lower()
+    NUM_FROTA = int(sys.argv[2])
+    ACEITA_ERRO = sys.argv[3].lower()=='aceita'
+    MINUTOS_ATRASO = sys.argv[4].lower()
 
     print("SIMULANDO MODELO " + SIMULACAO)
 
@@ -234,16 +242,21 @@ def main():
         exit(1)
     saidas = cria_eventos_saidas(linhas)
 
-    dados = simula_saidas(linhas, saidas, 1000)
+    state = simula_saidas(linhas, saidas, NUM_FROTA, ACEITA_ERRO, int(MINUTOS_ATRASO))
+    dados = state.onibus_ativos
 
     horario_dados = list(map(lambda x: x[0], dados))
     horario_ordenados = sorted(horario_dados)
     for i in range(0, len(dados)):
         assert dados[i][0] == horario_ordenados[i]
 
-    plot_dados(dados, "Simulando Modelo com dados " + SIMULACAO)
+    titulo = "Dados " + SIMULACAO.upper()
+    if NUM_FROTA > 50:
+        titulo += " com frota ilimitada"
+    else:
+        titulo += " | " + MINUTOS_ATRASO + "min de tolerância = " + str(len(state.erros)) + " erros"
 
-    # Plot: ônibus por linha com ônibus como infinitos (entender picos)
+    plot_dados(dados, titulo)
 
 
 if __name__ == "__main__":
