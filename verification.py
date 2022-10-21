@@ -93,9 +93,9 @@ def verifica_chegadas(horario_saida, state):
 
     return novos_onibus
 
-def atrasa_saida(saida, novo_horario, state):
-    saida.horario = novo_horario
-    modifica_onibus_ativos(state.onibus_ativos, state.chegadas[0], -1)
+def atrasa_saida(saida, prox_chegada, state):
+    saida.horario = prox_chegada.horario
+    modifica_onibus_ativos(state.onibus_ativos, prox_chegada, -1)
     state.chegadas = state.chegadas[1:]
     state.onibus_disponiveis += 1
 
@@ -125,12 +125,13 @@ def simula_saidas(linhas, saidas, num_frota, aceita_erros, atraso_permitido):
         verifica_chegadas(saida.horario, state)
 
         if state.onibus_disponiveis == 0:
-            proxima_chegada = state.chegadas[0].horario
-            if proxima_chegada // 60 > partida_prevista // 60 and proxima_chegada > partida_prevista + atraso_permitido:
-                print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista) + ', vai sair: ' + formata_hora(proxima_chegada))
+            proxima_chegada = state.chegadas[0]
+            if proxima_chegada.horario // 60 > partida_prevista // 60 and proxima_chegada.horario > partida_prevista + atraso_permitido:
+                print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista) + ', vai sair: ' + formata_hora(proxima_chegada.horario))
                 state.erros.append(partida_prevista)
                 if aceita_erros:
                     continue
+
             atrasa_saida(saida, proxima_chegada, state)
 
         ultima_saida = saida.horario
@@ -148,7 +149,6 @@ def dados_por_minuto(dados):
                 i_dados += 1
         minutos.append((minuto_atual, dados[i_dados][1], dados[i_dados][2]))
     return minutos
-
 
 def plot_dados(dados, title):
     dados = dados_por_minuto(dados)
@@ -219,9 +219,7 @@ class State:
         self.chegadas = chegadas
         self.erros = []
 
-
 # Simulacao
-
 def main():
     if len(sys.argv) < 5:
         print('Passe todos os parâmetros!')
@@ -257,7 +255,6 @@ def main():
         titulo += " | " + MINUTOS_ATRASO + "min de tolerância = " + str(len(state.erros)) + " erros"
 
     plot_dados(dados, titulo)
-
 
 if __name__ == "__main__":
     main()
