@@ -175,19 +175,6 @@ class TestHandleSaida:
         handle_saida(self.linhas, saida, state)
         assert state.onibus_disponiveis == 9
 
-    chegadas1 = [Evento('8032', 10), Evento('8022', 20), Evento('8012', 30), Evento('8032', 40)]
-    chegadas2 = []
-    chegadas3 = [Evento('8012', 30), Evento('8032', 40)]
-    chegadas4 = [Evento('8032', 10), Evento('8022', 20)]
-
-    @pytest.fixture(params = [chegadas1, chegadas2, chegadas3, chegadas4])
-    def state(self):
-        onibus_disponiveis = 14
-        onibus_ativos = [(5, [1, 1, 2], 4)]
-
-        chegadas = [Evento('8032', 10), Evento('8022', 20), Evento('8012', 30), Evento('8032', 40)]
-        return State(onibus_disponiveis, onibus_ativos, chegadas)
-
 class TestModificaOnibusAtivos:
 
     def test_new_minute_add(self):
