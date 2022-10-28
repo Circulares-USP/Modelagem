@@ -115,34 +115,33 @@ def handle_saida(linhas, saida, state):
 #      - Decrementar os onibus disponiveis e tirar da lista dos horarios de saida e adiciona na lista de horários de chegada
 #    - Se minutos % 60, verifico se tem algum onibus que nao saiu naquela hora
 def simula_saidas(linhas, saidas, num_frota, aceita_erros, atraso_permitido):
-    onibus_disponiveis = num_frota
-    ultima_saida = 0
-    state = State(onibus_disponiveis, [(0, [0, 0, 0], 0)], [])
-
+    state = State(num_frota, [(0, [0, 0, 0], 0)], [], [], 0)
     for saida in saidas:
-        partida_prevista = saida.horario
-        saida.horario = max(ultima_saida, saida.horario)
-        verifica_chegadas(saida.horario, state)
-
-        if state.onibus_disponiveis == 0:
-            proxima_chegada = state.chegadas[0]
-            if proxima_chegada.horario // 60 > partida_prevista // 60 and proxima_chegada.horario > partida_prevista + atraso_permitido:
-                print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista) + ', vai sair: ' + formata_hora(proxima_chegada.horario))
-                state.erros.append(partida_prevista)
-                if aceita_erros:
-                    continue
-
-            atrasa_saida(saida, proxima_chegada, state)
-
-        ultima_saida = saida.horario
-        handle_saida(linhas, saida, state)
-
+        simula_saida(state, linhas, saida, aceita_erros, atraso_permitido)
     return state
+
+def simula_saida(state, linhas, saida, aceita_erros, atraso_permitido):
+    partida_prevista = saida.horario
+    saida.horario = max(state.ultima_saida, saida.horario)
+    verifica_chegadas(saida.horario, state)
+
+    if state.onibus_disponiveis == 0:
+        proxima_chegada = state.chegadas[0]
+        # TODO: alterar o if para (apenas considerando o atraso) ou (apenas quanto passa da hora)
+        if proxima_chegada.horario // 60 > partida_prevista // 60 and proxima_chegada.horario > partida_prevista + atraso_permitido:
+            print('Erro na linha ' + str(saida.linha) + ' em ' + formata_hora(partida_prevista) + ', vai sair: ' + formata_hora(proxima_chegada.horario))
+            state.erros.append(partida_prevista)
+            if aceita_erros:
+                return
+        atrasa_saida(saida, proxima_chegada, state)
+
+    state.ultima_saida = saida.horario
+    handle_saida(linhas, saida, state)
 
 def dados_por_minuto(dados):
     minutos = []
     i_dados = 0
-    for minuto_atual in range(1, 60*24):
+    for minuto_atual in range(0, 60*24):
         if i_dados+1 < len(dados):
             proximo_minuto = dados[i_dados+1][0]
             if minuto_atual >= proximo_minuto:
@@ -213,11 +212,15 @@ class Evento:
         return '(' + self.linha + ', ' + str(self.horario) + ')'
 
 class State:
-    def __init__(self, onibus_disponiveis, onibus_ativos, chegadas):
+    def __init__(self, onibus_disponiveis, onibus_ativos, chegadas, erros, ultima_saida):
         self.onibus_disponiveis = onibus_disponiveis
         self.onibus_ativos = onibus_ativos
         self.chegadas = chegadas
-        self.erros = []
+        self.erros = erros
+        self.ultima_saida = ultima_saida
+    
+    def __eq__(self, other):
+        return self.onibus_disponiveis == other.onibus_disponiveis and self.onibus_ativos == other.onibus_ativos and self.chegadas == other.chegadas and self.erros == other.erros and self.ultima_saida == other.ultima_saida
 
 # Simulacao
 def main():

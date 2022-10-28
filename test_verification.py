@@ -1,7 +1,7 @@
 import pytest
 from copy import deepcopy
 
-from verification import atrasa_saida
+from verification import atrasa_saida, simula_saida
 from verification import calcular_horarios_saidas
 from verification import cria_eventos_saidas
 from verification import cria_linhas_sptrans
@@ -10,6 +10,7 @@ from verification import formata_hora
 from verification import handle_saida
 from verification import modifica_onibus_ativos
 from verification import verifica_chegadas
+from verification import dados_por_minuto
 from verification import Evento, Linha, MediaPercurso, State
 
 def mock_linhas():
@@ -75,7 +76,7 @@ class TestAtrasaSaida:
         onibus_disponiveis = 10
         onibus_ativos = [(980, [3, 3, 2], 8)]
         chegadas = [Evento("8022", 1010), Evento("8012", 1050)]
-        return State(onibus_disponiveis, onibus_ativos, chegadas)
+        return State(onibus_disponiveis, onibus_ativos, chegadas, [], 0)
 
     def test_update_hora_saida(self, saida, state):
         atrasa_saida(saida, self.prox_chegada, state)
@@ -164,7 +165,7 @@ class TestHandleSaida:
         onibus_disponiveis = 10
         onibus_ativos = [(980, [3, 3, 2], 8)]
         chegadas = [Evento("8022", 1010), Evento("8012", 1050)]
-        return State(onibus_disponiveis, onibus_ativos, chegadas)
+        return State(onibus_disponiveis, onibus_ativos, chegadas, [], 0)
 
     def test_adiciona_onibus_ativos(self, saida, state):
         handle_saida(self.linhas, saida, state)
@@ -241,7 +242,7 @@ class TestVerificaChegadas:
             self.expected_onibus_disponiveis = disponiveis
             self.expected_chegadas = expected_chegadas
             self.expected_onibus_ativos = ativos
-            self.state = State(self.onibus_disponiveis, self.onibus_ativos, chegadas)
+            self.state = State(self.onibus_disponiveis, self.onibus_ativos, chegadas, [], 0)
 
         def copy(self): 
             return TestVerificaChegadas.Case(deepcopy(self.chegadas),
@@ -298,3 +299,69 @@ class TestVerificaChegadas:
     def test_modifica_onibus_ativos(self, case_instance):
         verifica_chegadas(25, case_instance.state)
         assert case_instance.state.onibus_ativos == case_instance.expected_onibus_ativos
+
+class TestSimulaSaidas:
+    class Case:
+        def __init__(self, initial_state, expected_state, saida, aceita_erros, atraso_permitido):
+            self.initial_state=initial_state
+            self.expected_state=expected_state
+            self.linhas=cria_linhas_sptrans()
+            self.saida=saida
+            self.aceita_erros=aceita_erros
+            self.atraso_permitido=atraso_permitido
+
+    @pytest.mark.parametrize("case", [
+        Case(
+            State(18, [(0, [0, 0, 0], 0)], [], [], 0),
+            State(17, [(0, [0, 0, 0], 0), (30, [0, 1, 0], 1)], [Evento('8022', 30 + 67)], [], 30),
+            Evento('8022', 30),
+            False, 0,
+        ),
+        Case(
+            State(0, [(630, [5, 2, 3], 10)], [Evento('8022', 638), Evento('8032', 640)], [], 630),
+            State(0, [(630, [5, 2, 3], 10), (638, [6, 1, 3], 10)], [Evento('8032', 640), Evento('8012', 638 + 64)], [], 638),
+            Evento('8012', 635),
+            False, 0,
+        ),
+        Case(
+            State(0, [(200, [5, 2, 3], 10)], [Evento('8022', 60*8 + 6)], [], 200),
+            State(0, [(200, [5, 2, 3], 10), (60*8 + 6, [5, 1, 4], 10)], [Evento('8032', 60*8 + 6 + 35)], [60*7 + 55], 60*8 + 6),
+            Evento('8032', 60*7 + 55),
+            False, 10,
+        ),
+        Case(
+            State(0, [(200, [5, 2, 3], 10)], [Evento('8022', 60*8 + 6)], [], 200),
+            State(0, [(200, [5, 2, 3], 10)], [Evento('8022', 60*8 + 6)], [60*7 + 55], 200),
+            Evento('8032', 60*7 + 55),
+            True, 10,
+        ),
+        ])
+    def test_state(self, case):
+        simula_saida(case.initial_state, case.linhas, case.saida, case.aceita_erros, case.atraso_permitido)
+        print(case.initial_state.onibus_ativos)
+        print(case.expected_state.onibus_ativos)
+        assert case.initial_state == case.expected_state
+
+class TestDadosPorMinuto:
+    def test_func(self):
+        dados = [
+            (0, [0,0,0], 0),
+            (4, [0,3,1], 4),
+            (7, [1,0,0], 1),
+        ]
+        expected = [
+            (0, [0,0,0], 0),
+            (1, [0,0,0], 0),
+            (2, [0,0,0], 0),
+            (3, [0,0,0], 0),
+            (4, [0,3,1], 4),
+            (5, [0,3,1], 4),
+            (6, [0,3,1], 4),
+            (7, [1,0,0], 1),
+            (8, [1,0,0], 1),
+            (9, [1,0,0], 1),
+            (10, [1,0,0], 1),
+        ]
+        got = dados_por_minuto(dados)
+        assert len(got) == 60*24
+        assert got[:11] == expected
