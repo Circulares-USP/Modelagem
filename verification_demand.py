@@ -1,4 +1,5 @@
 from bisect import insort, bisect_left
+from pprint import pprint
 import matplotlib.pyplot as plt
 import sys
 from verification import calcular_horarios_saidas
@@ -97,69 +98,52 @@ def cria_linhas_sptrans():
         )
     }
 
-demanda = {"1791": 1000,
-    "1796": 1000,
-    "1800": 1000,
-    "1794": 1000,
-    "1802": 1000,
-    "1804": 1000,
-    "1806": 1000,
-    "1809": 1000,
-    "1811": 1000,
-    "1813": 1000,
-    "1818": 1000,
-    "1826": 1000,
-    "1830": 1000,
-    "1832": 1000,
-    "1834": 1000,
-    "1839": 1000,
-    "1841": 1000,
-    "1844": 1000,
-    "1846": 1000,
-    "1848": 1000,
-    "1850": 1000,
-    "1857": 1000,
-    "1859": 1000,
-    "1861": 1000,
-    "1863": 1000,
-    "1865": 1000,
-    "1867": 1000,
-    "1871": 1000,
-    "1887": 1000,
-    "1890": 1000,
-    "1892": 1000,
-    "1896": 1000,
-    "1899": 1000,
-    "1904": 1000,
-    "1908": 1000,
-    "1910": 1000,
-    "1912": 1000,
-    "1916": 1000,
-    "1918": 1000,
-    "1920": 1000,
-    "1922": 1000,
-    "1924": 1000,
-    "1926": 1000,
-    "1928": 1000,
-    "1930": 1000,
-    "1932": 1000,
-    "1934": 1000,
-    "1936": 1000,
-    "1938": 1000,
-    "1940": 1000}
 
-def calcula_atendimento(linhas, saidas):
+def cria_demanda(linhas):
+    pontos_onibus = ["1791", "1796", "1800", "1794", "1802", "1804", "1806", "1809", "1811", "1813", "1818", "1826", "1830", "1832", "1834", "1839", "1841", "1844", "1846", "1848", "1850", "1857", "1859", "1861", "1863", "1865", "1867", "1871", "1887", "1890", "1892", "1896", "1899", "1904", "1908", "1910", "1912", "1916", "1918", "1920", "1922", "1924", "1926", "1928", "1930", "1932", "1934", "1936", "1938", "1940"]
+    demanda = {"seg": {480: {}}}
+    for ponto in pontos_onibus:
+        demanda["seg"][480][ponto] = {}
+        for linha in linhas.keys():
+            if ponto in linhas[linha].rota.frequencia_por_horario[0][1]:
+                demanda["seg"][480][ponto][linha] = 100
+    return demanda
+
+def soma_demanda(demanda):
+    soma = {}
+    for dia in demanda.keys():
+        soma[dia] = {}
+        for horario in demanda[dia].keys():
+            soma[dia][horario] = 0
+            for ponto in demanda[dia][horario].keys():
+                for linha in demanda[dia][horario][ponto].keys():
+                    soma[dia][horario] += demanda[dia][horario][ponto][linha]
+    return soma
+
+def porcentagem_chegada(soma_total, soma_restante):
+    porcentagem = {}
+    for dia in soma_total.keys():
+        porcentagem[dia] = {}
+        for horario in soma_total[dia].keys():
+            porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
+    return porcentagem
+
+
+def calcula_atendimento(linhas, demanda, saidas):
+    horarios = [480]
+    dias = ["seg"]
     for saida in saidas:
-        if 390 < saida.horario < 480:
-            distribui_pessoas(linhas, saida)
-    print(demanda)
+        for dia in dias:
+            for horario in horarios:
+                if horario-120 < saida.horario < horario:
+                    distribui_pessoas(linhas, demanda[dia][horario], saida)
 
-def distribui_pessoas(linhas, saida):
+def distribui_pessoas(linhas, demanda, saida):
     pessoas = 100
     linha = linhas[saida.linha]
-    freq = linha.rota.frequencia_por_horario[0][1]
+    freq = linha.rota.em(saida.horario)
     for ponto in freq.keys():
-        demanda[ponto] -= pessoas * freq[ponto]
+        demanda[ponto][saida.linha] -= pessoas * freq[ponto]
 
 # Simulacao
 def main():
@@ -178,9 +162,14 @@ def main():
     else:
         exit(1)
 
+    demanda = cria_demanda(linhas_rotas)
+
     saidas = cria_eventos_saidas(linhas_rotas)
 
-    state = calcula_atendimento(linhas_rotas, saidas)
+    total = soma_demanda(demanda)
+    state = calcula_atendimento(linhas_rotas, demanda, saidas)
+    restante = soma_demanda(demanda)
+    pprint(porcentagem_chegada(total, restante))
 
 if __name__ == "__main__":
     main()
