@@ -7,6 +7,7 @@ from verification import verifica_chegadas
 from verification import handle_saida
 from verification import Evento, Linha, MediaPercurso
 from pontos_ajustados import demanda_completa
+from pontos_ajustados_volta import demanda_completa_volta
 from copy import deepcopy
 
 class LinhaRota():
@@ -181,7 +182,7 @@ def porcentagem_chegada(soma_total, soma_restante):
     return porcentagem
 
 
-def calcula_atendimento(linhas, demanda, saidas):
+def calcula_atendimento_ida(linhas, demanda, saidas):
     horarios = [480, 1080]
     dias = ["seg", "ter", "qua", "qui", "sex"]
     for saida in saidas:
@@ -215,6 +216,15 @@ def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
         return 0
     return demanda[ponto_alvo][linha] / sum_pessoas
 
+def calcula_atendimento_volta(linhas, demanda, saidas):
+    horarios = [1110]
+    dias = ["seg", "ter", "qua", "qui", "sex"]
+    for saida in saidas:
+        for dia in dias:
+            for horario in horarios:
+                if horario-60 < saida.horario < horario+30:
+                    distribui_pessoas(dia, horario, linhas, demanda[dia][horario], saida)
+
 # Simulacao
 def main():
     if len(sys.argv) < 2:
@@ -233,14 +243,21 @@ def main():
         exit(1)
 
     demanda = deepcopy(demanda_completa)
+    demanda_volta = deepcopy(demanda_completa_volta)
 
     saidas = cria_eventos_saidas(linhas_rotas)
 
     total = soma_demanda(demanda)
     pprint(total)
-    state = calcula_atendimento(linhas_rotas, demanda, saidas)
+    state = calcula_atendimento_ida(linhas_rotas, demanda, saidas)
     restante = soma_demanda(demanda)
     pprint(porcentagem_chegada(total, restante))
+
+    total_volta = soma_demanda(demanda_volta)
+    pprint(total_volta)
+    state = calcula_atendimento_volta(linhas_rotas, demanda_volta, saidas)
+    restante = soma_demanda(demanda_volta)
+    pprint(porcentagem_chegada(total_volta, restante))
 
 if __name__ == "__main__":
     main()
