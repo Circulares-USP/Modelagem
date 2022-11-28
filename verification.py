@@ -1,5 +1,5 @@
 from bisect import insort, bisect_left
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import sys
 
 # Utils
