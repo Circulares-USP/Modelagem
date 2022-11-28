@@ -35,7 +35,7 @@ demanda_completa_func = {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 19
             },
             "IPT": {
@@ -190,7 +190,7 @@ demanda_completa_func = {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 19
             },
             "IPT": {
@@ -345,7 +345,7 @@ demanda_completa_func = {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 19
             },
             "IPT": {
@@ -500,7 +500,7 @@ demanda_completa_func = {
                 "8032": 70,
                 "8012": 46
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 19
             },
             "IPT": {
@@ -655,7 +655,7 @@ demanda_completa_func = {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 19
             },
             "IPT": {

@@ -24,7 +24,7 @@ demanda_completa_volta_p3 = {
             "Poli Biênio": {
                 "8012": 133,
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 61
             },
             "Raia Olímpica": {
@@ -82,7 +82,7 @@ demanda_completa_volta_p3 = {
             "Poli Biênio": {
                 "8012": 180,
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 78
             },
             "Raia Olímpica": {
@@ -176,7 +176,7 @@ demanda_completa_volta_p3 = {
             "Poli Biênio": {
                 "8012": 188,
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 72
             },
             "IPT": {
@@ -210,7 +210,7 @@ demanda_completa_volta_p3 = {
             "Poli Biênio": {
                 "8012": 197,
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 85
             },
             "Raia Olímpica": {
@@ -307,7 +307,7 @@ demanda_completa_volta_p3 = {
             "Reitoria": {
                 "8012": 324
             },
-            "Terminal Urbano": {
+            "Terminal USP": {
                 "8022": 87
             },
             "IPT": {
