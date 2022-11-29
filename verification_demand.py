@@ -213,9 +213,9 @@ def calcula_atendimento_ida(linhas, demanda_butanta, demanda_p3, saidas):
         for dia in dias:
             for horario in horarios:
                 if horario-120 < saida.horario < horario:
-                    distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 200, 'ida')
+                    distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 100, 'ida')
                     if saida.linha != '8032':
-                        distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 100, 'volta')
+                        distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 50, 'volta')
 
 def calcula_atendimento_volta(linhas, demanda_butanta, demanda_p3, saidas):
     horarios = [1110]
@@ -225,10 +225,10 @@ def calcula_atendimento_volta(linhas, demanda_butanta, demanda_p3, saidas):
             for horario in horarios:
                 if horario-60 < saida.horario < horario+30:
                     if saida.linha != '8032':
-                        distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 100, 'ida')
-                        distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 200, 'volta')
+                        distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 50, 'ida')
+                        distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 100, 'volta')
                     else:
-                        distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 200, 'ida')
+                        distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 100, 'ida')
 
 def distribui_pessoas(linhas, demanda, id_linha, pessoas, caminho):
     linha = linhas[id_linha]
@@ -256,6 +256,12 @@ def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
         return 0
     return demanda[ponto_alvo][linha] / sum_pessoas
 
+def trata_demanda_percentual(demanda, porc):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            for ponto in demanda[dia][horario]:
+                for linha in demanda[dia][horario][ponto]:
+                    demanda[dia][horario][ponto][linha] = round(demanda[dia][horario][ponto][linha] * porc)
 
 # Simulacao
 def main():
@@ -273,6 +279,14 @@ def main():
         linhas_rotas = cria_linhas_sptrans()
     else:
         exit(1)
+
+    trata_demanda_percentual(demanda_ida_butanta, 0.8)
+    trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
+    trata_demanda_percentual(demanda_volta_butanta, 0.8)
+
+    trata_demanda_percentual(demanda_ida_p3, 0.2)
+    trata_demanda_percentual(demanda_ida_p3_func, 0.2)
+    trata_demanda_percentual(demanda_volta_p3, 0.2)
 
     demanda_ida_alunos = junta_demanda(demanda_ida_butanta, demanda_ida_p3)
     demanda_ida_func = junta_demanda(demanda_ida_butanta_func, demanda_ida_p3_func)
