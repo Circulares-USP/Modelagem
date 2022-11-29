@@ -6,8 +6,12 @@ from verification import calcular_horarios_saidas
 from verification import verifica_chegadas
 from verification import handle_saida
 from verification import Evento, Linha, MediaPercurso
-from demanda_completa_ida_butanta import demanda_completa_ida as demanda_completa
-from pontos_ajustados_volta import demanda_completa_volta
+from demanda_ida_butanta import demanda_ida_butanta
+from demanda_ida_butanta_func import demanda_ida_butanta_func
+from demanda_ida_p3 import demanda_ida_p3
+from demanda_ida_p3_func import demanda_ida_p3_func
+from demanda_volta_butanta import demanda_volta_butanta
+from demanda_volta_p3 import demanda_volta_p3
 from copy import deepcopy
 
 class LinhaRota():
@@ -16,7 +20,7 @@ class LinhaRota():
         self.rota = rota
 
 class Rota():
-    def __init__(self, ida, volta):
+    def __init__(self, ida, volta=None):
         self.ida = ida
         self.volta = volta
         
@@ -158,15 +162,30 @@ def cria_linhas_sptrans():
         )
     }
 
-def cria_demanda(linhas):
-    pontos_onibus = ["1791", "1796", "1800", "1794", "1802", "1804", "1806", "1809", "1811", "1813", "1818", "1826", "1830", "1832", "1834", "1839", "1841", "1844", "1846", "1848", "1850", "1857", "1859", "1861", "1863", "1865", "1867", "1871", "1887", "1890", "1892", "1896", "1899", "1904", "1908", "1910", "1912", "1916", "1918", "1920", "1922", "1924", "1926", "1928", "1930", "1932", "1934", "1936", "1938", "1940"]
-    demanda = {"seg": {480: {}}}
-    for ponto in pontos_onibus:
-        demanda["seg"][480][ponto] = {}
-        for linha in linhas.keys():
-            if ponto in linhas[linha].rota.frequencia_por_horario[0][1]:
-                demanda["seg"][480][ponto][linha] = 100
-    return demanda
+def junta_demanda(demanda1, demanda2):
+    demanda_total = {}
+    for dia in demanda1.keys():
+        demanda_total[dia] = {}
+        for horario in demanda1[dia].keys():
+            demanda_total[dia][horario] = {}
+            for ponto in demanda1[dia][horario]:
+                demanda_total[dia][horario][ponto] = {}
+                if ponto in demanda2[dia][horario]:
+                    for linha in demanda1[dia][horario][ponto]:
+                        demanda_total[dia][horario][ponto][linha] = demanda1[dia][horario][ponto][linha] + demanda2[dia][horario][ponto].get(linha, 0)
+                else:
+                    for linha in demanda1[dia][horario][ponto]:
+                        demanda_total[dia][horario][ponto][linha] = demanda1[dia][horario][ponto][linha]
+            for ponto in demanda2[dia][horario]:
+                demanda_total[dia][horario][ponto] = demanda_total[dia][horario].get(ponto, {})
+                if ponto in demanda1[dia][horario]:
+                    for linha in demanda2[dia][horario][ponto]:
+                        demanda_total[dia][horario][ponto][linha] = demanda2[dia][horario][ponto][linha] + demanda1[dia][horario][ponto].get(linha, 0)
+                else:
+                    for linha in demanda2[dia][horario][ponto]:
+                        demanda_total[dia][horario][ponto][linha] = demanda2[dia][horario][ponto][linha]
+        
+    return demanda_total
 
 def soma_demanda(demanda):
     soma = {}
@@ -187,28 +206,43 @@ def porcentagem_chegada(soma_total, soma_restante):
             porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
     return porcentagem
 
-
-def calcula_atendimento_ida(linhas, demanda, saidas):
-    horarios = [480, 1080]
+def calcula_atendimento_ida(linhas, demanda_butanta, demanda_p3, saidas):
+    horarios = [480, 1140]
     dias = ["seg", "ter", "qua", "qui", "sex"]
     for saida in saidas:
         for dia in dias:
             for horario in horarios:
                 if horario-120 < saida.horario < horario:
-                    distribui_pessoas(dia, horario, linhas, demanda[dia][horario], saida)
+                    distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 200, 'ida')
+                    if saida.linha != '8032':
+                        distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 100, 'volta')
 
-def distribui_pessoas(dia, hora, linhas, demanda, saida):
-    pessoas = 100
-    linha = linhas[saida.linha]
-    rota_ida = linha.rota.ida
-    for ponto in rota_ida:
+def calcula_atendimento_volta(linhas, demanda_butanta, demanda_p3, saidas):
+    horarios = [1110]
+    dias = ["seg", "ter", "qua", "qui", "sex"]
+    for saida in saidas:
+        for dia in dias:
+            for horario in horarios:
+                if horario-60 < saida.horario < horario+30:
+                    if saida.linha != '8032':
+                        distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 100, 'ida')
+                        distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 200, 'volta')
+                    else:
+                        distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 200, 'ida')
 
-        if (id_to_nome[ponto] not in demanda or saida.linha not in demanda[id_to_nome[ponto]]):
+def distribui_pessoas(linhas, demanda, id_linha, pessoas, caminho):
+    linha = linhas[id_linha]
+    if caminho == 'ida':
+        rota = linha.rota.ida
+    else:
+        rota = linha.rota.volta
+    for ponto in rota:
+        if (id_to_nome[ponto] not in demanda or id_linha not in demanda[id_to_nome[ponto]]):
             continue
-        frequencia = porc_de_linha_desce_em_ponto(id_to_nome[ponto], saida.linha, demanda)
-        demanda[id_to_nome[ponto]][saida.linha] -= pessoas * frequencia
-        if demanda[id_to_nome[ponto]][saida.linha] < 0:
-            demanda[id_to_nome[ponto]][saida.linha] = 0
+        frequencia = porc_de_linha_desce_em_ponto(id_to_nome[ponto], id_linha, demanda)
+        demanda[id_to_nome[ponto]][id_linha] -= pessoas * frequencia
+        if demanda[id_to_nome[ponto]][id_linha] < 0:
+            demanda[id_to_nome[ponto]][id_linha] = 0
 
 def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
     sum_pessoas = 0
@@ -222,14 +256,6 @@ def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
         return 0
     return demanda[ponto_alvo][linha] / sum_pessoas
 
-def calcula_atendimento_volta(linhas, demanda, saidas):
-    horarios = [1110]
-    dias = ["seg", "ter", "qua", "qui", "sex"]
-    for saida in saidas:
-        for dia in dias:
-            for horario in horarios:
-                if horario-60 < saida.horario < horario+30:
-                    distribui_pessoas(dia, horario, linhas, demanda[dia][horario], saida)
 
 # Simulacao
 def main():
@@ -248,21 +274,28 @@ def main():
     else:
         exit(1)
 
-    demanda = deepcopy(demanda_completa)
-    demanda_volta = deepcopy(demanda_completa_volta)
+    demanda_ida_alunos = junta_demanda(demanda_ida_butanta, demanda_ida_p3)
+    demanda_ida_func = junta_demanda(demanda_ida_butanta_func, demanda_ida_p3_func)
+    demanda_ida_completa = junta_demanda(demanda_ida_alunos, demanda_ida_func)
+    demanda_volta_alunos = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
+
+    demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
+    demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
 
     saidas = cria_eventos_saidas(linhas_rotas)
 
-    total = soma_demanda(demanda)
+    total = soma_demanda(demanda_ida_completa)
     pprint(total)
-    state = calcula_atendimento_ida(linhas_rotas, demanda, saidas)
-    restante = soma_demanda(demanda)
+    state = calcula_atendimento_ida(linhas_rotas, demanda_ida_completa_butanta, demanda_ida_completa_p3, saidas)
+    demanda_ida_restante = junta_demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3)
+    restante = soma_demanda(demanda_ida_restante)
     pprint(porcentagem_chegada(total, restante))
 
-    total_volta = soma_demanda(demanda_volta)
+    total_volta = soma_demanda(demanda_volta_alunos)
     pprint(total_volta)
-    state = calcula_atendimento_volta(linhas_rotas, demanda_volta, saidas)
-    restante = soma_demanda(demanda_volta)
+    state = calcula_atendimento_volta(linhas_rotas, demanda_volta_butanta, demanda_volta_p3, saidas)
+    demanda_volta_restante = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
+    restante = soma_demanda(demanda_volta_restante)
     pprint(porcentagem_chegada(total_volta, restante))
 
 if __name__ == "__main__":
