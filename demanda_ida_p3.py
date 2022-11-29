@@ -1,6 +1,6 @@
-demanda_completa_ida_p3 = {
+demanda_ida_p3 = {
     "sex": {
-        "480": {
+        480: {
             "Oceanográfico": {
                 "8022": 533,
             },
@@ -76,7 +76,7 @@ demanda_completa_ida_p3 = {
                 "8022": 18
             },
         },
-        "1080": {
+        1140: {
             "FAU I": {
                 "8012": 34
             },
@@ -120,7 +120,7 @@ demanda_completa_ida_p3 = {
         }
     },
     "ter": {
-        "480": {
+        480: {
             "CEPAM": {
                 "8022": 1023
             },
@@ -199,7 +199,7 @@ demanda_completa_ida_p3 = {
                 "8022": 15
             },
         },
-        "1080": {
+        1140: {
             "Oceanográfico": {
                 "8022": 9,
             },
@@ -265,7 +265,7 @@ demanda_completa_ida_p3 = {
         }
     },
     "seg": {
-        "480": {
+        480: {
             "Oceanográfico": {
                 "8022": 544,
             },
@@ -344,7 +344,7 @@ demanda_completa_ida_p3 = {
                 "8022": 12
             }
         },
-        "1080": {
+        1140: {
             "Parada Matemática": {
                 "8022": 94
             },
@@ -403,7 +403,7 @@ demanda_completa_ida_p3 = {
         }
     },
     "qua": {
-        "480": {
+        480: {
             "Oceanográfico": {
                 "8022": 367,
             },
@@ -482,7 +482,7 @@ demanda_completa_ida_p3 = {
                 "8012": 196
             }
         },
-        "1080": {
+        1140: {
             "Acesso Vl. Indiana": {
                 "8012": 202,
                 "8022": 107
@@ -545,7 +545,7 @@ demanda_completa_ida_p3 = {
         }
     },
     "qui": {
-        "480": {
+        480: {
             "Metrô Butantã": {
                 "8012": 81,
                 "8022": 59
@@ -624,7 +624,7 @@ demanda_completa_ida_p3 = {
                 "8022": 16
             }
         },
-        "1080": {
+        1140: {
             "Acesso Vl. Indiana": {
                 "8012": 198,
                 "8022": 175

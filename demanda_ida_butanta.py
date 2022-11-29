@@ -1,4 +1,4 @@
-demanda_completa_ida = {
+demanda_ida_butanta = {
     "sex": {
         480: {
             "FEA": {
@@ -111,7 +111,7 @@ demanda_completa_ida = {
                 "8022": 6
             },
         },
-        1080: {
+        1140: {
             "FEA": {
                 "8012": 44,
                 "8032": 29
@@ -315,7 +315,7 @@ demanda_completa_ida = {
                 "8022": 430,
             },
         },
-        1080: {
+        1140: {
             "Reitoria/Bancos": {
                 "8012": 31,
                 "8032": 33
@@ -533,7 +533,7 @@ demanda_completa_ida = {
                 "8022": 4
             },
         },
-        1080: {
+        1140: {
             "Biblioteca Farmácia e Química": {
                 "8022": 136,
             },
@@ -751,7 +751,7 @@ demanda_completa_ida = {
                 "8022": 30
             },
         },
-        1080: {
+        1140: {
             "Portaria III": {
                 "8012": 66,
                 "8022": 155
@@ -969,7 +969,7 @@ demanda_completa_ida = {
                 "8022": 74,
             },
         },
-        1080: {
+        1140: {
             "Portaria III": {
                 "8012": 109,
                 "8022": 222
