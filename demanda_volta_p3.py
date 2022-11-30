@@ -13,7 +13,7 @@ demanda_volta_p3 = {
                 "8022": 403
             },
             "Biblioteca Farmácia e Química": {
-                "8022": 152
+                "8022": 178
             },
             "Reitoria": {
                 "8012": 137
@@ -35,9 +35,6 @@ demanda_volta_p3 = {
             },
             "Portaria II": {
                 "8022": 15
-            },
-            "Farmácia e Química": {
-                "8022": 26
             },
             "Acesso Vl. Indiana": {
                 "8012": 101
@@ -89,7 +86,7 @@ demanda_volta_p3 = {
                 "8022": 121
             },
             "Biblioteca Farmácia e Química": {
-                "8022": 217
+                "8022": 257
             },
             "FEA": {
                 "8012": 565
@@ -114,9 +111,6 @@ demanda_volta_p3 = {
             },
             "Biomédicas III": {
                 "8022": 41
-            },
-            "Farmácia e Química": {
-                "8022": 40
             },
             "FAU II": {
                 "8022": 585
@@ -150,7 +144,7 @@ demanda_volta_p3 = {
                 "8022": 111
             },
             "Biblioteca Farmácia e Química": {
-                "8022": 178
+                "8022": 194
             },
             "Letras": {
                 "8022": 564
@@ -185,9 +179,6 @@ demanda_volta_p3 = {
             "Portaria II": {
                 "8022": 18
             },
-            "Farmácia e Química": {
-                "8022": 16
-            },
             "Odontologia": {
                 "8022": 221
             },
@@ -217,7 +208,7 @@ demanda_volta_p3 = {
                 "8022": 112
             },
             "Biblioteca Farmácia e Química": {
-                "8022": 197
+                "8022": 235
             },
             "FEA": {
                 "8012": 510
@@ -264,9 +255,6 @@ demanda_volta_p3 = {
             "Odontologia": {
                 "8022": 205
             },
-            "Farmácia e Química": {
-                "8022": 38
-            }
         }
     },
     "qua": {
@@ -302,7 +290,7 @@ demanda_volta_p3 = {
                 "8022": 124
             },
             "Biblioteca Farmácia e Química": {
-                "8022": 196
+                "8022": 226
             },
             "Reitoria": {
                 "8012": 324
@@ -321,9 +309,6 @@ demanda_volta_p3 = {
             },
             "Odontologia": {
                 "8022": 218
-            },
-            "Farmácia e Química": {
-                "8022": 30
             },
             "Rua do Lago": {
                 "8022": 46
