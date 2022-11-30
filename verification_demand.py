@@ -111,7 +111,7 @@ def cria_linhas_uniforme():
                 MediaPercurso([(0, 67), (6*60, 67), (10*60, 67), (15*60, 68), (21*60, 67)])
             ),
             Rota (
-                ['1861', '1865', '1924', '1899', '1934', '1904', '1', '1930', '1920', '3', '1818', '1826', '4', '1848', '1926', '5', '6', '1802', '1928', '1910'],
+                ['1861', '1865', '1924', '1899', '1934', '1904', '1', '1930', '1920', '3', '1818', '1826', '4', '1848', '1926', '5', '6', '1802', '1928', '1910', '1932'],
                 ['1834', '1890', '1940', '1908', '1922', '1932', '1791', '1844', '1896', '8', '1936', '1928', '1912', '1920', '1832']
             )
         ),
@@ -147,7 +147,7 @@ def cria_linhas_sptrans():
                 MediaPercurso([(0, 67), (7*60, 67), (10*60, 67), (17*60, 68), (20*60, 67)])
             ),
             Rota (
-                ['1861', '1865', '1924', '1899', '1934', '1904', '1', '1930', '1920', '3', '1818', '1826', '4', '1848', '1926', '5', '6', '1802', '1928', '1910'],
+                ['1861', '1865', '1924', '1899', '1934', '1904', '1', '1930', '1920', '3', '1818', '1826', '4', '1848', '1926', '5', '6', '1802', '1928', '1910', '1932'],
                 ['1834', '1890', '1940', '1908', '1922', '1932', '1791', '1844', '1896', '8', '1936', '1928', '1912', '1920', '1832']
             )        
         ),
@@ -271,9 +271,14 @@ def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
         for horario in demanda_total[dia]:
             atendimento[dia][horario] = {}
             for ponto in demanda_total[dia][horario]:
-                atendimento[dia][horario][ponto] = {}
+
+                soma_linhas_ponto_total = 0
+                soma_linhas_ponto_restante = 0
                 for linha in demanda_total[dia][horario][ponto]:
-                    atendimento[dia][horario][ponto][linha] = 1 - (demanda_restante[dia][horario][ponto][linha] / demanda_total[dia][horario][ponto][linha])       
+                    soma_linhas_ponto_restante += demanda_restante[dia][horario][ponto][linha]
+                    soma_linhas_ponto_total += demanda_total[dia][horario][ponto][linha]
+
+                atendimento[dia][horario][ponto] = 1 - (soma_linhas_ponto_restante / soma_linhas_ponto_total)
     return atendimento
 
 def remove_demanda_inexistente(demanda):
@@ -331,22 +336,67 @@ def main():
     demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
     demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
 
+    demanda_ida_completa_butanta_total = deepcopy(demanda_ida_completa_butanta)
+    demanda_ida_completa_p3_total = deepcopy(demanda_ida_completa_p3)
+
+    demanda_volta_butanta_total = deepcopy(demanda_volta_butanta)
+    demanda_volta_p3_total = deepcopy(demanda_volta_p3)
+
     saidas = cria_eventos_saidas(linhas_rotas)
 
     total = soma_demanda(demanda_ida_completa)
+    pprint("Total de Pessoas (Ida)")
     pprint(total)
     state = calcula_atendimento_ida(linhas_rotas, demanda_ida_completa_butanta, demanda_ida_completa_p3, saidas)
     demanda_ida_restante = junta_demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3)
     restante = soma_demanda(demanda_ida_restante)
+    pprint("Atendimento de Pessoas (Ida)")
     pprint(porcentagem_chegada_total(total, restante))
-    pprint(porcentagem_chegada_por_ponto(demanda_ida_completa, demanda_ida_restante))
+
+    total_ida_butanta = soma_demanda(demanda_ida_completa_butanta_total)
+    restante_ida_butanta = soma_demanda(demanda_ida_completa_butanta)
+
+    pprint("Total de Pessoas (Ida) - Butantã")
+    pprint(total_ida_butanta)
+
+    pprint("Atendimento de Pessoas (Ida) - Butantã")
+    pprint(porcentagem_chegada_total(total_ida_butanta, restante_ida_butanta))
+
+    total_ida_p3 = soma_demanda(demanda_ida_completa_p3_total)
+    restante_ida_p3 = soma_demanda(demanda_ida_completa_p3)
+
+    pprint("Total de Pessoas (Ida) - P3")
+    pprint(total_ida_p3)
+
+    pprint("Atendimento de Pessoas (Ida) - P3")
+    pprint(porcentagem_chegada_total(total_ida_p3, restante_ida_p3))
 
     total_volta = soma_demanda(demanda_volta_alunos)
+    pprint("Total de Pessoas (Volta)")
     pprint(total_volta)
     state = calcula_atendimento_volta(linhas_rotas, demanda_volta_butanta, demanda_volta_p3, saidas)
     demanda_volta_restante = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
     restante = soma_demanda(demanda_volta_restante)
+    pprint("Atendimento de Pessoas (Volta)")
     pprint(porcentagem_chegada_total(total_volta, restante))
+
+    total_volta_butanta = soma_demanda(demanda_volta_butanta_total)
+    restante_volta_butanta = soma_demanda(demanda_volta_butanta)
+
+    pprint("Total de Pessoas (Volta) - Butantã")
+    pprint(total_volta_butanta)
+
+    pprint("Atendimento de Pessoas (Volta) - Butantã")
+    pprint(porcentagem_chegada_total(total_volta_butanta, restante_volta_butanta))
+
+    total_volta_p3 = soma_demanda(demanda_volta_p3_total)
+    restante_volta_p3 = soma_demanda(demanda_volta_p3)
+
+    pprint("Total de Pessoas (Volta) - P3")
+    pprint(total_volta_p3)
+
+    pprint("Atendimento de Pessoas (Volta) - P3")
+    pprint(porcentagem_chegada_total(total_volta_p3, restante_volta_p3))
 
 if __name__ == "__main__":
     main()
