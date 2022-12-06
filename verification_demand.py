@@ -207,6 +207,20 @@ def porcentagem_chegada_total(soma_total, soma_restante):
             porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
     return porcentagem
 
+def porcentagem_geral_dias(porc_dias_horarios):
+    sum = {}
+    for dia in porc_dias_horarios:
+        for horario in porc_dias_horarios[dia]:
+            if horario not in sum:
+                sum[horario] = 0
+            sum[horario] += porc_dias_horarios[dia][horario]
+
+    mean = {}
+    for horario in sum:
+        mean[horario] = sum[horario] / len(porc_dias_horarios)
+
+    return mean
+
 def calcula_atendimento_ida(linhas, demanda_butanta, demanda_p3, saidas):
     horarios = [480, 1140]
     dias = ["seg", "ter", "qua", "qui", "sex"]
@@ -298,22 +312,9 @@ def remove_demanda_inexistente(demanda):
                 del demanda[dia][horario][ponto]
 
 # Simulacao
-def main():
-    if len(sys.argv) < 2:
-        print('Passe todos os parâmetros!')
-        exit(1)
 
-    SIMULACAO = sys.argv[1].lower()
-
-    print("SIMULANDO MODELO " + SIMULACAO)
-
-    if SIMULACAO == "uniforme":
-        linhas_rotas = cria_linhas_uniforme()
-    elif SIMULACAO == "sptrans":
-        linhas_rotas = cria_linhas_sptrans()
-    else:
-        exit(1)
-
+def simula(linhas_rotas):
+    # pre-processamento
     trata_demanda_percentual(demanda_ida_butanta, 0.8)
     trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
     trata_demanda_percentual(demanda_volta_butanta, 0.8)
@@ -336,67 +337,62 @@ def main():
     demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
     demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
 
-    demanda_ida_completa_butanta_total = deepcopy(demanda_ida_completa_butanta)
-    demanda_ida_completa_p3_total = deepcopy(demanda_ida_completa_p3)
-
-    demanda_volta_butanta_total = deepcopy(demanda_volta_butanta)
-    demanda_volta_p3_total = deepcopy(demanda_volta_p3)
-
+    # saidas
     saidas = cria_eventos_saidas(linhas_rotas)
 
-    total = soma_demanda(demanda_ida_completa)
-    pprint("Total de Pessoas (Ida)")
-    pprint(total)
-    state = calcula_atendimento_ida(linhas_rotas, demanda_ida_completa_butanta, demanda_ida_completa_p3, saidas)
+    # simulacao ida
+    total_ida = soma_demanda(demanda_ida_completa)
+    calcula_atendimento_ida(linhas_rotas, demanda_ida_completa_butanta, demanda_ida_completa_p3, saidas)
     demanda_ida_restante = junta_demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3)
-    restante = soma_demanda(demanda_ida_restante)
-    pprint("Atendimento de Pessoas (Ida)")
-    pprint(porcentagem_chegada_total(total, restante))
+    restante_ida = soma_demanda(demanda_ida_restante)
+    porc_atendimento_ida = porcentagem_chegada_total(total_ida, restante_ida)
 
-    total_ida_butanta = soma_demanda(demanda_ida_completa_butanta_total)
-    restante_ida_butanta = soma_demanda(demanda_ida_completa_butanta)
-
-    pprint("Total de Pessoas (Ida) - Butantã")
-    pprint(total_ida_butanta)
-
-    pprint("Atendimento de Pessoas (Ida) - Butantã")
-    pprint(porcentagem_chegada_total(total_ida_butanta, restante_ida_butanta))
-
-    total_ida_p3 = soma_demanda(demanda_ida_completa_p3_total)
-    restante_ida_p3 = soma_demanda(demanda_ida_completa_p3)
-
-    pprint("Total de Pessoas (Ida) - P3")
-    pprint(total_ida_p3)
-
-    pprint("Atendimento de Pessoas (Ida) - P3")
-    pprint(porcentagem_chegada_total(total_ida_p3, restante_ida_p3))
-
+    # simulacao volta
     total_volta = soma_demanda(demanda_volta_alunos)
-    pprint("Total de Pessoas (Volta)")
-    pprint(total_volta)
-    state = calcula_atendimento_volta(linhas_rotas, demanda_volta_butanta, demanda_volta_p3, saidas)
+    calcula_atendimento_volta(linhas_rotas, demanda_volta_butanta, demanda_volta_p3, saidas)
     demanda_volta_restante = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
-    restante = soma_demanda(demanda_volta_restante)
-    pprint("Atendimento de Pessoas (Volta)")
-    pprint(porcentagem_chegada_total(total_volta, restante))
+    restante_volta = soma_demanda(demanda_volta_restante)
+    porc_atendimento_volta = porcentagem_chegada_total(total_volta, restante_volta)
 
-    total_volta_butanta = soma_demanda(demanda_volta_butanta_total)
-    restante_volta_butanta = soma_demanda(demanda_volta_butanta)
+    # totais
+    total_ida = porcentagem_geral_dias(porc_atendimento_ida)
+    total_ida_manha = total_ida[min(total_ida.keys())]
+    total_ida_tarde = total_ida[max(total_ida.keys())]
+    total_volta = porcentagem_geral_dias(porc_atendimento_volta)
+    total_volta_tarde = total_volta[list(total_volta.keys())[0]]
 
-    pprint("Total de Pessoas (Volta) - Butantã")
-    pprint(total_volta_butanta)
+    return (total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta)
 
-    pprint("Atendimento de Pessoas (Volta) - Butantã")
-    pprint(porcentagem_chegada_total(total_volta_butanta, restante_volta_butanta))
+def main():
+    if len(sys.argv) < 2:
+        print('Passe todos os parâmetros!')
+        exit(1)
 
-    total_volta_p3 = soma_demanda(demanda_volta_p3_total)
-    restante_volta_p3 = soma_demanda(demanda_volta_p3)
+    SIMULACAO = sys.argv[1].lower()
 
-    pprint("Total de Pessoas (Volta) - P3")
-    pprint(total_volta_p3)
+    print("SIMULANDO MODELO " + SIMULACAO)
 
-    pprint("Atendimento de Pessoas (Volta) - P3")
-    pprint(porcentagem_chegada_total(total_volta_p3, restante_volta_p3))
+    if SIMULACAO == "uniforme":
+        linhas_rotas = cria_linhas_uniforme()
+    elif SIMULACAO == "sptrans":
+        linhas_rotas = cria_linhas_sptrans()
+    else:
+        exit(1)
+
+    total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta = simula(linhas_rotas)
+
+    print('### Totais:')
+    print('- Total Ida Manha: ' + str(total_ida_manha))
+    print('- Total Ida Tarde: ' + str(total_ida_tarde))
+    print('- Total Volta Tarde: ' + str(total_volta_tarde))
+
+    print('')
+    print('### Porcentagem por Ponto Ida:')
+    print(porc_atendimento_ida)
+
+    print('')
+    print('### Porcentagem por Ponto Volta:')
+    print(porc_atendimento_volta)
 
 if __name__ == "__main__":
     main()
