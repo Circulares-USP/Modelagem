@@ -6,12 +6,12 @@ from verification import calcular_horarios_saidas
 from verification import verifica_chegadas
 from verification import handle_saida
 from verification import Evento, Linha, MediaPercurso
-from demanda_ida_butanta import demanda_ida_butanta
-from demanda_ida_butanta_func import demanda_ida_butanta_func
-from demanda_ida_p3 import demanda_ida_p3
-from demanda_ida_p3_func import demanda_ida_p3_func
-from demanda_volta_butanta import demanda_volta_butanta
-from demanda_volta_p3 import demanda_volta_p3
+from demanda.demanda_ida_butanta import demanda_ida_butanta
+from demanda.demanda_ida_butanta_func import demanda_ida_butanta_func
+from demanda.demanda_ida_p3 import demanda_ida_p3
+from demanda.demanda_ida_p3_func import demanda_ida_p3_func
+from demanda.demanda_volta_butanta import demanda_volta_butanta
+from demanda.demanda_volta_p3 import demanda_volta_p3
 from copy import deepcopy
 
 class LinhaRota():
