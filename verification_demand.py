@@ -163,6 +163,29 @@ def cria_linhas_sptrans():
         )
     }
 
+def trata_demanda_percentual(demanda, porc):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            for ponto in demanda[dia][horario]:
+                for linha in demanda[dia][horario][ponto]:
+                    demanda[dia][horario][ponto][linha] = round(demanda[dia][horario][ponto][linha] * porc)
+
+def remove_demanda_inexistente(demanda):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            lista_pontos = []
+            for ponto in demanda[dia][horario]:
+                lista_linhas = []
+                for linha in demanda[dia][horario][ponto]:
+                    if demanda[dia][horario][ponto][linha] == 0:
+                        lista_linhas.append(linha)
+                for linha in lista_linhas:
+                    del demanda[dia][horario][ponto][linha]
+                if demanda[dia][horario][ponto] == {}:
+                    lista_pontos.append(ponto)
+            for ponto in lista_pontos:
+                del demanda[dia][horario][ponto]
+
 def junta_demanda(demanda1, demanda2):
     demanda_total = {}
     for dia in demanda1.keys():
@@ -198,28 +221,6 @@ def soma_demanda(demanda):
                 for linha in demanda[dia][horario][ponto].keys():
                     soma[dia][horario] += demanda[dia][horario][ponto][linha]
     return soma
-
-def porcentagem_chegada_total(soma_total, soma_restante):
-    porcentagem = {}
-    for dia in soma_total.keys():
-        porcentagem[dia] = {}
-        for horario in soma_total[dia].keys():
-            porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
-    return porcentagem
-
-def porcentagem_geral_dias(porc_dias_horarios):
-    sum = {}
-    for dia in porc_dias_horarios:
-        for horario in porc_dias_horarios[dia]:
-            if horario not in sum:
-                sum[horario] = 0
-            sum[horario] += porc_dias_horarios[dia][horario]
-
-    mean = {}
-    for horario in sum:
-        mean[horario] = sum[horario] / len(porc_dias_horarios)
-
-    return mean
 
 def calcula_atendimento_ida(linhas, demanda_butanta, demanda_p3, saidas):
     horarios = [480, 1140]
@@ -271,13 +272,6 @@ def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
         return 0
     return demanda[ponto_alvo][linha] / sum_pessoas
 
-def trata_demanda_percentual(demanda, porc):
-    for dia in demanda:
-        for horario in demanda[dia]:
-            for ponto in demanda[dia][horario]:
-                for linha in demanda[dia][horario][ponto]:
-                    demanda[dia][horario][ponto][linha] = round(demanda[dia][horario][ponto][linha] * porc)
-
 def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
     atendimento = {}
     for dia in demanda_total:
@@ -295,21 +289,51 @@ def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
                 atendimento[dia][horario][ponto] = 1 - (soma_linhas_ponto_restante / soma_linhas_ponto_total)
     return atendimento
 
-def remove_demanda_inexistente(demanda):
-    for dia in demanda:
-        for horario in demanda[dia]:
-            lista_pontos = []
-            for ponto in demanda[dia][horario]:
-                lista_linhas = []
-                for linha in demanda[dia][horario][ponto]:
-                    if demanda[dia][horario][ponto][linha] == 0:
-                        lista_linhas.append(linha)
-                for linha in lista_linhas:
-                    del demanda[dia][horario][ponto][linha]
-                if demanda[dia][horario][ponto] == {}:
-                    lista_pontos.append(ponto)
-            for ponto in lista_pontos:
-                del demanda[dia][horario][ponto]
+def porcentagem_chegada_total(soma_total, soma_restante):
+    porcentagem = {}
+    for dia in soma_total.keys():
+        porcentagem[dia] = {}
+        for horario in soma_total[dia].keys():
+            porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
+    return porcentagem
+
+def porcentagem_geral_dias(porc_dias_horarios):
+    sum = {}
+    for dia in porc_dias_horarios:
+        for horario in porc_dias_horarios[dia]:
+            if horario not in sum:
+                sum[horario] = 0
+            sum[horario] += porc_dias_horarios[dia][horario]
+
+    mean = {}
+    for horario in sum:
+        mean[horario] = sum[horario] / len(porc_dias_horarios)
+
+    return mean
+
+def porcentagem_geral_dias_por_ponto(porc_dias_horarios):
+    sum = {}
+    amount = {}
+    for dia in porc_dias_horarios:
+        for horario in porc_dias_horarios[dia]:
+            if horario not in sum:
+                sum[horario] = {}
+                amount[horario] = {}
+            for ponto in porc_dias_horarios[dia][horario]:
+                if ponto not in sum[horario]:
+                    sum[horario][ponto] = 0
+                    amount[horario][ponto] = 0
+                sum[horario][ponto] += porc_dias_horarios[dia][horario][ponto]
+                amount[horario][ponto] += 1
+
+    mean = {}
+    for horario in sum:
+        mean[horario] = {}
+        for ponto in sum[horario]:
+            mean[horario][ponto] = sum[horario][ponto] / amount[horario][ponto]
+
+    return mean
+
 
 # Simulacao
 
@@ -387,12 +411,12 @@ def main():
     print('- Total Volta Tarde: ' + str(total_volta_tarde))
 
     print('')
-    print('### Porcentagem por Ponto Ida:')
-    print(porc_atendimento_ida)
+    print('### Porcentagem por Total Ida:')
+    pprint(porc_atendimento_ida)
 
     print('')
-    print('### Porcentagem por Ponto Volta:')
-    print(porc_atendimento_volta)
+    print('### Porcentagem por Total Volta:')
+    pprint(porc_atendimento_volta)
 
 if __name__ == "__main__":
     main()
