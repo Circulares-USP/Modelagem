@@ -23,7 +23,7 @@ class Rota():
     def __init__(self, ida, volta=None):
         self.ida = ida
         self.volta = volta
-        
+
 id_to_nome = {
     "1791": "Metrô Butantã",
     "1796": "Poli Metalúrgica",
@@ -313,7 +313,25 @@ def remove_demanda_inexistente(demanda):
 
 # Simulacao
 
-def simula(linhas_rotas):
+class Demanda():
+    def __init__(self, ida_butanta, ida_p3, volta_butanta, volta_p3, demanda_ida_completa, demanda_volta_alunos):
+        self.ida_butanta = ida_butanta
+        self.ida_p3 = ida_p3
+        self.volta_butanta = volta_butanta
+        self.volta_p3 = volta_p3
+
+        self.demanda_ida_completa = demanda_ida_completa
+        self.demanda_volta_alunos = demanda_volta_alunos
+
+class ResultadoSimulacao():
+    def __init__(self, total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta):
+        self.total_ida_manha = total_ida_manha
+        self.total_ida_tarde = total_ida_tarde
+        self.total_volta_tarde = total_volta_tarde
+        self.porc_atendimento_ida = porc_atendimento_ida
+        self.porc_atendimento_volta = porc_atendimento_volta
+
+def get_demanda():
     # pre-processamento
     trata_demanda_percentual(demanda_ida_butanta, 0.8)
     trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
@@ -337,20 +355,26 @@ def simula(linhas_rotas):
     demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
     demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
 
+    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta, demanda_volta_p3, demanda_ida_completa, demanda_volta_alunos)
+    return demanda
+
+def simula(linhas_rotas):
+    demanda = get_demanda()
+
     # saidas
     saidas = cria_eventos_saidas(linhas_rotas)
 
     # simulacao ida
-    total_ida = soma_demanda(demanda_ida_completa)
-    calcula_atendimento_ida(linhas_rotas, demanda_ida_completa_butanta, demanda_ida_completa_p3, saidas)
-    demanda_ida_restante = junta_demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3)
+    total_ida = soma_demanda(demanda.demanda_ida_completa)
+    calcula_atendimento_ida(linhas_rotas, demanda.ida_butanta, demanda.ida_p3, saidas)
+    demanda_ida_restante = junta_demanda(demanda.ida_butanta, demanda.ida_p3)
     restante_ida = soma_demanda(demanda_ida_restante)
     porc_atendimento_ida = porcentagem_chegada_total(total_ida, restante_ida)
 
     # simulacao volta
-    total_volta = soma_demanda(demanda_volta_alunos)
-    calcula_atendimento_volta(linhas_rotas, demanda_volta_butanta, demanda_volta_p3, saidas)
-    demanda_volta_restante = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
+    total_volta = soma_demanda(demanda.demanda_volta_alunos)
+    calcula_atendimento_volta(linhas_rotas, demanda.volta_butanta, demanda.volta_p3, saidas)
+    demanda_volta_restante = junta_demanda(demanda.volta_butanta, demanda.volta_p3)
     restante_volta = soma_demanda(demanda_volta_restante)
     porc_atendimento_volta = porcentagem_chegada_total(total_volta, restante_volta)
 
@@ -361,7 +385,8 @@ def simula(linhas_rotas):
     total_volta = porcentagem_geral_dias(porc_atendimento_volta)
     total_volta_tarde = total_volta[list(total_volta.keys())[0]]
 
-    return (total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta)
+    resultado = ResultadoSimulacao(total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta)
+    return resultado
 
 def main():
     if len(sys.argv) < 2:
@@ -379,20 +404,20 @@ def main():
     else:
         exit(1)
 
-    total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta = simula(linhas_rotas)
+    resultado = simula(linhas_rotas)
 
     print('### Totais:')
-    print('- Total Ida Manha: ' + str(total_ida_manha))
-    print('- Total Ida Tarde: ' + str(total_ida_tarde))
-    print('- Total Volta Tarde: ' + str(total_volta_tarde))
+    print('- Total Ida Manha: ' + str(resultado.total_ida_manha))
+    print('- Total Ida Tarde: ' + str(resultado.total_ida_tarde))
+    print('- Total Volta Tarde: ' + str(resultado.total_volta_tarde))
 
     print('')
     print('### Porcentagem por Ponto Ida:')
-    print(porc_atendimento_ida)
+    print(resultado.porc_atendimento_ida)
 
     print('')
     print('### Porcentagem por Ponto Volta:')
-    print(porc_atendimento_volta)
+    print(resultado.porc_atendimento_volta)
 
 if __name__ == "__main__":
     main()
