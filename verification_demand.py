@@ -1,10 +1,5 @@
-from bisect import insort, bisect_left
-from pprint import pprint
-#import matplotlib.pyplot as plt
 import sys
 from verification import calcular_horarios_saidas
-from verification import verifica_chegadas
-from verification import handle_saida
 from verification import Evento, Linha, MediaPercurso
 from demanda.demanda_ida_butanta import demanda_ida_butanta
 from demanda.demanda_ida_butanta_func import demanda_ida_butanta_func
@@ -12,7 +7,6 @@ from demanda.demanda_ida_p3 import demanda_ida_p3
 from demanda.demanda_ida_p3_func import demanda_ida_p3_func
 from demanda.demanda_volta_butanta import demanda_volta_butanta
 from demanda.demanda_volta_p3 import demanda_volta_p3
-from copy import deepcopy
 
 class LinhaRota():
     def __init__(self, linha, rota):
@@ -314,22 +308,17 @@ def remove_demanda_inexistente(demanda):
 # Simulacao
 
 class Demanda():
-    def __init__(self, ida_butanta, ida_p3, volta_butanta, volta_p3, demanda_ida_completa, demanda_volta_alunos):
+    def __init__(self, ida_butanta, ida_p3, volta_butanta, volta_p3):
         self.ida_butanta = ida_butanta
         self.ida_p3 = ida_p3
         self.volta_butanta = volta_butanta
         self.volta_p3 = volta_p3
 
-        self.demanda_ida_completa = demanda_ida_completa
-        self.demanda_volta_alunos = demanda_volta_alunos
-
 class ResultadoSimulacao():
-    def __init__(self, total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta):
+    def __init__(self, total_ida_manha, total_ida_tarde, total_volta_tarde):
         self.total_ida_manha = total_ida_manha
         self.total_ida_tarde = total_ida_tarde
         self.total_volta_tarde = total_volta_tarde
-        self.porc_atendimento_ida = porc_atendimento_ida
-        self.porc_atendimento_volta = porc_atendimento_volta
 
 def get_demanda():
     # pre-processamento
@@ -347,15 +336,10 @@ def get_demanda():
     remove_demanda_inexistente(demanda_ida_p3_func)
     remove_demanda_inexistente(demanda_volta_p3)
 
-    demanda_ida_alunos = junta_demanda(demanda_ida_butanta, demanda_ida_p3)
-    demanda_ida_func = junta_demanda(demanda_ida_butanta_func, demanda_ida_p3_func)
-    demanda_ida_completa = junta_demanda(demanda_ida_alunos, demanda_ida_func)
-    demanda_volta_alunos = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
-
     demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
     demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
 
-    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta, demanda_volta_p3, demanda_ida_completa, demanda_volta_alunos)
+    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta, demanda_volta_p3)
     return demanda
 
 def simula(linhas_rotas):
@@ -365,14 +349,14 @@ def simula(linhas_rotas):
     saidas = cria_eventos_saidas(linhas_rotas)
 
     # simulacao ida
-    total_ida = soma_demanda(demanda.demanda_ida_completa)
+    total_ida = soma_demanda(junta_demanda(demanda.ida_butanta, demanda.ida_p3))
     calcula_atendimento_ida(linhas_rotas, demanda.ida_butanta, demanda.ida_p3, saidas)
     demanda_ida_restante = junta_demanda(demanda.ida_butanta, demanda.ida_p3)
     restante_ida = soma_demanda(demanda_ida_restante)
     porc_atendimento_ida = porcentagem_chegada_total(total_ida, restante_ida)
 
     # simulacao volta
-    total_volta = soma_demanda(demanda.demanda_volta_alunos)
+    total_volta = soma_demanda(junta_demanda(demanda.volta_butanta, demanda.volta_p3))
     calcula_atendimento_volta(linhas_rotas, demanda.volta_butanta, demanda.volta_p3, saidas)
     demanda_volta_restante = junta_demanda(demanda.volta_butanta, demanda.volta_p3)
     restante_volta = soma_demanda(demanda_volta_restante)
