@@ -1,12 +1,6 @@
 import sys
 from verification import calcular_horarios_saidas
 from verification import Evento, Linha, MediaPercurso
-from demanda.demanda_ida_butanta import demanda_ida_butanta
-from demanda.demanda_ida_butanta_func import demanda_ida_butanta_func
-from demanda.demanda_ida_p3 import demanda_ida_p3
-from demanda.demanda_ida_p3_func import demanda_ida_p3_func
-from demanda.demanda_volta_butanta import demanda_volta_butanta
-from demanda.demanda_volta_p3 import demanda_volta_p3
 
 class LinhaRota():
     def __init__(self, linha, rota):
@@ -265,13 +259,6 @@ def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
         return 0
     return demanda[ponto_alvo][linha] / sum_pessoas
 
-def trata_demanda_percentual(demanda, porc):
-    for dia in demanda:
-        for horario in demanda[dia]:
-            for ponto in demanda[dia][horario]:
-                for linha in demanda[dia][horario][ponto]:
-                    demanda[dia][horario][ponto][linha] = round(demanda[dia][horario][ponto][linha] * porc)
-
 def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
     atendimento = {}
     for dia in demanda_total:
@@ -289,22 +276,6 @@ def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
                 atendimento[dia][horario][ponto] = 1 - (soma_linhas_ponto_restante / soma_linhas_ponto_total)
     return atendimento
 
-def remove_demanda_inexistente(demanda):
-    for dia in demanda:
-        for horario in demanda[dia]:
-            lista_pontos = []
-            for ponto in demanda[dia][horario]:
-                lista_linhas = []
-                for linha in demanda[dia][horario][ponto]:
-                    if demanda[dia][horario][ponto][linha] == 0:
-                        lista_linhas.append(linha)
-                for linha in lista_linhas:
-                    del demanda[dia][horario][ponto][linha]
-                if demanda[dia][horario][ponto] == {}:
-                    lista_pontos.append(ponto)
-            for ponto in lista_pontos:
-                del demanda[dia][horario][ponto]
-
 # Simulacao
 
 class Demanda():
@@ -320,31 +291,7 @@ class ResultadoSimulacao():
         self.total_ida_tarde = total_ida_tarde
         self.total_volta_tarde = total_volta_tarde
 
-def get_demanda():
-    # pre-processamento
-    trata_demanda_percentual(demanda_ida_butanta, 0.8)
-    trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
-    trata_demanda_percentual(demanda_volta_butanta, 0.8)
-    trata_demanda_percentual(demanda_ida_p3, 0.2)
-    trata_demanda_percentual(demanda_ida_p3_func, 0.2)
-    trata_demanda_percentual(demanda_volta_p3, 0.2)
-
-    remove_demanda_inexistente(demanda_ida_butanta)
-    remove_demanda_inexistente(demanda_ida_butanta_func)
-    remove_demanda_inexistente(demanda_volta_butanta)
-    remove_demanda_inexistente(demanda_ida_p3)
-    remove_demanda_inexistente(demanda_ida_p3_func)
-    remove_demanda_inexistente(demanda_volta_p3)
-
-    demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
-    demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
-
-    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta, demanda_volta_p3)
-    return demanda
-
-def simula(linhas_rotas):
-    demanda = get_demanda()
-
+def simula(demanda, linhas_rotas):
     # saidas
     saidas = cria_eventos_saidas(linhas_rotas)
 
