@@ -370,6 +370,7 @@ def simula(linhas_rotas):
     demanda_ida_restante = junta_demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3)
     restante_ida = soma_demanda(demanda_ida_restante)
     porc_atendimento_ida = porcentagem_chegada_total(total_ida, restante_ida)
+    porc_atendimento_ida_ponto = porcentagem_chegada_por_ponto(demanda_ida_completa, demanda_ida_restante)
 
     # simulacao volta
     total_volta = soma_demanda(demanda_volta_alunos)
@@ -377,6 +378,7 @@ def simula(linhas_rotas):
     demanda_volta_restante = junta_demanda(demanda_volta_butanta, demanda_volta_p3)
     restante_volta = soma_demanda(demanda_volta_restante)
     porc_atendimento_volta = porcentagem_chegada_total(total_volta, restante_volta)
+    porc_atendimento_volta_ponto = porcentagem_chegada_por_ponto(demanda_volta_alunos, demanda_volta_restante)
 
     # totais
     total_ida = porcentagem_geral_dias(porc_atendimento_ida)
@@ -385,7 +387,13 @@ def simula(linhas_rotas):
     total_volta = porcentagem_geral_dias(porc_atendimento_volta)
     total_volta_tarde = total_volta[list(total_volta.keys())[0]]
 
-    return (total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta)
+    total_ida_ponto = porcentagem_geral_dias_por_ponto(porc_atendimento_ida_ponto)
+    total_ida_manha_ponto = total_ida_ponto[min(total_ida_ponto.keys())]
+    total_ida_tarde_ponto = total_ida_ponto[max(total_ida_ponto.keys())]
+    total_volta_ponto = porcentagem_geral_dias_por_ponto(porc_atendimento_volta_ponto)
+    total_volta_tarde_ponto = total_volta_ponto[list(total_volta_ponto.keys())[0]]
+
+    return (total_ida_manha, total_ida_tarde, total_volta_tarde, total_ida_manha_ponto, total_ida_tarde_ponto, total_volta_tarde_ponto)
 
 def main():
     if len(sys.argv) < 2:
@@ -403,20 +411,23 @@ def main():
     else:
         exit(1)
 
-    total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta = simula(linhas_rotas)
+    total_ida_manha, total_ida_tarde, total_volta_tarde, total_ida_manha_ponto, total_ida_tarde_ponto, total_volta_tarde_ponto = simula(linhas_rotas)
 
-    print('### Totais:')
+    print('### Médias Totais:')
     print('- Total Ida Manha: ' + str(total_ida_manha))
     print('- Total Ida Tarde: ' + str(total_ida_tarde))
     print('- Total Volta Tarde: ' + str(total_volta_tarde))
 
     print('')
-    print('### Porcentagem por Total Ida:')
-    pprint(porc_atendimento_ida)
-
+    print('### Médias Totais por Ponto:')
+    print('- Total por Ponto Ida Manha:')
+    pprint(total_ida_manha_ponto)
     print('')
-    print('### Porcentagem por Total Volta:')
-    pprint(porc_atendimento_volta)
+    print('- Total por Ponto Ida Tarde:')
+    pprint(total_ida_tarde_ponto)
+    print('')
+    print('- Total por Ponto Volta Tarde:')
+    pprint(total_volta_tarde_ponto)
 
 if __name__ == "__main__":
     main()
