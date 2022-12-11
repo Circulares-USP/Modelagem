@@ -84,6 +84,14 @@ id_to_nome = {
     "8": "Oceanográfico"
 }
 
+def id_to_nome_to_list():
+    bus_stops_list = []
+
+    for id in id_to_nome.keys():
+        bus_stops_list.append({'id': id, 'nome': id_to_nome[id]})
+    
+    return bus_stops_list
+
 def cria_eventos_saidas(linhas_rotas):
     saidas = []
     for id, linha_rota in linhas_rotas.items():

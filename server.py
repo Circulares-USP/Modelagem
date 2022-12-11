@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from verification_demand import simula
 from verification_demand import cria_linhas_sptrans
+from verification_demand import id_to_nome_to_list
 
 app = FastAPI()
 
@@ -20,4 +21,12 @@ async def simulate_buses():
             'ida-tarde': total_ida_tarde_ponto,
             'volta-tarde': total_volta_tarde_ponto,
         }
+    }
+
+@app.post("/bus_stops")
+async def get_bus_stops():
+    lista_pontos = id_to_nome_to_list()
+
+    return {
+        'pontos': lista_pontos,
     }
