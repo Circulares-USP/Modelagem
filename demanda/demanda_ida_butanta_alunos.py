@@ -8,7 +8,7 @@ demanda_ida_butanta_alunos = {
             "FAU II": {
                 "8022": 404,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 460
             },
             "Praça do Relógio": {
@@ -22,7 +22,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 313,
                 "8022": 308
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 337,
             },
             "Hospital Universitário": {
@@ -45,7 +45,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 59,
                 "8022": 204,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 26,
                 "8022": 73,
             },
@@ -53,7 +53,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 19,
                 "8032": 13
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 26
             },
             "Psicologia II": {
@@ -65,11 +65,11 @@ demanda_ida_butanta_alunos = {
             "Acesso CPTM I": {
                 "8022": 26
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 555,
                 "8032": 438
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 221,
                 "8032": 135
             },
@@ -83,22 +83,22 @@ demanda_ida_butanta_alunos = {
                 "8012": 47,
                 "8022": 24
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 25
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 67,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 159
             },
             "IPT": {
                 "8022": 135,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 113
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 37
             },
             "Portaria II": {
@@ -128,29 +128,29 @@ demanda_ida_butanta_alunos = {
             "FAU II": {
                 "8022": 19,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 35,
                 "8032": 48
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 27
             },
             "IPT": {
                 "8022": 11,
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 72,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 2
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 2,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 73
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 3
             },
             "Portaria II": {
@@ -159,7 +159,7 @@ demanda_ida_butanta_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 2
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 15
             },
             "Biblioteca Brasiliana": {
@@ -170,10 +170,10 @@ demanda_ida_butanta_alunos = {
                 "8012": 11,
                 "8032": 11,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 2
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 2
             },
             "Psicologia II": {
@@ -194,7 +194,7 @@ demanda_ida_butanta_alunos = {
                 "8022": 158,
                 "8012": 74
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 14,
                 "8022": 30
             },
@@ -213,7 +213,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 357,
                 "8022": 400
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 515,
             },
             "Hospital Universitário": {
@@ -224,7 +224,7 @@ demanda_ida_butanta_alunos = {
                 "8032": 603,
                 "8012": 613
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 293,
                 "8032": 179
             },
@@ -251,7 +251,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 153,
                 "8022": 76,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 25,
                 "8022": 68,
             },
@@ -259,7 +259,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 153,
                 "8032": 76,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 30
             },
             "Psicologia II": {
@@ -271,7 +271,7 @@ demanda_ida_butanta_alunos = {
             "Praça do Relógio": {
                 "8032": 3
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 689,
                 "8032": 571
             },
@@ -284,25 +284,25 @@ demanda_ida_butanta_alunos = {
             "Rua do Lago": {
                 "8022": 6
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 34
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 91,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 217
             },
             "IPT": {
                 "8022": 180,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 574
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 110
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 49
             },
             "Portaria II": {
@@ -316,7 +316,7 @@ demanda_ida_butanta_alunos = {
             },
         },
         1140: {
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 31,
                 "8032": 33
             },
@@ -336,7 +336,7 @@ demanda_ida_butanta_alunos = {
             "Raia Olímpica": {
                 "8022": 11,
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 129,
             },
             "Biomédicas III": {
@@ -351,7 +351,7 @@ demanda_ida_butanta_alunos = {
                 "8022": 122,
                 "8012": 56
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 170,
             },
             "História e Geografia": {
@@ -364,13 +364,13 @@ demanda_ida_butanta_alunos = {
                 "8012": 33,
                 "8032": 27,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 4
             },
             "Acesso CPTM I": {
                 "8022": 6
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 21,
                 "8022": 45
             },
@@ -380,29 +380,29 @@ demanda_ida_butanta_alunos = {
             "Rua do Lago": {
                 "8022": 6
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 59,
                 "8032": 80
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 44
             },
             "IPT": {
                 "8022": 18,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 3
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 3,
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 5
             },
             "Portaria II": {
                 "8022": 6,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 26
             },
             "FEA": {
@@ -427,7 +427,7 @@ demanda_ida_butanta_alunos = {
                 "8032": 644,
                 "8012": 679
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 277,
                 "8032": 178
             },
@@ -447,7 +447,7 @@ demanda_ida_butanta_alunos = {
             "Raia Olímpica": {
                 "8022": 61,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 639,
                 "8032": 506
             },
@@ -469,7 +469,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 165,
                 "8022": 79
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 17,
                 "8022": 47,
             },
@@ -477,7 +477,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 35,
                 "8032": 18,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 17
             },
             "Psicologia II": {
@@ -493,28 +493,28 @@ demanda_ida_butanta_alunos = {
             "Praça do Relógio": {
                 "8032": 3
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 30
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 80,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 190
             },
             "IPT": {
                 "8022": 155,
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 348,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 530
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 126
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 43
             },
             "Portaria II": {
@@ -534,10 +534,10 @@ demanda_ida_butanta_alunos = {
             },
         },
         1140: {
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 136,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 21,
                 "8022": 47
             },
@@ -582,10 +582,10 @@ demanda_ida_butanta_alunos = {
                 "8012": 31,
                 "8032": 31,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 22
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 15,
                 "8032": 16
             },
@@ -595,7 +595,7 @@ demanda_ida_butanta_alunos = {
             "Psicologia II": {
                 "8022": 3,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 190,
             },
             "FEA": {
@@ -605,7 +605,7 @@ demanda_ida_butanta_alunos = {
             "FAU II": {
                 "8022": 35,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 74,
                 "8032": 96
             },
@@ -616,25 +616,25 @@ demanda_ida_butanta_alunos = {
             "IPEN": {
                 "8022": 6
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 53
             },
             "IPT": {
                 "8022": 22,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 3
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 3,
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 5
             },
             "Portaria II": {
                 "8022": 7,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 36
             }
         }
@@ -648,7 +648,7 @@ demanda_ida_butanta_alunos = {
             "História e Geografia": {
                 "8022": 62,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 291,
                 "8032": 200
             },
@@ -675,7 +675,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 239,
                 "8032": 117,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 22
             },
             "Praça do Relógio": {
@@ -687,35 +687,35 @@ demanda_ida_butanta_alunos = {
             "Portaria II": {
                 "8022": 32,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 28
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 74,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 669,
                 "8032": 496
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 176
             },
             "IPT": {
                 "8022": 139,
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 324,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 565
             },
             "Acesso Vl. Indiana": {
                 "8012": 16,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 182
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 42
             },
             "Portaria III": {
@@ -729,7 +729,7 @@ demanda_ida_butanta_alunos = {
                 "8022": 111,
                 "8012": 28,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 34,
                 "8022": 89,
             },
@@ -756,7 +756,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 66,
                 "8022": 155
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 146,
             },
             "Biblioteca Brasiliana": {
@@ -772,7 +772,7 @@ demanda_ida_butanta_alunos = {
             "Raia Olímpica": {
                 "8022": 23,
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 56,
             },
             "Biomédicas III": {
@@ -793,10 +793,10 @@ demanda_ida_butanta_alunos = {
                 "8012": 44,
                 "8032": 40,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 21,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 16,
                 "8032": 15
             },
@@ -813,7 +813,7 @@ demanda_ida_butanta_alunos = {
             "FAU II": {
                 "8022": 41,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 43,
                 "8032": 47
             },
@@ -823,32 +823,32 @@ demanda_ida_butanta_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 3
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 23
             },
             "IPT": {
                 "8022": 10,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 1
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 1,
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 2
             },
             "Portaria II": {
                 "8022": 3,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 39
             },
             "Odontologia": {
                 "8012": 1,
                 "8022": 16,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 20,
                 "8022": 49
             },
@@ -859,7 +859,7 @@ demanda_ida_butanta_alunos = {
     },
     "qui": {
         480: {
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 742,
                 "8032": 552
             },
@@ -874,7 +874,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 685,
                 "8032": 617
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 332,
                 "8032": 203
             },
@@ -905,7 +905,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 215,
                 "8022": 111,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 51,
                 "8022": 134,
             },
@@ -913,7 +913,7 @@ demanda_ida_butanta_alunos = {
                 "8012": 63,
                 "8032": 42,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 50
             },
             "Psicologia II": {
@@ -935,28 +935,28 @@ demanda_ida_butanta_alunos = {
             "FAU II": {
                 "8022": 450,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 615
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 384,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 31
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 84,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 199
             },
             "IPT": {
                 "8022": 162,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 184
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 47
             },
             "Portaria II": {
@@ -994,7 +994,7 @@ demanda_ida_butanta_alunos = {
             "Letras": {
                 "8022": 21
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 45,
                 "8032": 52
             },
@@ -1011,35 +1011,35 @@ demanda_ida_butanta_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 1
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 42,
                 "8032": 49
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 25
             },
             "IPT": {
                 "8022": 10,
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 45,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8032": 1
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 1,
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 175
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8032": 2
             },
             "Portaria II": {
                 "8022": 3,
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 31
             },
             "História e Geografia": {
@@ -1049,13 +1049,13 @@ demanda_ida_butanta_alunos = {
                 "8012": 13,
                 "8032": 13,
             },
-            "EEFE II": {
+            "Educação Física II": {
                 "8022": 16
             },
             "Acesso CPTM I": {
                 "8022": 3
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 7,
                 "8022": 18
             },
