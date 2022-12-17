@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from typing import Dict, Any
-from verification_demand import LinhaRota, Demanda, Rota, simula, junta_demanda, id_to_nome
+from verification_demand import LinhaRota, Demanda, Rota, simula, junta_demanda, id_to_nome, id_to_nome_to_list
 from verification import MediaPercurso, Linha, calcular_horarios_saidas
 from demanda.demanda_ida_butanta import demanda_ida_butanta
 from demanda.demanda_ida_butanta_func import demanda_ida_butanta_func
@@ -17,18 +17,17 @@ async def simulate_buses(body: Dict[Any, Any]):
     demanda = load_demanda(body)
     resultado = simula(demanda, rotas_linhas)
 
-    # média de porcentagens da demanda entregue por ponto
+    # média de porcentagens da demanda total entregue e por ponto
     return {
-        'media-total': {
+        'totais': {
             'ida-manha': resultado.total_ida_manha,
             'ida-tarde': resultado.total_ida_tarde,
             'volta-tarde': resultado.total_volta_tarde,
         },
         'media-por-ponto': {
-            # TODO: alterar para maps de id-ponto -> porcentagem
-            'ida-manha': resultado.porc_atendimento_ida,
-            'ida-tarde': resultado.porc_atendimento_ida,
-            'volta-tarde': resultado.porc_atendimento_volta,
+            'ida-manha': resultado. total_ida_manha_ponto,
+            'ida-tarde': resultado.total_ida_tarde_ponto,
+            'volta-tarde': resultado.total_volta_tarde_ponto,
         }
     }
 
@@ -227,4 +226,12 @@ def cria_rotas_atual():
         '8032': Rota (
             ['1859', '1813', '1846', '1841', '1839', '1863', '1857', '1796', '1867', '1800', "7", "1830", "1832"]
         ),
+    }
+
+@app.post("/bus_stops")
+async def get_bus_stops():
+    lista_pontos = id_to_nome_to_list()
+
+    return {
+        'pontos': lista_pontos,
     }

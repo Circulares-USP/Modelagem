@@ -1,4 +1,3 @@
-import sys
 from verification import Evento
 
 class LinhaRota():
@@ -71,12 +70,43 @@ id_to_nome = {
     "8": "Oceanográfico"
 }
 
+def id_to_nome_to_list():
+    bus_stops_list = []
+
+    for id in id_to_nome.keys():
+        bus_stops_list.append({'id': id, 'nome': id_to_nome[id]})
+    
+    return bus_stops_list
+
 def cria_eventos_saidas(linhas_rotas):
     saidas = []
     for id, linha_rota in linhas_rotas.items():
         saidas += list(map(lambda n: Evento(id, n), linha_rota.linha.horarios_de_saida))
     saidas.sort()
     return saidas
+
+def trata_demanda_percentual(demanda, porc):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            for ponto in demanda[dia][horario]:
+                for linha in demanda[dia][horario][ponto]:
+                    demanda[dia][horario][ponto][linha] = round(demanda[dia][horario][ponto][linha] * porc)
+
+def remove_demanda_inexistente(demanda):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            lista_pontos = []
+            for ponto in demanda[dia][horario]:
+                lista_linhas = []
+                for linha in demanda[dia][horario][ponto]:
+                    if demanda[dia][horario][ponto][linha] == 0:
+                        lista_linhas.append(linha)
+                for linha in lista_linhas:
+                    del demanda[dia][horario][ponto][linha]
+                if demanda[dia][horario][ponto] == {}:
+                    lista_pontos.append(ponto)
+            for ponto in lista_pontos:
+                del demanda[dia][horario][ponto]
 
 def junta_demanda(demanda1, demanda2):
     demanda_total = {}
@@ -113,28 +143,6 @@ def soma_demanda(demanda):
                 for linha in demanda[dia][horario][ponto].keys():
                     soma[dia][horario] += demanda[dia][horario][ponto][linha]
     return soma
-
-def porcentagem_chegada_total(soma_total, soma_restante):
-    porcentagem = {}
-    for dia in soma_total.keys():
-        porcentagem[dia] = {}
-        for horario in soma_total[dia].keys():
-            porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
-    return porcentagem
-
-def porcentagem_geral_dias(porc_dias_horarios):
-    sum = {}
-    for dia in porc_dias_horarios:
-        for horario in porc_dias_horarios[dia]:
-            if horario not in sum:
-                sum[horario] = 0
-            sum[horario] += porc_dias_horarios[dia][horario]
-
-    mean = {}
-    for horario in sum:
-        mean[horario] = sum[horario] / len(porc_dias_horarios)
-
-    return mean
 
 def calcula_atendimento_ida(linhas, demanda_butanta, demanda_p3, saidas):
     horarios = [480, 1140]
@@ -204,6 +212,52 @@ def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
                 atendimento[dia][horario][ponto] = 1 - (soma_linhas_ponto_restante / soma_linhas_ponto_total)
     return atendimento
 
+def porcentagem_chegada_total(soma_total, soma_restante):
+    porcentagem = {}
+    for dia in soma_total.keys():
+        porcentagem[dia] = {}
+        for horario in soma_total[dia].keys():
+            porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
+    return porcentagem
+
+def porcentagem_geral_dias(porc_dias_horarios):
+    sum = {}
+    for dia in porc_dias_horarios:
+        for horario in porc_dias_horarios[dia]:
+            if horario not in sum:
+                sum[horario] = 0
+            sum[horario] += porc_dias_horarios[dia][horario]
+
+    mean = {}
+    for horario in sum:
+        mean[horario] = sum[horario] / len(porc_dias_horarios)
+
+    return mean
+
+def porcentagem_geral_dias_por_ponto(porc_dias_horarios):
+    sum = {}
+    amount = {}
+    for dia in porc_dias_horarios:
+        for horario in porc_dias_horarios[dia]:
+            if horario not in sum:
+                sum[horario] = {}
+                amount[horario] = {}
+            for ponto in porc_dias_horarios[dia][horario]:
+                if ponto not in sum[horario]:
+                    sum[horario][ponto] = 0
+                    amount[horario][ponto] = 0
+                sum[horario][ponto] += porc_dias_horarios[dia][horario][ponto]
+                amount[horario][ponto] += 1
+
+    mean = {}
+    for horario in sum:
+        mean[horario] = {}
+        for ponto in sum[horario]:
+            mean[horario][ponto] = sum[horario][ponto] / amount[horario][ponto]
+
+    return mean
+
+
 # Simulacao
 
 class Demanda():
@@ -214,12 +268,13 @@ class Demanda():
         self.volta_p3 = volta_p3
 
 class ResultadoSimulacao():
-    def __init__(self, total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta):
+    def __init__(self, total_ida_manha, total_ida_tarde, total_volta_tarde, total_ida_manha_ponto, total_ida_tarde_ponto, total_volta_tarde_ponto):
         self.total_ida_manha = total_ida_manha
         self.total_ida_tarde = total_ida_tarde
         self.total_volta_tarde = total_volta_tarde
-        self.porc_atendimento_ida = porc_atendimento_ida
-        self.porc_atendimento_volta = porc_atendimento_volta
+        self.total_ida_manha_ponto = total_ida_manha_ponto,
+        self.total_ida_tarde_ponto = total_ida_tarde_ponto,
+        self.total_volta_tarde_ponto = total_volta_tarde_ponto
 
 def simula(demanda, linhas_rotas):
     # saidas
@@ -246,5 +301,10 @@ def simula(demanda, linhas_rotas):
     total_volta = porcentagem_geral_dias(porc_atendimento_volta)
     total_volta_tarde = total_volta[list(total_volta.keys())[0]]
 
-    resultado = ResultadoSimulacao(total_ida_manha, total_ida_tarde, total_volta_tarde, porc_atendimento_ida, porc_atendimento_volta)
-    return resultado
+    total_ida_ponto = porcentagem_geral_dias_por_ponto(porc_atendimento_ida_ponto)
+    total_ida_manha_ponto = total_ida_ponto[min(total_ida_ponto.keys())]
+    total_ida_tarde_ponto = total_ida_ponto[max(total_ida_ponto.keys())]
+    total_volta_ponto = porcentagem_geral_dias_por_ponto(porc_atendimento_volta_ponto)
+    total_volta_tarde_ponto = total_volta_ponto[list(total_volta_ponto.keys())[0]]
+
+    return ResultadoSimulacao(total_ida_manha, total_ida_tarde, total_volta_tarde, total_ida_manha_ponto, total_ida_tarde_ponto, total_volta_tarde_ponto)
