@@ -2,12 +2,13 @@ from fastapi import FastAPI
 from typing import Dict, Any
 from verification_demand import LinhaRota, Demanda, Rota, simula, junta_demanda, id_to_nome, id_to_nome_to_list
 from verification import MediaPercurso, Linha, calcular_horarios_saidas
-from demanda.demanda_ida_butanta import demanda_ida_butanta
+
+from demanda.demanda_ida_butanta_alunos import demanda_ida_butanta_alunos
 from demanda.demanda_ida_butanta_func import demanda_ida_butanta_func
-from demanda.demanda_ida_p3 import demanda_ida_p3
+from demanda.demanda_ida_p3_alunos import demanda_ida_p3_alunos
 from demanda.demanda_ida_p3_func import demanda_ida_p3_func
-from demanda.demanda_volta_butanta import demanda_volta_butanta
-from demanda.demanda_volta_p3 import demanda_volta_p3
+from demanda.demanda_volta_butanta_alunos import demanda_volta_butanta_alunos
+from demanda.demanda_volta_p3_alunos import demanda_volta_p3_alunos
 
 app = FastAPI()
 
@@ -29,6 +30,14 @@ async def simulate_buses(body: Dict[Any, Any]):
             'ida-tarde': resultado.total_ida_tarde_ponto,
             'volta-tarde': resultado.total_volta_tarde_ponto,
         }
+    }
+
+@app.post("/bus_stops")
+async def get_bus_stops():
+    lista_pontos = id_to_nome_to_list()
+
+    return {
+        'pontos': lista_pontos,
     }
 
 # body
@@ -130,24 +139,24 @@ def copia_para_todos_dias(dia):
 # demanda
 
 def get_demanda_hoje():
-    trata_demanda_percentual(demanda_ida_butanta, 0.8)
+    trata_demanda_percentual(demanda_ida_butanta_alunos, 0.8)
     trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
-    trata_demanda_percentual(demanda_volta_butanta, 0.8)
-    trata_demanda_percentual(demanda_ida_p3, 0.2)
+    trata_demanda_percentual(demanda_volta_butanta_alunos, 0.8)
+    trata_demanda_percentual(demanda_ida_p3_alunos, 0.2)
     trata_demanda_percentual(demanda_ida_p3_func, 0.2)
-    trata_demanda_percentual(demanda_volta_p3, 0.2)
+    trata_demanda_percentual(demanda_volta_p3_alunos, 0.2)
 
-    remove_demanda_inexistente(demanda_ida_butanta)
+    remove_demanda_inexistente(demanda_ida_butanta_alunos)
     remove_demanda_inexistente(demanda_ida_butanta_func)
-    remove_demanda_inexistente(demanda_volta_butanta)
-    remove_demanda_inexistente(demanda_ida_p3)
+    remove_demanda_inexistente(demanda_volta_butanta_alunos)
+    remove_demanda_inexistente(demanda_ida_p3_alunos)
     remove_demanda_inexistente(demanda_ida_p3_func)
-    remove_demanda_inexistente(demanda_volta_p3)
+    remove_demanda_inexistente(demanda_volta_p3_alunos)
 
-    demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta, demanda_ida_butanta_func)
-    demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3, demanda_ida_p3_func)
+    demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta_alunos, demanda_ida_butanta_func)
+    demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3_alunos, demanda_ida_p3_func)
 
-    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta, demanda_volta_p3)
+    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta_alunos, demanda_volta_p3_alunos)
     return demanda
 
 def trata_demanda_percentual(demanda, porc):
@@ -226,12 +235,4 @@ def cria_rotas_atual():
         '8032': Rota (
             ['1859', '1813', '1846', '1841', '1839', '1863', '1857', '1796', '1867', '1800', "7", "1830", "1832"]
         ),
-    }
-
-@app.post("/bus_stops")
-async def get_bus_stops():
-    lista_pontos = id_to_nome_to_list()
-
-    return {
-        'pontos': lista_pontos,
     }

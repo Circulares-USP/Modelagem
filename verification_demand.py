@@ -281,18 +281,22 @@ def simula(demanda, linhas_rotas):
     saidas = cria_eventos_saidas(linhas_rotas)
 
     # simulacao ida
-    total_ida = soma_demanda(junta_demanda(demanda.ida_butanta, demanda.ida_p3))
+    demanda_ida_completa = junta_demanda(demanda.ida_butanta, demanda.ida_p3)
+    total_ida = soma_demanda(demanda_ida_completa)
     calcula_atendimento_ida(linhas_rotas, demanda.ida_butanta, demanda.ida_p3, saidas)
     demanda_ida_restante = junta_demanda(demanda.ida_butanta, demanda.ida_p3)
     restante_ida = soma_demanda(demanda_ida_restante)
     porc_atendimento_ida = porcentagem_chegada_total(total_ida, restante_ida)
+    porc_atendimento_ida_ponto = porcentagem_chegada_por_ponto(demanda_ida_completa, demanda_ida_restante)
 
     # simulacao volta
-    total_volta = soma_demanda(junta_demanda(demanda.volta_butanta, demanda.volta_p3))
+    demanda_volta_completa = junta_demanda(demanda.volta_butanta, demanda.volta_p3)
+    total_volta = soma_demanda(demanda_volta_completa)
     calcula_atendimento_volta(linhas_rotas, demanda.volta_butanta, demanda.volta_p3, saidas)
     demanda_volta_restante = junta_demanda(demanda.volta_butanta, demanda.volta_p3)
     restante_volta = soma_demanda(demanda_volta_restante)
     porc_atendimento_volta = porcentagem_chegada_total(total_volta, restante_volta)
+    porc_atendimento_volta_ponto = porcentagem_chegada_por_ponto(demanda_volta_completa, demanda_volta_restante)
 
     # totais
     total_ida = porcentagem_geral_dias(porc_atendimento_ida)
