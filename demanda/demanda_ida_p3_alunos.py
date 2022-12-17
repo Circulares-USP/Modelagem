@@ -7,13 +7,13 @@ demanda_ida_p3_alunos = {
             "FAU I": {
                 "8012": 881,
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 125,
             },
             "Física": {
                 "8022": 516
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 95
             },
             "CEPAM": {
@@ -42,13 +42,13 @@ demanda_ida_p3_alunos = {
             "Hidráulica": {
                 "8012": 20
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 1243,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 175,
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 70,
             },
             "Butantan": {
@@ -60,19 +60,19 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 293,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 17
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 58
             },
             "IPEN": {
                 "8022": 77
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 8
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 18
             },
         },
@@ -80,16 +80,16 @@ demanda_ida_p3_alunos = {
             "FAU I": {
                 "8012": 34
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 34
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 124,
             },
             "Oceanográfico": {
                 "8022": 5,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 26
             },
             "CEPAM": {
@@ -111,10 +111,10 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 11,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 11
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 60
             }
         }
@@ -150,7 +150,7 @@ demanda_ida_p3_alunos = {
             "Butantan": {
                 "8022": 875
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 17
             },
             "Física": {
@@ -159,22 +159,22 @@ demanda_ida_p3_alunos = {
             "Oceanográfico": {
                 "8022": 533,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 1670,
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 106
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 240,
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 96,
             },
             "Praça do Relógio": {
                 "8012": 43
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 258,
             },
             "Academia de Polícia": {
@@ -186,16 +186,16 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 258,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 13
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 113
             },
             "IPEN": {
                 "8022": 314
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 15
             },
         },
@@ -225,19 +225,19 @@ demanda_ida_p3_alunos = {
                 "8022": 106,
                 "8012": 175
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 91
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 208,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 43
             },
             "FAU I": {
                 "8012": 189
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 85
             },
             "Física": {
@@ -246,13 +246,13 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 20,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 20
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 40,
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 40,
             },
             "Academia de Polícia": {
@@ -272,7 +272,7 @@ demanda_ida_p3_alunos = {
             "FAU I": {
                 "8012": 974,
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 33
             },
             "Metrô Butantã": {
@@ -295,16 +295,16 @@ demanda_ida_p3_alunos = {
             "Hidráulica": {
                 "8012": 24
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 1443,
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 116
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 210
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 84,
             },
             "CEPAM": {
@@ -316,7 +316,7 @@ demanda_ida_p3_alunos = {
             "Praça do Relógio": {
                 "8012": 40
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 152,
             },
             "Física": {
@@ -325,7 +325,7 @@ demanda_ida_p3_alunos = {
             "Academia de Polícia": {
                 "8012": 8
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 173
             },
             "IPEN": {
@@ -337,15 +337,15 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 280,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 18
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 12
             }
         },
         1140: {
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 94
             },
             "Metrô Butantã": {
@@ -372,7 +372,7 @@ demanda_ida_p3_alunos = {
             "FAU I": {
                 "8012": 115
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 61
             },
             "Acesso Vl. Indiana": {
@@ -385,19 +385,19 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 32,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 32
             },
             "IPEN": {
                 "8022": 41
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 62
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 248,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 51
             }
         }
@@ -422,19 +422,19 @@ demanda_ida_p3_alunos = {
             "Cultura Japonesa": {
                 "8022": 181,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 1305,
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 106
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 195
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 78,
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 295,
             },
             "Academia de Polícia": {
@@ -457,10 +457,10 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 362,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 31
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 37
             },
             "ECA": {
@@ -472,13 +472,13 @@ demanda_ida_p3_alunos = {
             "COPESP": {
                 "8022": 326,
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 35
             },
             "IPEN": {
                 "8022": 362
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 196
             }
         },
@@ -511,7 +511,7 @@ demanda_ida_p3_alunos = {
             "FAU I": {
                 "8012": 124
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 72
             },
             "Física": {
@@ -520,22 +520,22 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 42,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 42
             },
             "ECA": {
                 "8012": 1,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 110,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 23
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 102
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 109,
             },
             "Academia de Polícia": {
@@ -572,31 +572,31 @@ demanda_ida_p3_alunos = {
             "Oceanográfico": {
                 "8022": 538,
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 242,
             },
             "Física": {
                 "8022": 711
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 134
             },
             "CEPAM": {
                 "8022": 975
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 1508,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 220
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 88,
             },
             "Butantan": {
                 "8022": 1180
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 52
             },
             "Praça do Relógio": {
@@ -608,7 +608,7 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 424,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 30
             },
             "IPEN": {
@@ -617,10 +617,10 @@ demanda_ida_p3_alunos = {
             "Academia de Polícia": {
                 "8012": 26
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 122
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 16
             }
         },
@@ -638,13 +638,13 @@ demanda_ida_p3_alunos = {
             "CRUSP": {
                 "8012": 13
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 119,
             },
             "Oceanográfico": {
                 "8022": 5,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 25
             },
             "CEPAM": {
@@ -653,10 +653,10 @@ demanda_ida_p3_alunos = {
             "Butantan": {
                 "8022": 105
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 34
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 40
             },
             "Física": {
@@ -665,13 +665,13 @@ demanda_ida_p3_alunos = {
             "IAG": {
                 "8012": 33,
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 33
             },
             "FAU I": {
                 "8012": 239
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 75
             },
             "Metrô Butantã": {

@@ -16,22 +16,22 @@ demanda_ida_p3_func = {
             "Metrô Butantã": {
                 "8012": 56,
             },
-            "Ponto Clube dos Funcionários": {
+            "Prefeitura/Física": {
                 "8012": 128
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 128
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 28
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 39
             },
             "CRUSP": {
                 "8012": 105,
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 105
             },
             "Cultura Japonesa": {
@@ -40,7 +40,7 @@ demanda_ida_p3_func = {
             "Hidráulica": {
                 "8012": 210,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 92,
             }
         },
@@ -67,22 +67,22 @@ demanda_ida_p3_func = {
             "Metrô Butantã": {
                 "8012": 56,
             },
-            "Ponto Clube dos Funcionários": {
+            "Prefeitura/Física": {
                 "8012": 128
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 128
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 28
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 39
             },
             "CRUSP": {
                 "8012": 105,
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 105
             },
             "Cultura Japonesa": {
@@ -91,7 +91,7 @@ demanda_ida_p3_func = {
             "Hidráulica": {
                 "8012": 210,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 92,
             }
         },
@@ -118,22 +118,22 @@ demanda_ida_p3_func = {
             "Metrô Butantã": {
                 "8012": 56,
             },
-            "Ponto Clube dos Funcionários": {
+            "Prefeitura/Física": {
                 "8012": 128
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 128
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 28
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 39
             },
             "CRUSP": {
                 "8012": 105,
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 105
             },
             "Cultura Japonesa": {
@@ -142,7 +142,7 @@ demanda_ida_p3_func = {
             "Hidráulica": {
                 "8012": 210,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 92,
             }
         },
@@ -169,22 +169,22 @@ demanda_ida_p3_func = {
             "Metrô Butantã": {
                 "8012": 56,
             },
-            "Ponto Clube dos Funcionários": {
+            "Prefeitura/Física": {
                 "8012": 128
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 128
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 28
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 39
             },
             "CRUSP": {
                 "8012": 105,
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 105
             },
             "Cultura Japonesa": {
@@ -193,7 +193,7 @@ demanda_ida_p3_func = {
             "Hidráulica": {
                 "8012": 210,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 92,
             }
         },
@@ -220,22 +220,22 @@ demanda_ida_p3_func = {
             "Metrô Butantã": {
                 "8012": 56,
             },
-            "Ponto Clube dos Funcionários": {
+            "Prefeitura/Física": {
                 "8012": 128
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 128
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 28
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 39
             },
             "CRUSP": {
                 "8012": 105,
             },
-            "Barracões": {
+            "Inova USP": {
                 "8012": 105
             },
             "Cultura Japonesa": {
@@ -244,7 +244,7 @@ demanda_ida_p3_func = {
             "Hidráulica": {
                 "8012": 210,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 92,
             }
         },
