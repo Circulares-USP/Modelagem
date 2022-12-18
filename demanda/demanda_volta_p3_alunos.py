@@ -12,7 +12,7 @@ demanda_volta_p3_alunos = {
             "FAU II": {
                 "8022": 403
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 178
             },
             "Reitoria": {
@@ -21,10 +21,10 @@ demanda_volta_p3_alunos = {
             "FEA": {
                 "8012": 388,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 133,
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 61
             },
             "Raia Olímpica": {
@@ -39,7 +39,7 @@ demanda_volta_p3_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 101
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 304,
             },
             "Geociências": {
@@ -48,7 +48,7 @@ demanda_volta_p3_alunos = {
             "Odontologia": {
                 "8022": 111
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 80
             },
             "Rua do Lago": {
@@ -60,14 +60,14 @@ demanda_volta_p3_alunos = {
             "Biomédicas III": {
                 "8022": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 104
             }
         }
     },
     "ter": {
         1110: {
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 263,
             },
             "Geociências": {
@@ -76,16 +76,16 @@ demanda_volta_p3_alunos = {
             "História e Geografia": {
                 "8022": 660
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 180,
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 78
             },
             "Raia Olímpica": {
                 "8022": 121
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 257
             },
             "FEA": {
@@ -97,7 +97,7 @@ demanda_volta_p3_alunos = {
             "Portaria II": {
                 "8022": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 174
             },
             "Letras": {
@@ -124,7 +124,7 @@ demanda_volta_p3_alunos = {
             "Reitoria": {
                 "8012": 361
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 72
             }
         }
@@ -134,7 +134,7 @@ demanda_volta_p3_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 136
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 224,
             },
             "Geociências": {
@@ -143,7 +143,7 @@ demanda_volta_p3_alunos = {
             "Raia Olímpica": {
                 "8022": 111
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 194
             },
             "Letras": {
@@ -167,10 +167,10 @@ demanda_volta_p3_alunos = {
             "Biomédicas III": {
                 "8022": 46
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 188,
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 72
             },
             "IPT": {
@@ -182,10 +182,10 @@ demanda_volta_p3_alunos = {
             "Odontologia": {
                 "8022": 221
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 206
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 150
             },
             "Reitoria": {
@@ -198,16 +198,16 @@ demanda_volta_p3_alunos = {
             "História e Geografia": {
                 "8022": 546
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 197,
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 85
             },
             "Raia Olímpica": {
                 "8022": 112
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 235
             },
             "FEA": {
@@ -231,7 +231,7 @@ demanda_volta_p3_alunos = {
             "Biomédicas III": {
                 "8022": 39
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 183
             },
             "FAU II": {
@@ -240,7 +240,7 @@ demanda_volta_p3_alunos = {
             "Reitoria": {
                 "8012": 258
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 352,
             },
             "Geociências": {
@@ -249,7 +249,7 @@ demanda_volta_p3_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 114
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 134
             },
             "Odontologia": {
@@ -268,10 +268,10 @@ demanda_volta_p3_alunos = {
             "Acesso Vl. Indiana": {
                 "8012": 148
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 193,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 208
             },
             "História e Geografia": {
@@ -280,7 +280,7 @@ demanda_volta_p3_alunos = {
             "Letras": {
                 "8022": 388
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 306,
             },
             "Geociências": {
@@ -289,13 +289,13 @@ demanda_volta_p3_alunos = {
             "Raia Olímpica": {
                 "8022": 124
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 226
             },
             "Reitoria": {
                 "8012": 324
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 87
             },
             "IPT": {
@@ -304,7 +304,7 @@ demanda_volta_p3_alunos = {
             "Portaria II": {
                 "8022": 22
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 150
             },
             "Odontologia": {

@@ -7,7 +7,7 @@ demanda_volta_butanta_alunos = {
             "CEPAM": {
                 "8022": 205
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 5
             },
             "CRUSP": {
@@ -24,7 +24,7 @@ demanda_volta_butanta_alunos = {
             "Butantan": {
                 "8022": 441,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 27,
                 "8032": 11
             },
@@ -34,7 +34,7 @@ demanda_volta_butanta_alunos = {
             "Oceanográfico": {
                 "8022": 75
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 268
             },
             "COPESP": {
@@ -44,7 +44,7 @@ demanda_volta_butanta_alunos = {
                 "8012": 5,
                 "8032": 12
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 135,
             },
             "FEA": {
@@ -56,24 +56,24 @@ demanda_volta_butanta_alunos = {
             "IAG": {
                 "8012": 40
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 91,
             },
             "Acesso Vl. Indiana": {
                 "8012": 36,
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 23,
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 15,
                 "8032": 20
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 78,
                 "8032": 62
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 11,
                 "8032": 27
             },
@@ -84,10 +84,10 @@ demanda_volta_butanta_alunos = {
             "ECA": {
                 "8012": 48
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 20
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8032": 3
             },
             "IPEN": {
@@ -103,7 +103,7 @@ demanda_volta_butanta_alunos = {
     },
     "ter": {
         1110: {
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8032": 34
             },
             "CRUSP": {
@@ -122,7 +122,7 @@ demanda_volta_butanta_alunos = {
             "Acesso CPTM I": {
                 "8032": 7
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 187
             },
             "CEPAM": {
@@ -137,21 +137,21 @@ demanda_volta_butanta_alunos = {
             "IAG": {
                 "8012": 65
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 181,
             },
             "Acesso Vl. Indiana": {
                 "8012": 82,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 99,
                 "8032": 78
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 37,
                 "8032": 14
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 14,
                 "8032": 34
             },
@@ -162,7 +162,7 @@ demanda_volta_butanta_alunos = {
                 "8012": 253,
                 "8022": 225,
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 339
             },
             "COPESP": {
@@ -174,7 +174,7 @@ demanda_volta_butanta_alunos = {
             "Butantan": {
                 "8022": 830
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 38,
                 "8032": 67
             },
@@ -182,7 +182,7 @@ demanda_volta_butanta_alunos = {
                 "8012": 30,
                 "8022": 30
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 10
             },
             "Biblioteca Brasiliana": {
@@ -195,13 +195,13 @@ demanda_volta_butanta_alunos = {
                 "8012": 10,
                 "8032": 21
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 25
             },
             "IPEN": {
                 "8022": 161
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 33,
             },
             "Hidráulica": {
@@ -218,7 +218,7 @@ demanda_volta_butanta_alunos = {
             "Cultura Japonesa": {
                 "8022": 119,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8032": 50
             },
             "Física": {
@@ -253,11 +253,11 @@ demanda_volta_butanta_alunos = {
             "ECA": {
                 "8012": 80
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 26,
                 "8032": 41
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 342
             },
             "Academia de Polícia": {
@@ -267,13 +267,13 @@ demanda_volta_butanta_alunos = {
             "CEPAM": {
                 "8022": 198
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 10
             },
             "Biblioteca Brasiliana": {
                 "8032": 181
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 35,
                 "8032": 13
             },
@@ -286,23 +286,23 @@ demanda_volta_butanta_alunos = {
             "FEA": {
                 "8032": 486
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 22
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 209,
             },
             "Acesso Vl. Indiana": {
                 "8012": 87,
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 166
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 91,
                 "8032": 72
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 13,
                 "8032": 31
             },
@@ -312,17 +312,17 @@ demanda_volta_butanta_alunos = {
             "IAG": {
                 "8012": 37
             },
-            "Cocesp II": {
+            "Prefeitura II": {
                 "8022": 19
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 35
             }
         }
     },
     "seg": {
         1110: {
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 192
             },
             "CEPAM": {
@@ -337,13 +337,13 @@ demanda_volta_butanta_alunos = {
             "IAG": {
                 "8012": 67
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 171,
             },
             "Acesso Vl. Indiana": {
                 "8012": 75,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 107,
                 "8032": 85
             },
@@ -351,18 +351,18 @@ demanda_volta_butanta_alunos = {
                 "8012": 112,
                 "8032": 113,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 38,
                 "8032": 15
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 15,
                 "8032": 37
             },
             "Cultura Japonesa": {
                 "8022": 140
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 8
             },
             "Portaria III": {
@@ -384,7 +384,7 @@ demanda_volta_butanta_alunos = {
             "Oceanográfico": {
                 "8022": 106
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 309
             },
             "COPESP": {
@@ -394,7 +394,7 @@ demanda_volta_butanta_alunos = {
                 "8012": 8,
                 "8032": 11
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 27,
                 "8032": 47
             },
@@ -405,10 +405,10 @@ demanda_volta_butanta_alunos = {
             "IAG": {
                 "8012": 25
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 34
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8032": 24
             },
             "ECA": {
@@ -423,7 +423,7 @@ demanda_volta_butanta_alunos = {
             "Hidráulica": {
                 "8012": 3
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 24
             }
         }
@@ -442,7 +442,7 @@ demanda_volta_butanta_alunos = {
             "ECA": {
                 "8012": 75
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 21
             },
             "Portaria III": {
@@ -462,10 +462,10 @@ demanda_volta_butanta_alunos = {
             "Butantan": {
                 "8022": 605
             },
-            "Paços das Artes": {
+            "Paço das Artes": {
                 "8022": 502
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 37,
                 "8032": 61
             },
@@ -479,7 +479,7 @@ demanda_volta_butanta_alunos = {
             "CEPAM": {
                 "8022": 238
             },
-            "Acesso Rio Pequeno": {
+            "Acesso São Remo": {
                 "8022": 7
             },
             "Biblioteca Brasiliana": {
@@ -488,7 +488,7 @@ demanda_volta_butanta_alunos = {
             "Psicologia I": {
                 "8012": 12,
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8012": 37,
                 "8032": 15
             },
@@ -499,7 +499,7 @@ demanda_volta_butanta_alunos = {
                 "8012": 7,
                 "8032": 20
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8032": 43
             },
             "IPEN": {
@@ -508,23 +508,23 @@ demanda_volta_butanta_alunos = {
             "Hidráulica": {
                 "8012": 5
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 201,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 195
             },
             "Acesso Vl. Indiana": {
                 "8012": 89,
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 41
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 109,
                 "8032": 87
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 15,
                 "8032": 38
             },

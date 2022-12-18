@@ -7,7 +7,7 @@ demanda_ida_butanta_func = {
                 "8032": 73,
                 "8012": 39,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 179,
                 "8032": 62
             },
@@ -25,29 +25,29 @@ demanda_ida_butanta_func = {
                 "8012": 49,
                 "8022": 67
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 156
             },
             "Odontologia": {
                 "8012": 14
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 19
             },
             "IPT": {
                 "8022": 19,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 94,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 14,
                 "8022": 27
             },
@@ -67,7 +67,7 @@ demanda_ida_butanta_func = {
             "FAU II": {
                 "8022": 37
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 47,
             },
             "Raia Olímpica": {
@@ -95,7 +95,7 @@ demanda_ida_butanta_func = {
                 "8032": 73,
                 "8012": 26,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 179,
                 "8032": 62
             },
@@ -113,29 +113,29 @@ demanda_ida_butanta_func = {
                 "8012": 49,
                 "8022": 67
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 156
             },
             "Odontologia": {
                 "8012": 14
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 19
             },
             "IPT": {
                 "8022": 19,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 94,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 14,
                 "8022": 27
             },
@@ -155,7 +155,7 @@ demanda_ida_butanta_func = {
             "FAU II": {
                 "8022": 37
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 47,
             },
             "Raia Olímpica": {
@@ -183,7 +183,7 @@ demanda_ida_butanta_func = {
                 "8032": 73,
                 "8012": 39,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 179,
                 "8032": 62
             },
@@ -201,29 +201,29 @@ demanda_ida_butanta_func = {
                 "8012": 49,
                 "8022": 67
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 156
             },
             "Odontologia": {
                 "8012": 14
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 19
             },
             "IPT": {
                 "8022": 19,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 94,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 14,
                 "8022": 27
             },
@@ -243,7 +243,7 @@ demanda_ida_butanta_func = {
             "FAU II": {
                 "8022": 37
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 47,
             },
             "Raia Olímpica": {
@@ -271,7 +271,7 @@ demanda_ida_butanta_func = {
                 "8032": 73,
                 "8012": 39,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 179,
                 "8032": 62
             },
@@ -289,29 +289,29 @@ demanda_ida_butanta_func = {
                 "8012": 49,
                 "8022": 67
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 156
             },
             "Odontologia": {
                 "8012": 14
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 70,
                 "8012": 46
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 19
             },
             "IPT": {
                 "8022": 19,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 94,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 14,
                 "8022": 27
             },
@@ -331,7 +331,7 @@ demanda_ida_butanta_func = {
             "FAU II": {
                 "8022": 37
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 47,
             },
             "Raia Olímpica": {
@@ -359,7 +359,7 @@ demanda_ida_butanta_func = {
                 "8032": 73,
                 "8012": 39,
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 179,
                 "8032": 62
             },
@@ -377,29 +377,29 @@ demanda_ida_butanta_func = {
                 "8012": 49,
                 "8022": 67
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 156
             },
             "Odontologia": {
                 "8012": 14
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8032": 80,
                 "8012": 46
             },
-            "Terminal USP": {
+            "Terminal de Ônibus Urbano": {
                 "8022": 19
             },
             "IPT": {
                 "8022": 19,
             },
-            "Poli Civil": {
+            "Civil": {
                 "8032": 19
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 94,
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 14,
                 "8022": 27
             },
@@ -419,7 +419,7 @@ demanda_ida_butanta_func = {
             "FAU II": {
                 "8022": 37
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 47,
             },
             "Raia Olímpica": {

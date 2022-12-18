@@ -8,7 +8,7 @@ demanda_completa = {
                 "8032": 657,
                 "8012": 638
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 196,
                 "8022": 38,
                 "8032": 124
@@ -28,11 +28,11 @@ demanda_completa = {
                 "8032": 73,
                 "8012": 78
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8012": 9,
                 "8022": 1
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 307,
                 "8022": 361,
                 "8032": 272
@@ -64,16 +64,16 @@ demanda_completa = {
                 "8012": 23,
                 "8022": 18
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8022": 45,
                 "8032": 18
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 73,
                 "8022": 155,
                 "8032": 137
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 28,
                 "8022": 313,
                 "8032": 14
@@ -82,17 +82,17 @@ demanda_completa = {
                 "8022": 10,
                 "8012": 10
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 27,
                 "8022": 46,
                 "8032": 36
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 9,
                 "8022": 18,
                 "8032": 9
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 9,
                 "8022": 9
             },
@@ -105,7 +105,7 @@ demanda_completa = {
                 "8022": 49,
                 "8032": 27
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 11,
                 "8022": 6,
                 "8032": 2
@@ -149,12 +149,12 @@ demanda_completa = {
                 "8012": 40,
                 "8022": 40
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 37,
                 "8012": 13,
                 "8032": 2
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 52,
                 "8022": 35
             },
@@ -163,12 +163,12 @@ demanda_completa = {
             }
         },
         1080: {
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 330,
                 "8012": 58,
                 "8032": 9
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 33,
                 "8022": 58,
                 "8032": 8
@@ -194,12 +194,12 @@ demanda_completa = {
                 "8022": 54,
                 "8032": 4
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 52,
                 "8022": 35,
                 "8032": 35
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 28,
                 "8022": 62,
                 "8032": 62
@@ -208,7 +208,7 @@ demanda_completa = {
                 "8032": 17,
                 "8012": 1
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 48,
                 "8012": 3
             },
@@ -222,7 +222,7 @@ demanda_completa = {
                 "8022": 32,
                 "8032": 37
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 31,
                 "8032": 15,
                 "8022": 1
@@ -271,11 +271,11 @@ demanda_completa = {
                 "8012": 9,
                 "8032": 9
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 10,
                 "8032": 10
             },
-            "Poli Civil": {
+            "Civil": {
                 "8022": 16,
                 "8032": 11
             },
@@ -284,7 +284,7 @@ demanda_completa = {
                 "8022": 5,
                 "8032": 2
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 25,
                 "8032": 25
             },
@@ -304,7 +304,7 @@ demanda_completa = {
                 "8012": 236,
                 "8022": 301
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 28,
                 "8022": 403,
                 "8032": 22
@@ -314,7 +314,7 @@ demanda_completa = {
                 "8012": 73,
                 "8032": 68
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 25,
                 "8022": 64,
                 "8032": 3
@@ -323,7 +323,7 @@ demanda_completa = {
                 "8012": 40,
                 "8022": 30
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 173,
                 "8022": 28,
                 "8032": 109
@@ -353,7 +353,7 @@ demanda_completa = {
                 "8022": 122,
                 "8032": 28
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 300,
                 "8022": 337,
                 "8032": 259
@@ -366,7 +366,7 @@ demanda_completa = {
                 "8022": 275,
                 "8012": 153
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 11,
                 "8022": 11,
                 "8032": 4
@@ -379,7 +379,7 @@ demanda_completa = {
             "Academia de Polícia": {
                 "8012": 8
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8012": 5,
                 "8022": 1
             },
@@ -395,26 +395,26 @@ demanda_completa = {
                 "8032": 605,
                 "8022": 214
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8022": 43,
                 "8032": 17
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 69,
                 "8022": 157,
                 "8032": 140
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 29,
                 "8022": 43,
                 "8032": 35
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 9,
                 "8022": 17,
                 "8032": 9
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 9,
                 "8022": 9
             },
@@ -449,7 +449,7 @@ demanda_completa = {
                 "8022": 39,
                 "8032": 19
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 38,
                 "8022": 25
             }
@@ -477,16 +477,16 @@ demanda_completa = {
                 "8022": 31,
                 "8032": 11
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 7,
                 "8022": 58
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 40,
                 "8022": 26,
                 "8032": 26
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 27,
                 "8022": 62,
                 "8032": 62
@@ -500,12 +500,12 @@ demanda_completa = {
                 "8022": 90,
                 "8032": 40
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 295,
                 "8012": 48,
                 "8032": 9
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 50,
                 "8022": 85,
                 "8032": 13
@@ -530,7 +530,7 @@ demanda_completa = {
                 "8022": 20,
                 "8032": 29
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 17,
                 "8032": 8
             },
@@ -560,15 +560,15 @@ demanda_completa = {
                 "8012": 9,
                 "8032": 9
             },
-            "Poli Civil": {
+            "Civil": {
                 "8022": 21,
                 "8032": 14
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 8,
                 "8032": 8
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 25,
                 "8032": 25
             },
@@ -590,7 +590,7 @@ demanda_completa = {
                 "8022": 62,
                 "8032": 34
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8032": 133,
                 "8012": 208,
                 "8022": 41
@@ -610,7 +610,7 @@ demanda_completa = {
                 "8022": 55,
                 "8032": 29
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 13,
                 "8022": 9,
                 "8032": 3
@@ -636,21 +636,21 @@ demanda_completa = {
                 "8022": 6,
                 "8032": 6
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8022": 43,
                 "8032": 17
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 310,
                 "8022": 375,
                 "8032": 271
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 69,
                 "8022": 138,
                 "8032": 121
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 26,
                 "8022": 287,
                 "8032": 13
@@ -659,17 +659,17 @@ demanda_completa = {
                 "8022": 12,
                 "8012": 10
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 35,
                 "8022": 55,
                 "8032": 35
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 9,
                 "8022": 17,
                 "8032": 9
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 9,
                 "8022": 9
             },
@@ -699,7 +699,7 @@ demanda_completa = {
                 "8022": 87,
                 "8032": 44
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 87,
                 "8022": 58
             },
@@ -707,12 +707,12 @@ demanda_completa = {
                 "8022": 165,
                 "8012": 81
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 25,
                 "8022": 79,
                 "8032": 6
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8012": 11,
                 "8022": 3
             },
@@ -739,20 +739,20 @@ demanda_completa = {
             }
         },
         1080: {
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 38,
                 "8032": 19
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 19,
                 "8032": 19
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8022": 318,
                 "8012": 54,
                 "8032": 8
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 74,
                 "8022": 118,
                 "8032": 18
@@ -794,7 +794,7 @@ demanda_completa = {
                 "8022": 61,
                 "8032": 20
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 9,
                 "8022": 16
             },
@@ -838,21 +838,21 @@ demanda_completa = {
                 "8022": 3,
                 "8032": 3
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 21,
                 "8022": 14,
                 "8032": 14
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 11,
                 "8022": 24,
                 "8032": 24
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 49,
                 "8032": 49
             },
-            "Poli Civil": {
+            "Civil": {
                 "8022": 6,
                 "8032": 4
             }
@@ -860,7 +860,7 @@ demanda_completa = {
     },
     "qui": {
         480: {
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 384,
                 "8022": 450,
                 "8032": 332
@@ -892,7 +892,7 @@ demanda_completa = {
                 "8022": 359,
                 "8012": 180
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 16,
                 "8022": 19,
                 "8032": 6
@@ -939,16 +939,16 @@ demanda_completa = {
                 "8022": 86,
                 "8032": 43
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8022": 54,
                 "8032": 22
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 86,
                 "8022": 184,
                 "8032": 162
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 31,
                 "8022": 326,
                 "8032": 17
@@ -957,17 +957,17 @@ demanda_completa = {
                 "8022": 15,
                 "8012": 20
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 38,
                 "8022": 62,
                 "8032": 43
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 11,
                 "8022": 22,
                 "8032": 11
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 11,
                 "8022": 11
             },
@@ -975,7 +975,7 @@ demanda_completa = {
                 "8022": 22,
                 "8032": 11
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 222,
                 "8022": 36,
                 "8032": 140
@@ -989,12 +989,12 @@ demanda_completa = {
                 "8012": 58,
                 "8022": 37
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8012": 39,
                 "8022": 121,
                 "8032": 9
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8012": 8,
                 "8022": 4
             },
@@ -1014,7 +1014,7 @@ demanda_completa = {
                 "8012": 39,
                 "8022": 39
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 86,
                 "8022": 57
             }
@@ -1030,7 +1030,7 @@ demanda_completa = {
                 "8022": 28,
                 "8032": 7
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 33,
                 "8032": 17,
                 "8022": 2
@@ -1057,7 +1057,7 @@ demanda_completa = {
             "Praça do Relógio": {
                 "8012": 2
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 82,
                 "8022": 469,
                 "8032": 14
@@ -1066,7 +1066,7 @@ demanda_completa = {
                 "8012": 14,
                 "8032": 14
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 83,
                 "8012": 46,
                 "8032": 11
@@ -1088,11 +1088,11 @@ demanda_completa = {
                 "8012": 37,
                 "8022": 19
             },
-            "Poli Civil": {
+            "Civil": {
                 "8022": 8,
                 "8032": 6
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 25,
                 "8022": 52,
                 "8032": 52
@@ -1102,7 +1102,7 @@ demanda_completa = {
                 "8022": 14,
                 "8032": 2
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 6,
                 "8032": 6
             },
@@ -1116,12 +1116,12 @@ demanda_completa = {
                 "8022": 28,
                 "8032": 7
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 57,
                 "8032": 38,
                 "8022": 38
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8022": 58,
                 "8012": 1
             },
@@ -1141,7 +1141,7 @@ demanda_completa = {
                 "8022": 9,
                 "8032": 4
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 25,
                 "8032": 25
             }
@@ -1187,7 +1187,7 @@ demanda_completa = {
                 "8012": 170,
                 "8022": 331
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 62,
                 "8012": 22,
                 "8032": 3
@@ -1200,7 +1200,7 @@ demanda_completa = {
                 "8012": 19,
                 "8022": 7
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 211,
                 "8022": 221,
                 "8032": 163
@@ -1218,7 +1218,7 @@ demanda_completa = {
                 "8032": 203,
                 "8022": 66
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 24,
                 "8022": 267,
                 "8032": 11
@@ -1227,7 +1227,7 @@ demanda_completa = {
                 "8012": 56,
                 "8022": 34
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 166,
                 "8022": 25,
                 "8032": 102
@@ -1247,26 +1247,26 @@ demanda_completa = {
                 "8022": 64,
                 "8032": 11
             },
-            "Poli Metalúrgica": {
+            "Metalurgia": {
                 "8022": 25,
                 "8032": 10
             },
-            "Poli Civil": {
+            "Civil": {
                 "8012": 41,
                 "8022": 102,
                 "8032": 91
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 36,
                 "8022": 35,
                 "8032": 20
             },
-            "Cocesp I": {
+            "Prefeitura I": {
                 "8012": 5,
                 "8022": 10,
                 "8032": 5
             },
-            "Poli Mecânica": {
+            "Mecânica": {
                 "8012": 5,
                 "8022": 5
             },
@@ -1279,7 +1279,7 @@ demanda_completa = {
                 "8022": 38,
                 "8032": 21
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 7,
                 "8022": 8,
                 "8032": 3
@@ -1291,7 +1291,7 @@ demanda_completa = {
                 "8022": 3,
                 "8032": 3
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 47,
                 "8022": 32
             },
@@ -1300,7 +1300,7 @@ demanda_completa = {
                 "8022": 32,
                 "8032": 2
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8012": 3,
                 "8022": 2
             },
@@ -1331,7 +1331,7 @@ demanda_completa = {
                 "8022": 68,
                 "8032": 22
             },
-            "Poli Eletrotécnica": {
+            "Eletrotécnica": {
                 "8012": 11,
                 "8022": 24
             },
@@ -1340,7 +1340,7 @@ demanda_completa = {
                 "8022": 16,
                 "8032": 23
             },
-            "Reitoria/Bancos": {
+            "Bancos": {
                 "8012": 28,
                 "8032": 14
             },
@@ -1358,7 +1358,7 @@ demanda_completa = {
                 "8022": 0,
                 "8032": 0
             },
-            "Biblioteca Farmácia e Química": {
+            "Farmácia e Química": {
                 "8012": 58,
                 "8022": 353,
                 "8032": 13
@@ -1367,7 +1367,7 @@ demanda_completa = {
                 "8012": 13,
                 "8032": 13
             },
-            "Parada Matemática": {
+            "Biomédicas": {
                 "8022": 52,
                 "8012": 26,
                 "8032": 6
@@ -1376,12 +1376,12 @@ demanda_completa = {
                 "8012": 59,
                 "8022": 20
             },
-            "Ponto Clube dos funcionários": {
+            "Prefeitura/Física": {
                 "8012": 39,
                 "8022": 26,
                 "8032": 26
             },
-            "Poli Biênio": {
+            "Biênio": {
                 "8012": 13,
                 "8022": 26,
                 "8032": 26
@@ -1395,7 +1395,7 @@ demanda_completa = {
                 "8012": 4,
                 "8022": 11
             },
-            "Geociências I": {
+            "Biociências I": {
                 "8022": 14,
                 "8032": 14
             },
@@ -1403,7 +1403,7 @@ demanda_completa = {
                 "8012": 100,
                 "8022": 111
             },
-            "Escola de Educação Física I": {
+            "Educação Física I": {
                 "8012": 25,
                 "8032": 25
             },
