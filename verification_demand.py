@@ -113,7 +113,6 @@ def junta_demanda(demanda1, demanda2):
         for horario in set_from_lists(demanda1.get(dia, {}).keys(), demanda2.get(dia, {}).keys()):
             demanda_total[dia][horario] = {}
             for ponto in set_from_lists(demanda1.get(dia, {}).get(horario, {}).keys(), demanda2.get(dia, {}).get(horario, {}).keys()):
-                print('demanda1: ' + str(demanda1.get(dia, {}).get(horario, {}).get(ponto, 0)) + '; demanda2: ' + str(demanda2.get(dia, {}).get(horario, {}).get(ponto, 0)))
                 demanda_total[dia][horario][ponto] = demanda1.get(dia, {}).get(horario, {}).get(ponto, 0) + demanda2.get(dia, {}).get(horario, {}).get(ponto, 0)
     return demanda_total
 
@@ -146,7 +145,6 @@ def calcula_atendimento_volta(linhas, demanda_butanta, demanda_p3, saidas):
             for horario in horarios:
                 if horario-60 < saida.horario < horario+30:
                     if saida.linha != '8032':
-                        print("xxx demanda_p3[dia][horario]: " + str(demanda_p3[dia][horario]))
                         distribui_pessoas(linhas, demanda_p3[dia][horario], saida.linha, 50, 'ida')
                         distribui_pessoas(linhas, demanda_butanta[dia][horario], saida.linha, 100, 'volta')
                     else:

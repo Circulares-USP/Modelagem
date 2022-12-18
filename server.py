@@ -40,6 +40,8 @@ async def get_bus_stops():
         'pontos': lista_pontos,
     }
 
+dias = ['seg','ter','qua','qui','sex']
+
 # body
 
 def load_rotas_linhas(body):
@@ -94,43 +96,49 @@ def load_demanda(body):
     if 'demanda' not in body:
         return get_demanda_hoje()
 
-    body_demanda = body['demanda']
-    demanda_ida_manha_p3 = body_demanda['ida_manha']['de_p3']
-    demanda_ida_manha_butanta = body_demanda['ida_manha']['de_butanta']
-    demanda_ida_tarde_butanta = body_demanda['ida_tarde']['de_p3']
-    demanda_ida_tarde_p3 = body_demanda['ida_tarde']['de_butanta']
-    demanda_volta_tarde_butanta = body_demanda['volta_tarde']['de_p3']
-    demanda_volta_tarde_p3 = body_demanda['volta_tarde']['de_butanta']
-
     horario_manha = 480
     horario_ida_tarde = 1140
     horario_volta_tarde = 1110
-    demanda_semana_ida_butanta = copia_para_todos_dias({
-        horario_manha: depara_ids_pontos(demanda_ida_manha_butanta),
-        horario_ida_tarde: depara_ids_pontos(demanda_ida_tarde_butanta),
-    })
-    demanda_semana_ida_p3 = copia_para_todos_dias({
-        horario_manha: depara_ids_pontos(demanda_ida_manha_p3),
-        horario_ida_tarde: depara_ids_pontos(demanda_ida_tarde_p3),
-    })
-    demanda_semana_volta_butanta = copia_para_todos_dias({
-        horario_volta_tarde: depara_ids_pontos(demanda_volta_tarde_butanta),
-    })
-    demanda_semana_volta_p3 = copia_para_todos_dias({
-        horario_volta_tarde: depara_ids_pontos(demanda_volta_tarde_p3),
-    })
+
+    body_demanda = body['demanda']
+
+    demanda_semana_ida_butanta = {}
+    demanda_semana_ida_p3 = {}
+    demanda_semana_volta_butanta = {}
+    demanda_semana_volta_p3 = {}
+    for dia in dias:
+        demanda_ida_manha_p3 = body_demanda[dia]['ida_manha']['de_p3']
+        demanda_ida_manha_butanta = body_demanda[dia]['ida_manha']['de_butanta']
+        demanda_ida_tarde_butanta = body_demanda[dia]['ida_tarde']['de_p3']
+        demanda_ida_tarde_p3 = body_demanda[dia]['ida_tarde']['de_butanta']
+        demanda_volta_tarde_butanta = body_demanda[dia]['volta_tarde']['de_p3']
+        demanda_volta_tarde_p3 = body_demanda[dia]['volta_tarde']['de_butanta']
+
+        demanda_semana_ida_butanta[dia] = {
+            horario_manha: depara_ids_pontos(demanda_ida_manha_butanta),
+            horario_ida_tarde: depara_ids_pontos(demanda_ida_tarde_butanta),
+        }
+        demanda_semana_ida_p3[dia] = {
+            horario_manha: depara_ids_pontos(demanda_ida_manha_p3),
+            horario_ida_tarde: depara_ids_pontos(demanda_ida_tarde_p3),
+        }
+        demanda_semana_volta_butanta[dia] = {
+            horario_volta_tarde: depara_ids_pontos(demanda_volta_tarde_butanta),
+        }
+        demanda_semana_volta_p3[dia] = {
+            horario_volta_tarde: depara_ids_pontos(demanda_volta_tarde_p3),
+        }
 
     demanda = Demanda(demanda_semana_ida_butanta, demanda_semana_ida_p3, demanda_semana_volta_butanta, demanda_semana_volta_p3)
     return demanda
 
 def depara_ids_pontos(pontos_demanda):
-    map = {}
+    nome_demanda = {}
     for id_ponto in pontos_demanda:
-        map[id_to_nome[id_ponto]] = pontos_demanda[id_ponto]
-    return map
+        nome_demanda[id_to_nome[id_ponto]] = pontos_demanda[id_ponto]
+    return nome_demanda
 
 def copia_para_todos_dias(dia):
-    dias = ['seg','ter','qua','qui','sex']
     map = {}
     for dia_str in dias:
         map[dia_str] = dia
@@ -139,8 +147,6 @@ def copia_para_todos_dias(dia):
 # demanda
 
 def get_demanda_hoje():
-    print('xxx get_demanda_hoje')
-
     trata_demanda_percentual(demanda_ida_butanta_alunos, 0.8)
     trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
     trata_demanda_percentual(demanda_volta_butanta_alunos, 0.8)
