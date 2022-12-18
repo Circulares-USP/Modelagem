@@ -5,6 +5,8 @@ from verification import calcular_horarios_saidas
 from verification import MediaPercurso, Linha, Evento
 
 from verification_demand import cria_eventos_saidas
+from verification_demand import trata_demanda_percentual
+from verification_demand import remove_demanda_inexistente
 from verification_demand import junta_demanda
 from verification_demand import soma_demanda
 from verification_demand import porc_de_linha_desce_em_ponto
@@ -140,6 +142,31 @@ class TestCriaEventosSaidas:
     def test_sorted(self):
         for i in range(len(self.saidas) - 1):
             assert self.saidas[i] < self.saidas[i + 1]
+
+class TestTrataDemandaPercentual:
+    demandas_separadas = mock_demandas()
+
+    @pytest.mark.parametrize("demanda, porcentagem, expected", [
+        (demandas_separadas.ida_butanta, 0.8, {'seg': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}}}),
+        (demandas_separadas.volta_p3, 0.2, {'seg': {1110: {'História e Geografia': 7,'IPT': 2}}})
+    ])
+
+    def test_handle_demand_perc(self, demanda, porcentagem, expected):
+        trata_demanda_percentual(demanda, porcentagem)
+        assert demanda == expected
+
+class TestRemoveDemandaInexistente:
+    demandas_separadas = mock_demandas()
+
+    @pytest.mark.parametrize("demanda, expected", [
+        (demandas_separadas.ida_p3, demandas_separadas.ida_p3),
+        ({'seg': {1110: {'Cultura Japonesa': 11, 'Portaria III': 52, 'ECA': {}}}}, {'seg': {1110: {'Cultura Japonesa': 11, 'Portaria III': 52}}}),
+        ({'seg': {1110: {'Cultura Japonesa': {}, 'Portaria III': {}}}}, {'seg': {1110: {}}})
+    ])
+
+    def test_remove_non_existent_demanda(self, demanda, expected):
+        remove_demanda_inexistente(demanda)
+        assert demanda == expected
 
 class TestJuntaDemanda:
     demandas_separadas = mock_demandas()

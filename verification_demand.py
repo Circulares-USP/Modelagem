@@ -85,6 +85,22 @@ def cria_eventos_saidas(linhas_rotas):
     saidas.sort()
     return saidas
 
+def trata_demanda_percentual(demanda, porc):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            for ponto in demanda[dia][horario]:
+                demanda[dia][horario][ponto] = round(demanda[dia][horario][ponto] * porc)
+
+def remove_demanda_inexistente(demanda):
+    for dia in demanda:
+        for horario in demanda[dia]:
+            lista_pontos_delete = []
+            for ponto in demanda[dia][horario]:
+                if demanda[dia][horario][ponto] == {}:
+                    lista_pontos_delete.append(ponto)
+            for ponto in lista_pontos_delete:
+                del demanda[dia][horario][ponto]
+
 def junta_demanda(demanda1, demanda2):
     def set_from_lists(l1, l2):
         s = set(l1)
