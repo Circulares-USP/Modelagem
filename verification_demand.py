@@ -85,22 +85,6 @@ def cria_eventos_saidas(linhas_rotas):
     saidas.sort()
     return saidas
 
-def trata_demanda_percentual(demanda, porc):
-    for dia in demanda:
-        for horario in demanda[dia]:
-            for ponto in demanda[dia][horario]:
-                demanda[dia][horario][ponto] = round(demanda[dia][horario][ponto] * porc)
-
-def remove_demanda_inexistente(demanda):
-    for dia in demanda:
-        for horario in demanda[dia]:
-            lista_pontos_delete = []
-            for ponto in demanda[dia][horario]:
-                if demanda[dia][horario][ponto] == {}:
-                    lista_pontos_delete.append(ponto)
-            for ponto in lista_pontos_delete:
-                del demanda[dia][horario][ponto]
-
 def junta_demanda(demanda1, demanda2):
     def set_from_lists(l1, l2):
         s = set(l1)
@@ -159,16 +143,16 @@ def distribui_pessoas(linhas, demanda, id_linha, pessoas, caminho):
     for ponto in rota:
         if (id_to_nome[ponto] not in demanda):
             continue
-        frequencia = porc_de_linha_desce_em_ponto(id_to_nome[ponto], id_linha, demanda)
+        frequencia = porc_de_linha_desce_em_ponto(id_to_nome[ponto], demanda)
         demanda[id_to_nome[ponto]] -= pessoas * frequencia
         if demanda[id_to_nome[ponto]] < 0:
             demanda[id_to_nome[ponto]] = 0
 
-def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
+def porc_de_linha_desce_em_ponto(ponto_alvo, demanda):
     sum_pessoas = 0
     for ponto in demanda:
         sum_pessoas += demanda[ponto]
-    if sum_pessoas == 0:
+    if sum_pessoas == 0 or (ponto_alvo not in demanda.keys()):
         return 0
     return demanda[ponto_alvo] / sum_pessoas
 
@@ -244,8 +228,8 @@ class ResultadoSimulacao():
         self.total_ida_manha = total_ida_manha
         self.total_ida_tarde = total_ida_tarde
         self.total_volta_tarde = total_volta_tarde
-        self.total_ida_manha_ponto = total_ida_manha_ponto,
-        self.total_ida_tarde_ponto = total_ida_tarde_ponto,
+        self.total_ida_manha_ponto = total_ida_manha_ponto
+        self.total_ida_tarde_ponto = total_ida_tarde_ponto
         self.total_volta_tarde_ponto = total_volta_tarde_ponto
 
 def simula(demanda, linhas_rotas):
