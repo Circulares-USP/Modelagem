@@ -139,6 +139,8 @@ def copia_para_todos_dias(dia):
 # demanda
 
 def get_demanda_hoje():
+    print('xxx get_demanda_hoje')
+
     trata_demanda_percentual(demanda_ida_butanta_alunos, 0.8)
     trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
     trata_demanda_percentual(demanda_volta_butanta_alunos, 0.8)
@@ -153,10 +155,17 @@ def get_demanda_hoje():
     remove_demanda_inexistente(demanda_ida_p3_func)
     remove_demanda_inexistente(demanda_volta_p3_alunos)
 
-    demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta_alunos, demanda_ida_butanta_func)
-    demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3_alunos, demanda_ida_p3_func)
+    demanda_ida_butanta_alunos2 = remove_linha_de_demanda(demanda_ida_butanta_alunos)
+    demanda_ida_butanta_func2 = remove_linha_de_demanda(demanda_ida_butanta_func)
+    demanda_volta_butanta_alunos2 = remove_linha_de_demanda(demanda_volta_butanta_alunos)
+    demanda_ida_p3_alunos2 = remove_linha_de_demanda(demanda_ida_p3_alunos)
+    demanda_ida_p3_func2 = remove_linha_de_demanda(demanda_ida_p3_func)
+    demanda_volta_p3_alunos2 = remove_linha_de_demanda(demanda_volta_p3_alunos)
 
-    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta_alunos, demanda_volta_p3_alunos)
+    demanda_ida_completa_butanta = junta_demanda(demanda_ida_butanta_alunos2, demanda_ida_butanta_func2)
+    demanda_ida_completa_p3 = junta_demanda(demanda_ida_p3_alunos2, demanda_ida_p3_func2)
+
+    demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta_alunos2, demanda_volta_p3_alunos2)
     return demanda
 
 def trata_demanda_percentual(demanda, porc):
@@ -181,6 +190,19 @@ def remove_demanda_inexistente(demanda):
                     lista_pontos.append(ponto)
             for ponto in lista_pontos:
                 del demanda[dia][horario][ponto]
+
+def remove_linha_de_demanda(demanda):
+    nova_demanda = {}
+    for dia in demanda:
+        nova_demanda[dia] = {}
+        for horario in demanda[dia]:
+            nova_demanda[dia][horario] = {}
+            for ponto in demanda[dia][horario]:
+                sum_linha = 0
+                for linha in demanda[dia][horario][ponto]:
+                    sum_linha += demanda[dia][horario][ponto][linha]
+                nova_demanda[dia][horario][ponto] = sum_linha
+    return nova_demanda
 
 # linhas
 

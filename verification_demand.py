@@ -1,4 +1,5 @@
 from verification import Evento
+import itertools
 
 class LinhaRota():
     def __init__(self, linha, rota):
@@ -89,48 +90,32 @@ def trata_demanda_percentual(demanda, porc):
     for dia in demanda:
         for horario in demanda[dia]:
             for ponto in demanda[dia][horario]:
-                for linha in demanda[dia][horario][ponto]:
-                    demanda[dia][horario][ponto][linha] = round(demanda[dia][horario][ponto][linha] * porc)
+                demanda[dia][horario][ponto] = round(demanda[dia][horario][ponto] * porc)
 
 def remove_demanda_inexistente(demanda):
     for dia in demanda:
         for horario in demanda[dia]:
-            lista_pontos = []
+            lista_pontos_delete = []
             for ponto in demanda[dia][horario]:
-                lista_linhas = []
-                for linha in demanda[dia][horario][ponto]:
-                    if demanda[dia][horario][ponto][linha] == 0:
-                        lista_linhas.append(linha)
-                for linha in lista_linhas:
-                    del demanda[dia][horario][ponto][linha]
                 if demanda[dia][horario][ponto] == {}:
-                    lista_pontos.append(ponto)
-            for ponto in lista_pontos:
+                    lista_pontos_delete.append(ponto)
+            for ponto in lista_pontos_delete:
                 del demanda[dia][horario][ponto]
 
 def junta_demanda(demanda1, demanda2):
+    def set_from_lists(l1, l2):
+        s = set(l1)
+        s.update(l2)
+        return s
+
     demanda_total = {}
-    for dia in demanda1.keys():
+    for dia in set_from_lists(demanda1.keys(), demanda2.keys()):
         demanda_total[dia] = {}
-        for horario in demanda1[dia].keys():
+        for horario in set_from_lists(demanda1.get(dia, {}).keys(), demanda2.get(dia, {}).keys()):
             demanda_total[dia][horario] = {}
-            for ponto in demanda1[dia][horario]:
-                demanda_total[dia][horario][ponto] = {}
-                if ponto in demanda2[dia][horario]:
-                    for linha in demanda1[dia][horario][ponto]:
-                        demanda_total[dia][horario][ponto][linha] = demanda1[dia][horario][ponto][linha] + demanda2[dia][horario][ponto].get(linha, 0)
-                else:
-                    for linha in demanda1[dia][horario][ponto]:
-                        demanda_total[dia][horario][ponto][linha] = demanda1[dia][horario][ponto][linha]
-            for ponto in demanda2[dia][horario]:
-                demanda_total[dia][horario][ponto] = demanda_total[dia][horario].get(ponto, {})
-                if ponto in demanda1[dia][horario]:
-                    for linha in demanda2[dia][horario][ponto]:
-                        demanda_total[dia][horario][ponto][linha] = demanda2[dia][horario][ponto][linha] + demanda1[dia][horario][ponto].get(linha, 0)
-                else:
-                    for linha in demanda2[dia][horario][ponto]:
-                        demanda_total[dia][horario][ponto][linha] = demanda2[dia][horario][ponto][linha]
-        
+            for ponto in set_from_lists(demanda1.get(dia, {}).get(horario, {}).keys(), demanda2.get(dia, {}).get(horario, {}).keys()):
+                print('demanda1: ' + str(demanda1.get(dia, {}).get(horario, {}).get(ponto, 0)) + '; demanda2: ' + str(demanda2.get(dia, {}).get(horario, {}).get(ponto, 0)))
+                demanda_total[dia][horario][ponto] = demanda1.get(dia, {}).get(horario, {}).get(ponto, 0) + demanda2.get(dia, {}).get(horario, {}).get(ponto, 0)
     return demanda_total
 
 def soma_demanda(demanda):
@@ -140,8 +125,7 @@ def soma_demanda(demanda):
         for horario in demanda[dia].keys():
             soma[dia][horario] = 0
             for ponto in demanda[dia][horario].keys():
-                for linha in demanda[dia][horario][ponto].keys():
-                    soma[dia][horario] += demanda[dia][horario][ponto][linha]
+                soma[dia][horario] += demanda[dia][horario][ponto]
     return soma
 
 def calcula_atendimento_ida(linhas, demanda_butanta, demanda_p3, saidas):
@@ -176,24 +160,20 @@ def distribui_pessoas(linhas, demanda, id_linha, pessoas, caminho):
     else:
         rota = linha.rota.volta
     for ponto in rota:
-        if (id_to_nome[ponto] not in demanda or id_linha not in demanda[id_to_nome[ponto]]):
+        if (id_to_nome[ponto] not in demanda):
             continue
         frequencia = porc_de_linha_desce_em_ponto(id_to_nome[ponto], id_linha, demanda)
-        demanda[id_to_nome[ponto]][id_linha] -= pessoas * frequencia
-        if demanda[id_to_nome[ponto]][id_linha] < 0:
-            demanda[id_to_nome[ponto]][id_linha] = 0
+        demanda[id_to_nome[ponto]] -= pessoas * frequencia
+        if demanda[id_to_nome[ponto]] < 0:
+            demanda[id_to_nome[ponto]] = 0
 
 def porc_de_linha_desce_em_ponto(ponto_alvo, linha, demanda):
     sum_pessoas = 0
     for ponto in demanda:
-        if linha not in demanda[ponto]:
-            continue
-        sum_pessoas += demanda[ponto][linha]
-    if linha not in demanda[ponto_alvo]:
-        return 0
+        sum_pessoas += demanda[ponto]
     if sum_pessoas == 0:
         return 0
-    return demanda[ponto_alvo][linha] / sum_pessoas
+    return demanda[ponto_alvo] / sum_pessoas
 
 def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
     atendimento = {}
@@ -202,13 +182,8 @@ def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
         for horario in demanda_total[dia]:
             atendimento[dia][horario] = {}
             for ponto in demanda_total[dia][horario]:
-
-                soma_linhas_ponto_total = 0
-                soma_linhas_ponto_restante = 0
-                for linha in demanda_total[dia][horario][ponto]:
-                    soma_linhas_ponto_restante += demanda_restante[dia][horario][ponto][linha]
-                    soma_linhas_ponto_total += demanda_total[dia][horario][ponto][linha]
-
+                soma_linhas_ponto_total = demanda_total[dia][horario][ponto]
+                soma_linhas_ponto_restante = demanda_restante[dia][horario][ponto]
                 atendimento[dia][horario][ponto] = 1 - (soma_linhas_ponto_restante / soma_linhas_ponto_total)
     return atendimento
 
