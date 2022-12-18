@@ -1,6 +1,6 @@
-demanda_volta_butanta_alunos = {
+{
     "sex": {
-        1110: {
+        "1110": {
             "Cultura Japonesa": {
                 "8022": 111
             },
@@ -16,20 +16,20 @@ demanda_volta_butanta_alunos = {
             },
             "Portaria III": {
                 "8012": 284,
-                "8022": 266,
+                "8022": 266
             },
             "Biblioteca Brasiliana": {
                 "8032": 99
             },
             "Butantan": {
-                "8022": 441,
+                "8022": 441
             },
             "Metalurgia": {
                 "8012": 27,
                 "8032": 11
             },
             "FAU I": {
-                "8012": 47,
+                "8012": 47
             },
             "Oceanográfico": {
                 "8022": 75
@@ -45,25 +45,25 @@ demanda_volta_butanta_alunos = {
                 "8032": 12
             },
             "Biênio": {
-                "8032": 135,
+                "8032": 135
             },
             "FEA": {
-                "8032": 392,
+                "8032": 392
             },
             "Física": {
-                "8022": 57,
+                "8022": 57
             },
             "IAG": {
                 "8012": 40
             },
             "Biomédicas": {
-                "8022": 91,
+                "8022": 91
             },
             "Acesso Vl. Indiana": {
-                "8012": 36,
+                "8012": 36
             },
             "Prefeitura/Física": {
-                "8012": 23,
+                "8012": 23
             },
             "Educação Física I": {
                 "8012": 15,
@@ -91,18 +91,18 @@ demanda_volta_butanta_alunos = {
                 "8032": 3
             },
             "IPEN": {
-                "8022": 169,
+                "8022": 169
             },
             "Hidráulica": {
                 "8012": 3
             },
             "Psicologia I": {
-                "8012": 8,
+                "8012": 8
             }
         }
     },
     "ter": {
-        1110: {
+        "1110": {
             "Bancos": {
                 "8032": 34
             },
@@ -129,19 +129,19 @@ demanda_volta_butanta_alunos = {
                 "8022": 279
             },
             "FEA": {
-                "8032": 598,
+                "8032": 598
             },
             "Física": {
-                "8022": 111,
+                "8022": 111
             },
             "IAG": {
-                "8012": 65
+                "8012": 93
             },
             "Biomédicas": {
-                "8022": 181,
+                "8022": 181
             },
             "Acesso Vl. Indiana": {
-                "8012": 82,
+                "8012": 82
             },
             "Civil": {
                 "8012": 99,
@@ -160,16 +160,13 @@ demanda_volta_butanta_alunos = {
             },
             "Portaria III": {
                 "8012": 253,
-                "8022": 225,
+                "8022": 225
             },
             "Paço das Artes": {
                 "8022": 339
             },
             "COPESP": {
                 "8022": 136
-            },
-            "IAG": {
-                "8012": 28
             },
             "Butantan": {
                 "8022": 830
@@ -189,7 +186,7 @@ demanda_volta_butanta_alunos = {
                 "8032": 181
             },
             "Psicologia I": {
-                "8012": 16,
+                "8012": 16
             },
             "Praça do Relógio": {
                 "8012": 10,
@@ -202,7 +199,7 @@ demanda_volta_butanta_alunos = {
                 "8022": 161
             },
             "Prefeitura/Física": {
-                "8012": 33,
+                "8012": 33
             },
             "Hidráulica": {
                 "8012": 6
@@ -210,35 +207,35 @@ demanda_volta_butanta_alunos = {
         }
     },
     "qui": {
-        1110: {
+        "1110": {
             "Portaria III": {
                 "8012": 309,
-                "8022": 264,
+                "8022": 264
             },
             "Cultura Japonesa": {
-                "8022": 119,
+                "8022": 119
             },
             "Bancos": {
                 "8032": 50
             },
             "Física": {
-                "8022": 143,
+                "8022": 143
             },
             "IAG": {
-                "8012": 89
+                "8012": 126
             },
             "CRUSP": {
                 "8012": 121,
-                "8032": 135,
+                "8032": 135
             },
             "Butantan": {
-                "8022": 799,
+                "8022": 799
             },
             "Psicologia I": {
-                "8012": 15,
+                "8012": 15
             },
             "IPEN": {
-                "8022": 316,
+                "8022": 316
             },
             "COPESP": {
                 "8022": 102
@@ -278,7 +275,7 @@ demanda_volta_butanta_alunos = {
                 "8032": 13
             },
             "FAU I": {
-                "8012": 57,
+                "8012": 57
             },
             "Oceanográfico": {
                 "8022": 105
@@ -290,10 +287,10 @@ demanda_volta_butanta_alunos = {
                 "8022": 22
             },
             "Biomédicas": {
-                "8022": 209,
+                "8022": 209
             },
             "Acesso Vl. Indiana": {
-                "8012": 87,
+                "8012": 87
             },
             "Biênio": {
                 "8032": 166
@@ -309,9 +306,6 @@ demanda_volta_butanta_alunos = {
             "Acesso CPTM I": {
                 "8032": 11
             },
-            "IAG": {
-                "8012": 37
-            },
             "Prefeitura II": {
                 "8022": 19
             },
@@ -321,7 +315,7 @@ demanda_volta_butanta_alunos = {
         }
     },
     "seg": {
-        1110: {
+        "1110": {
             "Biênio": {
                 "8032": 192
             },
@@ -329,19 +323,19 @@ demanda_volta_butanta_alunos = {
                 "8022": 268
             },
             "FEA": {
-                "8032": 528,
+                "8032": 528
             },
             "Física": {
-                "8022": 109,
+                "8022": 109
             },
             "IAG": {
-                "8012": 67
+                "8012": 92
             },
             "Biomédicas": {
-                "8022": 171,
+                "8022": 171
             },
             "Acesso Vl. Indiana": {
-                "8012": 75,
+                "8012": 75
             },
             "Civil": {
                 "8012": 107,
@@ -349,7 +343,7 @@ demanda_volta_butanta_alunos = {
             },
             "CRUSP": {
                 "8012": 112,
-                "8032": 113,
+                "8032": 113
             },
             "Metalurgia": {
                 "8012": 38,
@@ -367,16 +361,16 @@ demanda_volta_butanta_alunos = {
             },
             "Portaria III": {
                 "8012": 317,
-                "8022": 293,
+                "8022": 293
             },
             "Biblioteca Brasiliana": {
                 "8032": 151
             },
             "Butantan": {
-                "8022": 1129,
+                "8022": 1129
             },
             "Psicologia I": {
-                "8012": 11,
+                "8012": 11
             },
             "FAU I": {
                 "8012": 62
@@ -402,9 +396,6 @@ demanda_volta_butanta_alunos = {
                 "8012": 23,
                 "8022": 23
             },
-            "IAG": {
-                "8012": 25
-            },
             "Prefeitura/Física": {
                 "8012": 34
             },
@@ -418,7 +409,7 @@ demanda_volta_butanta_alunos = {
                 "8032": 5
             },
             "IPEN": {
-                "8022": 311,
+                "8022": 311
             },
             "Hidráulica": {
                 "8012": 3
@@ -429,12 +420,12 @@ demanda_volta_butanta_alunos = {
         }
     },
     "qua": {
-        1110: {
+        "1110": {
             "FEA": {
-                "8032": 511,
+                "8032": 511
             },
             "FAU I": {
-                "8012": 55,
+                "8012": 55
             },
             "Oceanográfico": {
                 "8022": 103
@@ -447,10 +438,10 @@ demanda_volta_butanta_alunos = {
             },
             "Portaria III": {
                 "8012": 361,
-                "8022": 321,
+                "8022": 321
             },
             "Física": {
-                "8022": 126,
+                "8022": 126
             },
             "IAG": {
                 "8012": 100
@@ -486,7 +477,7 @@ demanda_volta_butanta_alunos = {
                 "8032": 122
             },
             "Psicologia I": {
-                "8012": 12,
+                "8012": 12
             },
             "Metalurgia": {
                 "8012": 37,
@@ -503,19 +494,19 @@ demanda_volta_butanta_alunos = {
                 "8032": 43
             },
             "IPEN": {
-                "8022": 332,
+                "8022": 332
             },
             "Hidráulica": {
                 "8012": 5
             },
             "Biênio": {
-                "8032": 201,
+                "8032": 201
             },
             "Biomédicas": {
                 "8022": 195
             },
             "Acesso Vl. Indiana": {
-                "8012": 89,
+                "8012": 89
             },
             "Prefeitura/Física": {
                 "8012": 41
@@ -530,7 +521,7 @@ demanda_volta_butanta_alunos = {
             },
             "Acesso CPTM I": {
                 "8032": 10
-            },
+            }
         }
     }
 }

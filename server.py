@@ -1,14 +1,8 @@
+import json
 from fastapi import FastAPI
 from typing import Dict, Any
 from verification_demand import LinhaRota, Demanda, Rota, simula, junta_demanda, id_to_nome, id_to_nome_to_list
 from verification import MediaPercurso, Linha, calcular_horarios_saidas
-
-from demanda.demanda_ida_butanta_alunos import demanda_ida_butanta_alunos
-from demanda.demanda_ida_butanta_func import demanda_ida_butanta_func
-from demanda.demanda_ida_p3_alunos import demanda_ida_p3_alunos
-from demanda.demanda_ida_p3_func import demanda_ida_p3_func
-from demanda.demanda_volta_butanta_alunos import demanda_volta_butanta_alunos
-from demanda.demanda_volta_p3_alunos import demanda_volta_p3_alunos
 
 app = FastAPI()
 
@@ -147,6 +141,13 @@ def copia_para_todos_dias(dia):
 # demanda
 
 def get_demanda_hoje():
+    demanda_ida_butanta_alunos = le_demanda('./demanda/demanda_ida_butanta_alunos.json')
+    demanda_ida_butanta_func = le_demanda('./demanda/demanda_ida_butanta_func.json')
+    demanda_volta_butanta_alunos = le_demanda('./demanda/demanda_volta_butanta_alunos.json')
+    demanda_ida_p3_alunos = le_demanda('./demanda/demanda_ida_p3_alunos.json')
+    demanda_ida_p3_func = le_demanda('./demanda/demanda_ida_p3_func.json')
+    demanda_volta_p3_alunos = le_demanda('./demanda/demanda_volta_p3_alunos.json')
+
     trata_demanda_percentual(demanda_ida_butanta_alunos, 0.8)
     trata_demanda_percentual(demanda_ida_butanta_func, 0.8)
     trata_demanda_percentual(demanda_volta_butanta_alunos, 0.8)
@@ -173,6 +174,16 @@ def get_demanda_hoje():
 
     demanda = Demanda(demanda_ida_completa_butanta, demanda_ida_completa_p3, demanda_volta_butanta_alunos2, demanda_volta_p3_alunos2)
     return demanda
+
+def le_demanda(file):
+    read_content = open(file, "r")
+    demanda = json.load(read_content)
+    nova_demanda = {}
+    for dia in demanda:
+        nova_demanda[dia] = {}
+        for horario in demanda[dia]:
+            nova_demanda[dia][int(horario)] = demanda[dia][horario]
+    return nova_demanda
 
 def trata_demanda_percentual(demanda, porc):
     for dia in demanda:

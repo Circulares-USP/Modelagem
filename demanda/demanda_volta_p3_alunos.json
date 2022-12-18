@@ -1,8 +1,6 @@
-# dados filtrados do arquivo volta_aluno_p3_18h.json
-
-demanda_volta_p3_alunos = {
+{
     "sex": {
-        1110: {
+        "1110": {
             "História e Geografia": {
                 "8022": 342
             },
@@ -19,10 +17,10 @@ demanda_volta_p3_alunos = {
                 "8012": 137
             },
             "FEA": {
-                "8012": 388,
+                "8012": 388
             },
             "Biênio": {
-                "8012": 133,
+                "8012": 133
             },
             "Terminal de Ônibus Urbano": {
                 "8022": 61
@@ -40,7 +38,7 @@ demanda_volta_p3_alunos = {
                 "8012": 101
             },
             "Bancos": {
-                "8012": 304,
+                "8012": 304
             },
             "Geociências": {
                 "8022": 25
@@ -66,9 +64,9 @@ demanda_volta_p3_alunos = {
         }
     },
     "ter": {
-        1110: {
+        "1110": {
             "Bancos": {
-                "8012": 263,
+                "8012": 263
             },
             "Geociências": {
                 "8022": 43
@@ -77,7 +75,7 @@ demanda_volta_p3_alunos = {
                 "8022": 660
             },
             "Biênio": {
-                "8012": 180,
+                "8012": 180
             },
             "Terminal de Ônibus Urbano": {
                 "8022": 78
@@ -130,12 +128,12 @@ demanda_volta_p3_alunos = {
         }
     },
     "qui": {
-        1110: {
+        "1110": {
             "Acesso Vl. Indiana": {
                 "8012": 136
             },
             "Bancos": {
-                "8012": 224,
+                "8012": 224
             },
             "Geociências": {
                 "8022": 42
@@ -156,7 +154,7 @@ demanda_volta_p3_alunos = {
                 "8022": 477
             },
             "FEA": {
-                "8012": 459,
+                "8012": 459
             },
             "Rua do Lago": {
                 "8022": 46
@@ -168,7 +166,7 @@ demanda_volta_p3_alunos = {
                 "8022": 46
             },
             "Biênio": {
-                "8012": 188,
+                "8012": 188
             },
             "Terminal de Ônibus Urbano": {
                 "8022": 72
@@ -194,12 +192,12 @@ demanda_volta_p3_alunos = {
         }
     },
     "seg": {
-        1110: {
+        "1110": {
             "História e Geografia": {
                 "8022": 546
             },
             "Biênio": {
-                "8012": 197,
+                "8012": 197
             },
             "Terminal de Ônibus Urbano": {
                 "8022": 85
@@ -241,7 +239,7 @@ demanda_volta_p3_alunos = {
                 "8012": 258
             },
             "Bancos": {
-                "8012": 352,
+                "8012": 352
             },
             "Geociências": {
                 "8022": 22
@@ -254,22 +252,22 @@ demanda_volta_p3_alunos = {
             },
             "Odontologia": {
                 "8022": 205
-            },
+            }
         }
     },
     "qua": {
-        1110: {
+        "1110": {
             "FAU II": {
                 "8022": 485
             },
             "FEA": {
-                "8012": 463,
+                "8012": 463
             },
             "Acesso Vl. Indiana": {
                 "8012": 148
             },
             "Eletrotécnica": {
-                "8022": 193,
+                "8022": 193
             },
             "Biênio": {
                 "8012": 208
@@ -281,7 +279,7 @@ demanda_volta_p3_alunos = {
                 "8022": 388
             },
             "Bancos": {
-                "8012": 306,
+                "8012": 306
             },
             "Geociências": {
                 "8022": 39
