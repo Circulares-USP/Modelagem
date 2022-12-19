@@ -28,8 +28,8 @@ def mock_linhas_rotas():
                 MediaPercurso([(0, 30), (120, 80), (200, 10)])
             ),
             Rota(
-                ['1859', '1846', '1924', '1934', '2', '1930', '1920', '1839', '1922', '1863', '1857', '1926', '1871', '1938'],
-                ['1918', '1914', '1922', '1887', '1806', '1813', '1791', '1811', '1841', '1804', '1867', '1796', '1800', '1892', '1809', '1832', '1830', "7"]
+                ['FEA', 'Biblioteca Brasiliana', 'Portaria III', 'Hospital Universitário', 'Reitoria', 'Biomédicas III', 'Biomédicas', 'Educação', 'Acesso Vl. Indiana', 'Biênio', 'Bancos', 'Odontologia', 'Prefeitura I', 'MAE'],
+                ['FAU I', 'Biociência II', 'Acesso Vl. Indiana', 'Prefeitura/Física', 'Psicologia I', 'Praça do Relógio', 'Metrô Butantã', 'ECA', 'CRUSP', 'Hidráulica', 'Civil', 'Metalurgia', 'Mecânica', 'IAG', 'Inova USP', 'Academia de Polícia', 'Educação Física I', "Acesso CPTM II"]
             )
         ),
         '8022': LinhaRota(
@@ -39,8 +39,8 @@ def mock_linhas_rotas():
                 MediaPercurso([(0, 30)]),
             ),
             Rota(
-                ['1861', '1865', '1924', '1899', '1934', '1904', '1', '1930', '1920', '3', '1818', '1826', '1850', '1848', '1926', '5', '6', '1802', '1928', '1910', '1932'],
-                ['1834', '1890', '1940', '1908', '1922', '1932', '1791', '1844', '1896', '8', '1936', '1928', '1912', '1920', '1832']
+                ['FAU II', 'Eletrotécnica', 'Portaria III', 'Farmácia e Química', 'Hospital Universitário', 'História e Geografia', 'Raia Olímpica', 'Biomédicas III', 'Biomédicas', 'Educação Física II', 'Psicologia II', 'Acesso CPTM I', 'Geociências', 'Letras', 'Odontologia', 'Terminal de Ônibus Urbano', 'IPT', 'Portaria II', 'IPEN', 'Rua do Lago', 'COPESP'],
+                ['Paço das Artes', 'Física', 'Prefeitura II', 'CEPAM', 'Acesso Vl. Indiana', 'COPESP', 'Metrô Butantã', 'Cultura Japonesa', 'Butantan', 'Oceanográfico', 'Acesso São Remo', 'IPEN', 'Biociências I', 'Biomédicas', 'Academia de Polícia']
             )
         )
     }
