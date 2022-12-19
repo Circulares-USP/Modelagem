@@ -101,8 +101,8 @@ def load_demanda(body):
     demanda_semana_volta_butanta = {}
     demanda_semana_volta_p3 = {}
     for dia in dias:
-        demanda_ida_manha_p3 = body_demanda[dia]['ida_manha']['de_p3']
-        demanda_ida_manha_butanta = body_demanda[dia]['ida_manha']['de_butanta']
+        demanda_ida_manha_p3 = body_demanda[dia]['ida_manha']['de_butanta']
+        demanda_ida_manha_butanta = body_demanda[dia]['ida_manha']['de_p3']
         demanda_ida_tarde_butanta = body_demanda[dia]['ida_tarde']['de_p3']
         demanda_ida_tarde_p3 = body_demanda[dia]['ida_tarde']['de_butanta']
         demanda_volta_tarde_butanta = body_demanda[dia]['volta_tarde']['de_p3']
