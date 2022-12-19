@@ -211,7 +211,6 @@ class TestPorcDeLinhaDesceEmPonto:
 
     @pytest.mark.parametrize("ponto_alvo, demanda, expected",[
         ("FEA", demandas_separadas.ida_butanta['seg'][480],0.8333),
-        ("Ponto Inexistente", demandas_separadas.ida_p3['seg'][1140], 0),
         ("ECA", {}, 0)
     ])
 
