@@ -1,7 +1,7 @@
 import json
 from fastapi import FastAPI
 from typing import Dict, Any
-from verification_demand import LinhaRota, Demanda, Rota, simula, junta_demanda, id_to_nome, id_to_nome_to_list
+from verification_demand import LinhaRota, Demanda, Rota, simula, junta_demanda
 from verification import MediaPercurso, Linha, calcular_horarios_saidas
 
 app = FastAPI()
@@ -24,14 +24,6 @@ async def simulate_buses(body: Dict[Any, Any]):
             'ida-tarde': resultado.total_ida_tarde_ponto,
             'volta-tarde': resultado.total_volta_tarde_ponto,
         }
-    }
-
-@app.post("/bus_stops")
-async def get_bus_stops():
-    lista_pontos = id_to_nome_to_list()
-
-    return {
-        'pontos': lista_pontos,
     }
 
 dias = ['seg','ter','qua','qui','sex']
@@ -109,28 +101,22 @@ def load_demanda(body):
         demanda_volta_tarde_p3 = body_demanda[dia]['volta_tarde']['de_butanta']
 
         demanda_semana_ida_butanta[dia] = {
-            horario_manha: depara_ids_pontos(demanda_ida_manha_butanta),
-            horario_ida_tarde: depara_ids_pontos(demanda_ida_tarde_butanta),
+            horario_manha: demanda_ida_manha_butanta,
+            horario_ida_tarde: demanda_ida_tarde_butanta,
         }
         demanda_semana_ida_p3[dia] = {
-            horario_manha: depara_ids_pontos(demanda_ida_manha_p3),
-            horario_ida_tarde: depara_ids_pontos(demanda_ida_tarde_p3),
+            horario_manha: demanda_ida_manha_p3,
+            horario_ida_tarde: demanda_ida_tarde_p3,
         }
         demanda_semana_volta_butanta[dia] = {
-            horario_volta_tarde: depara_ids_pontos(demanda_volta_tarde_butanta),
+            horario_volta_tarde: demanda_volta_tarde_butanta,
         }
         demanda_semana_volta_p3[dia] = {
-            horario_volta_tarde: depara_ids_pontos(demanda_volta_tarde_p3),
+            horario_volta_tarde: demanda_volta_tarde_p3,
         }
 
     demanda = Demanda(demanda_semana_ida_butanta, demanda_semana_ida_p3, demanda_semana_volta_butanta, demanda_semana_volta_p3)
     return demanda
-
-def depara_ids_pontos(pontos_demanda):
-    nome_demanda = {}
-    for id_ponto in pontos_demanda:
-        nome_demanda[id_to_nome[id_ponto]] = pontos_demanda[id_ponto]
-    return nome_demanda
 
 def copia_para_todos_dias(dia):
     map = {}
@@ -264,14 +250,14 @@ def cria_linhas_sptrans_atual():
 def cria_rotas_atual():
     return {
         '8012': Rota(
-            ['1859', '1846', '1924', '1934', '2', '1930', '1920', '1839', '1922', '1863', '1857', '1926', '1871', '1938'],
-            ['1918', '1914', '1922', '1887', '1806', '1813', '1791', '1811', '1841', '1804', '1867', '1796', '1800', '1892', '1809', '1832', '1830', "7"]
+            ['FEA', 'Biblioteca Brasiliana', 'Portaria III', 'Hospital Universitário', 'Reitoria', 'Biomédicas III', 'Biomédicas', 'Educação', 'Acesso Vl. Indiana', 'Biênio', 'Bancos', 'Odontologia', 'Prefeitura I', 'MAE'],
+            ['FAU I', 'Biociência II', 'Acesso Vl. Indiana', 'Prefeitura/Física', 'Psicologia I', 'Praça do Relógio', 'Metrô Butantã', 'ECA', 'CRUSP', 'Hidráulica', 'Civil', 'Metalurgia', 'Mecânica', 'IAG', 'Inova USP', 'Academia de Polícia', 'Educação Física I', "Acesso CPTM II"]
         ),
         '8022': Rota(
-            ['1861', '1865', '1924', '1899', '1934', '1904', '1', '1930', '1920', '3', '1818', '1826', '1850', '1848', '1926', '5', '6', '1802', '1928', '1910', '1932'],
-            ['1834', '1890', '1940', '1908', '1922', '1932', '1791', '1844', '1896', '8', '1936', '1928', '1912', '1920', '1832']
+            ['FAU II', 'Eletrotécnica', 'Portaria III', 'Farmácia e Química', 'Hospital Universitário', 'História e Geografia', 'Raia Olímpica', 'Biomédicas III', 'Biomédicas', 'Educação Física II', 'Psicologia II', 'Acesso CPTM I', 'Geociências', 'Letras', 'Odontologia', 'Terminal de Ônibus Urbano', 'IPT', 'Portaria II', 'IPEN', 'Rua do Lago', 'COPESP'],
+            ['Paço das Artes', 'Física', 'Prefeitura II', 'CEPAM', 'Acesso Vl. Indiana', 'COPESP', 'Metrô Butantã', 'Cultura Japonesa', 'Butantan', 'Oceanográfico', 'Acesso São Remo', 'IPEN', 'Biociências I', 'Biomédicas', 'Academia de Polícia']
         ),
         '8032': Rota (
-            ['1859', '1813', '1846', '1841', '1839', '1863', '1857', '1796', '1867', '1800', "7", "1830", "1832"]
+            ['FEA', 'Praça do Relógio', 'Biblioteca Brasiliana', 'CRUSP', 'Educação', 'Biênio', 'Bancos', 'Metalurgia', 'Civil', 'Mecânica', "Acesso CPTM II", "Educação Física I", "Academia de Polícia"]
         ),
     }

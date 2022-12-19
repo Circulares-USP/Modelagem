@@ -1,5 +1,4 @@
 from verification import Evento
-import itertools
 
 class LinhaRota():
     def __init__(self, linha, rota):
@@ -10,73 +9,6 @@ class Rota():
     def __init__(self, ida, volta=None):
         self.ida = ida
         self.volta = volta
-
-id_to_nome = {
-    "1791": "Metrô Butantã",
-    "1796": "Metalurgia",
-    "1800": "Mecânica",
-    "1802": "Portaria II",
-    "1804": "Hidráulica",
-    "1806": "Psicologia I",
-    "1809": "Inova USP",
-    "1811": "ECA",
-    "1813": "Praça do Relógio",
-    "1818": "Psicologia II",
-    "1826": "Acesso CPTM I",
-    "1830": "Educação Física I", 
-    "1832": "Academia de Polícia",
-    "1834": "Paço das Artes",
-    "1839": "Educação",
-    "1841": "CRUSP",
-    "1844": "Cultura Japonesa",
-    "1846": "Biblioteca Brasiliana",
-    "1848": "Letras",
-    "1850": "Geociências",
-    "1857": "Bancos",
-    "1859": "FEA",
-    "1861": "FAU II",
-    "1863": "Biênio",
-    "1865": "Eletrotécnica",
-    "1867": "Civil",
-    "1871": "Prefeitura I",
-    "1887": "Prefeitura/Física",
-    "1890": "Física",
-    "1892": "IAG",
-    "1896": "Butantan",
-    "1899": "Farmácia e Química",
-    "1904": "História e Geografia",
-    "1908": "CEPAM",
-    "1910": "Rua do Lago",
-    "1912": "Biociências I",
-    "1914": "Biociências II",
-    "1918": "FAU I",
-    "1920": "Biomédicas",
-    "1922": "Acesso Vl. Indiana",
-    "1924": "Portaria III",
-    "1926": "Odontologia",
-    "1928": "IPEN",
-    "1930": "Biomédicas III",
-    "1932": "COPESP",
-    "1934": "Hospital Universitário",
-    "1936": "Acesso São Remo",
-    "1938": "MAE",
-    "1940": "Prefeitura II",
-    "1": "Raia Olímpica",
-    "2": "Reitoria",
-    "3": "Educação Física II",
-    "5": "Terminal de Ônibus Urbano",
-    "6": "IPT",
-    "7": "Acesso CPTM II",
-    "8": "Oceanográfico"
-}
-
-def id_to_nome_to_list():
-    bus_stops_list = []
-
-    for id in id_to_nome.keys():
-        bus_stops_list.append({'id': id, 'nome': id_to_nome[id]})
-    
-    return bus_stops_list
 
 def cria_eventos_saidas(linhas_rotas):
     saidas = []
@@ -157,12 +89,12 @@ def distribui_pessoas(linhas, demanda, id_linha, pessoas, caminho):
     else:
         rota = linha.rota.volta
     for ponto in rota:
-        if (id_to_nome[ponto] not in demanda):
+        if (ponto not in demanda):
             continue
-        frequencia = porc_de_linha_desce_em_ponto(id_to_nome[ponto], demanda)
-        demanda[id_to_nome[ponto]] -= pessoas * frequencia
-        if demanda[id_to_nome[ponto]] < 0:
-            demanda[id_to_nome[ponto]] = 0
+        frequencia = porc_de_linha_desce_em_ponto(ponto, demanda)
+        demanda[ponto] -= pessoas * frequencia
+        if demanda[ponto] < 0:
+            demanda[ponto] = 0
 
 def porc_de_linha_desce_em_ponto(ponto_alvo, demanda):
     sum_pessoas = 0
