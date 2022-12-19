@@ -100,7 +100,7 @@ def porc_de_linha_desce_em_ponto(ponto_alvo, demanda):
     sum_pessoas = 0
     for ponto in demanda:
         sum_pessoas += demanda[ponto]
-    if sum_pessoas == 0 or (ponto_alvo not in demanda.keys()):
+    if sum_pessoas == 0:
         return 0
     return demanda[ponto_alvo] / sum_pessoas
 
