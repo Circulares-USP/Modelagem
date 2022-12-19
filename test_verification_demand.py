@@ -147,8 +147,16 @@ class TestTrataDemandaPercentual:
     demandas_separadas = mock_demandas()
 
     @pytest.mark.parametrize("demanda, porcentagem, expected", [
-        (demandas_separadas.ida_butanta, 0.8, {'seg': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}}}),
-        (demandas_separadas.volta_p3, 0.2, {'seg': {1110: {'História e Geografia': 7,'IPT': 2}}})
+        (demandas_separadas.ida_butanta, 0.8, {'seg': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
+                                            'ter': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
+                                            'qua': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
+                                            'qui': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
+                                            'sex': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}}}),
+        (demandas_separadas.volta_p3, 0.2, {'seg': {1110: {'História e Geografia': 7,'IPT': 2}},
+                                            'ter': {1110: {'História e Geografia': 7,'IPT': 2}},
+                                            'qua': {1110: {'História e Geografia': 7,'IPT': 2}},
+                                            'qui': {1110: {'História e Geografia': 7,'IPT': 2}},
+                                            'sex': {1110: {'História e Geografia': 7,'IPT': 2}}})
     ])
 
     def test_handle_demand_perc(self, demanda, porcentagem, expected):
@@ -372,5 +380,10 @@ class TestSimula:
         assert resultado_simulacao.total_ida_manha_ponto == expected_total_ida_manha_ponto
         assert resultado_simulacao.total_ida_tarde_ponto == expected_total_ida_tarde_ponto
         assert resultado_simulacao.total_volta_tarde_ponto == expected_total_volta_tarde_ponto
+    
+    def test_types(self):
+        resultado_simulacao = simula(mock_demandas(), mock_linhas_rotas())
+        assert type(resultado_simulacao) == ResultadoSimulacao
+
 
 
