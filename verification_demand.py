@@ -112,9 +112,10 @@ def porcentagem_chegada_por_ponto(demanda_total, demanda_restante):
         for horario in demanda_total[dia]:
             atendimento[dia][horario] = {}
             for ponto in demanda_total[dia][horario]:
-                soma_linhas_ponto_total = demanda_total[dia][horario][ponto]
-                soma_linhas_ponto_restante = demanda_restante[dia][horario][ponto]
-                atendimento[dia][horario][ponto] = 1 - (soma_linhas_ponto_restante / soma_linhas_ponto_total)
+                if demanda_total[dia][horario][ponto] == 0:
+                    atendimento[dia][horario][ponto] = 1
+                else:
+                    atendimento[dia][horario][ponto] = 1 - (demanda_restante[dia][horario][ponto] / demanda_total[dia][horario][ponto])
     return atendimento
 
 def porcentagem_chegada_total(soma_total, soma_restante):
@@ -122,7 +123,10 @@ def porcentagem_chegada_total(soma_total, soma_restante):
     for dia in soma_total.keys():
         porcentagem[dia] = {}
         for horario in soma_total[dia].keys():
-            porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
+            if soma_total[dia][horario] == 0:
+                porcentagem[dia][horario] = 1
+            else:
+                porcentagem[dia][horario] = 1 - soma_restante[dia][horario]/soma_total[dia][horario]
     return porcentagem
 
 def porcentagem_geral_dias(porc_dias_horarios):
