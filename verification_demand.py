@@ -91,15 +91,16 @@ def distribui_pessoas(linhas, demanda, id_linha, pessoas, caminho):
     for ponto in rota:
         if (ponto not in demanda):
             continue
-        frequencia = porc_de_linha_desce_em_ponto(ponto, demanda)
+        frequencia = porc_de_linha_desce_em_ponto(ponto, rota, demanda)
         demanda[ponto] -= pessoas * frequencia
         if demanda[ponto] < 0:
             demanda[ponto] = 0
 
-def porc_de_linha_desce_em_ponto(ponto_alvo, demanda):
+def porc_de_linha_desce_em_ponto(ponto_alvo, rota, demanda):
     sum_pessoas = 0
     for ponto in demanda:
-        sum_pessoas += demanda[ponto]
+        if ponto in rota:
+            sum_pessoas += demanda[ponto]
     if sum_pessoas == 0:
         return 0
     return demanda[ponto_alvo] / sum_pessoas
