@@ -49,24 +49,24 @@ def mock_demandas():
     return Demanda(
         ida_butanta={
             'seg': {
-                480: { 'FEA': 100, 'Raia Olímpica': 20},
-                1140: {'FEA': 80, 'Raia Olímpica': 10}
+                480: { 'FEA': 100, 'Biblioteca Brasiliana': 20},
+                1140: {'FEA': 80, 'Biblioteca Brasiliana': 10}
             },
             'ter': {
-                480: { 'FEA': 100, 'Raia Olímpica': 20},
-                1140: {'FEA': 80, 'Raia Olímpica': 10}
+                480: { 'FEA': 100, 'Biblioteca Brasiliana': 20},
+                1140: {'FEA': 80, 'Biblioteca Brasiliana': 10}
             },
             'qua': {
-                480: { 'FEA': 100, 'Raia Olímpica': 20},
-                1140: {'FEA': 80, 'Raia Olímpica': 10}
+                480: { 'FEA': 100, 'Biblioteca Brasiliana': 20},
+                1140: {'FEA': 80, 'Biblioteca Brasiliana': 10}
             },
             'qui': {
-                480: { 'FEA': 100, 'Raia Olímpica': 20},
-                1140: {'FEA': 80, 'Raia Olímpica': 10}
+                480: { 'FEA': 100, 'Biblioteca Brasiliana': 20},
+                1140: {'FEA': 80, 'Biblioteca Brasiliana': 10}
             },
             'sex': {
-                480: { 'FEA': 100, 'Raia Olímpica': 20},
-                1140: {'FEA': 80, 'Raia Olímpica': 10}
+                480: { 'FEA': 100, 'Biblioteca Brasiliana': 20},
+                1140: {'FEA': 80, 'Biblioteca Brasiliana': 10}
             }
         },
         ida_p3={
@@ -147,11 +147,11 @@ class TestTrataDemandaPercentual:
     demandas_separadas = mock_demandas()
 
     @pytest.mark.parametrize("demanda, porcentagem, expected", [
-        (demandas_separadas.ida_butanta, 0.8, {'seg': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
-                                            'ter': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
-                                            'qua': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
-                                            'qui': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}},
-                                            'sex': {480: {'FEA': 80, 'Raia Olímpica': 16}, 1140: {'FEA': 64, 'Raia Olímpica': 8}}}),
+        (demandas_separadas.ida_butanta, 0.8, {'seg': {480: {'FEA': 80, 'Biblioteca Brasiliana': 16}, 1140: {'FEA': 64, 'Biblioteca Brasiliana': 8}},
+                                            'ter': {480: {'FEA': 80, 'Biblioteca Brasiliana': 16}, 1140: {'FEA': 64, 'Biblioteca Brasiliana': 8}},
+                                            'qua': {480: {'FEA': 80, 'Biblioteca Brasiliana': 16}, 1140: {'FEA': 64, 'Biblioteca Brasiliana': 8}},
+                                            'qui': {480: {'FEA': 80, 'Biblioteca Brasiliana': 16}, 1140: {'FEA': 64, 'Biblioteca Brasiliana': 8}},
+                                            'sex': {480: {'FEA': 80, 'Biblioteca Brasiliana': 16}, 1140: {'FEA': 64, 'Biblioteca Brasiliana': 8}}}),
         (demandas_separadas.volta_p3, 0.2, {'seg': {1110: {'História e Geografia': 7,'IPT': 2}},
                                             'ter': {1110: {'História e Geografia': 7,'IPT': 2}},
                                             'qua': {1110: {'História e Geografia': 7,'IPT': 2}},
@@ -180,11 +180,11 @@ class TestJuntaDemanda:
     demandas_separadas = mock_demandas()
 
     @pytest.mark.parametrize("demanda1, demanda2, expected", [
-        (demandas_separadas.ida_butanta, demandas_separadas.ida_p3, {'seg': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Raia Olímpica': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Raia Olímpica': 10}},
-                                                                    'ter': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Raia Olímpica': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Raia Olímpica': 10}},
-                                                                    'qua': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Raia Olímpica': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Raia Olímpica': 10}},
-                                                                    'qui': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Raia Olímpica': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Raia Olímpica': 10}},
-                                                                    'sex': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Raia Olímpica': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Raia Olímpica': 10}}}),
+        (demandas_separadas.ida_butanta, demandas_separadas.ida_p3, {'seg': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Biblioteca Brasiliana': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Biblioteca Brasiliana': 10}},
+                                                                    'ter': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Biblioteca Brasiliana': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Biblioteca Brasiliana': 10}},
+                                                                    'qua': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Biblioteca Brasiliana': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Biblioteca Brasiliana': 10}},
+                                                                    'qui': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Biblioteca Brasiliana': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Biblioteca Brasiliana': 10}},
+                                                                    'sex': {480: {'Acesso Vl. Indiana': 25, 'ECA': 40, 'FEA': 100, 'Biblioteca Brasiliana': 20}, 1140: {'Acesso Vl. Indiana': 21, 'ECA': 150, 'FEA': 80, 'Biblioteca Brasiliana': 10}}}),
         ({}, {}, {}),
         (demandas_separadas.ida_butanta, {}, demandas_separadas.ida_butanta),
     ])
@@ -207,46 +207,47 @@ class TestSomaDemanda:
         assert demanda_soma == expected
 
 class TestPorcDeLinhaDesceEmPonto:
+    linhas_rotas = mock_linhas_rotas()
     demandas_separadas = mock_demandas()
 
-    @pytest.mark.parametrize("ponto_alvo, demanda, expected",[
-        ("FEA", demandas_separadas.ida_butanta['seg'][480],0.8333),
-        ("ECA", {}, 0)
+    @pytest.mark.parametrize("ponto_alvo, rota, demanda, expected",[
+        ("FEA", linhas_rotas['8012'].rota.ida, demandas_separadas.ida_butanta['seg'][480],0.8333),
+        ("ECA", linhas_rotas['8012'].rota.volta, {}, 0)
     ])
 
-    def test_perc_get_off_bus_at_stop(self, ponto_alvo, demanda, expected):
-        porc_desce_ponto = porc_de_linha_desce_em_ponto(ponto_alvo, demanda)
+    def test_perc_get_off_bus_at_stop(self, ponto_alvo, rota, demanda, expected):
+        porc_desce_ponto = porc_de_linha_desce_em_ponto(ponto_alvo, rota, demanda)
         assert (porc_desce_ponto - expected) < 0.0001
 
 class TestPorcentagemChegadaPorPonto:
     demandas_separadas = mock_demandas()
 
     @pytest.mark.parametrize("demanda_total, demanda_restante, expected", [
-        (demandas_separadas.ida_butanta, demandas_separadas.ida_butanta, {'seg': {480: {'FEA': 0.0, 'Raia Olímpica': 0.0}, 1140: {'FEA': 0.0, 'Raia Olímpica': 0.0}},
-                                                                        'ter': {480: {'FEA': 0.0, 'Raia Olímpica': 0.0}, 1140: {'FEA': 0.0, 'Raia Olímpica': 0.0}},
-                                                                        'qua': {480: {'FEA': 0.0, 'Raia Olímpica': 0.0}, 1140: {'FEA': 0.0, 'Raia Olímpica': 0.0}},
-                                                                        'qui': {480: {'FEA': 0.0, 'Raia Olímpica': 0.0}, 1140: {'FEA': 0.0, 'Raia Olímpica': 0.0}},
-                                                                        'sex': {480: {'FEA': 0.0, 'Raia Olímpica': 0.0}, 1140: {'FEA': 0.0, 'Raia Olímpica': 0.0}}}),
-        (demandas_separadas.ida_butanta, {'seg': {480: {'FEA': 0, 'Raia Olímpica': 0}, 1140: {'FEA': 0, 'Raia Olímpica': 0}},
-                                        'ter': {480: {'FEA': 0, 'Raia Olímpica': 0}, 1140: {'FEA': 0, 'Raia Olímpica': 0}},
-                                        'qua': {480: {'FEA': 0, 'Raia Olímpica': 0}, 1140: {'FEA': 0, 'Raia Olímpica': 0}},
-                                        'qui': {480: {'FEA': 0, 'Raia Olímpica': 0}, 1140: {'FEA': 0, 'Raia Olímpica': 0}},
-                                        'sex': {480: {'FEA': 0, 'Raia Olímpica': 0}, 1140: {'FEA': 0, 'Raia Olímpica': 0}}},
-                                        {'seg': {480: {'FEA': 1.0, 'Raia Olímpica': 1.0}, 1140: {'FEA': 1.0, 'Raia Olímpica': 1.0}},
-                                        'ter': {480: {'FEA': 1.0, 'Raia Olímpica': 1.0}, 1140: {'FEA': 1.0, 'Raia Olímpica': 1.0}},
-                                        'qua': {480: {'FEA': 1.0, 'Raia Olímpica': 1.0}, 1140: {'FEA': 1.0, 'Raia Olímpica': 1.0}},
-                                        'qui': {480: {'FEA': 1.0, 'Raia Olímpica': 1.0}, 1140: {'FEA': 1.0, 'Raia Olímpica': 1.0}},
-                                        'sex': {480: {'FEA': 1.0, 'Raia Olímpica': 1.0}, 1140: {'FEA': 1.0, 'Raia Olímpica': 1.0}}}),
-        (demandas_separadas.ida_butanta, {'seg': {480: {'FEA': 50, 'Raia Olímpica': 10}, 1140: {'FEA': 40, 'Raia Olímpica': 5}},
-                                        'ter': {480: {'FEA': 50, 'Raia Olímpica': 10}, 1140: {'FEA': 40, 'Raia Olímpica': 5}},
-                                        'qua': {480: {'FEA': 50, 'Raia Olímpica': 10}, 1140: {'FEA': 40, 'Raia Olímpica': 5}},
-                                        'qui': {480: {'FEA': 50, 'Raia Olímpica': 10}, 1140: {'FEA': 40, 'Raia Olímpica': 5}},
-                                        'sex': {480: {'FEA': 50, 'Raia Olímpica': 10}, 1140: {'FEA': 40, 'Raia Olímpica': 5}}},
-                                        {'seg': {480: {'FEA': 0.5, 'Raia Olímpica': 0.5}, 1140: {'FEA': 0.5, 'Raia Olímpica': 0.5}},
-                                        'ter': {480: {'FEA': 0.5, 'Raia Olímpica': 0.5}, 1140: {'FEA': 0.5, 'Raia Olímpica': 0.5}},
-                                        'qua': {480: {'FEA': 0.5, 'Raia Olímpica': 0.5}, 1140: {'FEA': 0.5, 'Raia Olímpica': 0.5}},
-                                        'qui': {480: {'FEA': 0.5, 'Raia Olímpica': 0.5}, 1140: {'FEA': 0.5, 'Raia Olímpica': 0.5}},
-                                        'sex': {480: {'FEA': 0.5, 'Raia Olímpica': 0.5}, 1140: {'FEA': 0.5, 'Raia Olímpica': 0.5}}})
+        (demandas_separadas.ida_butanta, demandas_separadas.ida_butanta, {'seg': {480: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}, 1140: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}},
+                                                                        'ter': {480: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}, 1140: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}},
+                                                                        'qua': {480: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}, 1140: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}},
+                                                                        'qui': {480: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}, 1140: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}},
+                                                                        'sex': {480: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}, 1140: {'FEA': 0.0, 'Biblioteca Brasiliana': 0.0}}}),
+        (demandas_separadas.ida_butanta, {'seg': {480: {'FEA': 0, 'Biblioteca Brasiliana': 0}, 1140: {'FEA': 0, 'Biblioteca Brasiliana': 0}},
+                                        'ter': {480: {'FEA': 0, 'Biblioteca Brasiliana': 0}, 1140: {'FEA': 0, 'Biblioteca Brasiliana': 0}},
+                                        'qua': {480: {'FEA': 0, 'Biblioteca Brasiliana': 0}, 1140: {'FEA': 0, 'Biblioteca Brasiliana': 0}},
+                                        'qui': {480: {'FEA': 0, 'Biblioteca Brasiliana': 0}, 1140: {'FEA': 0, 'Biblioteca Brasiliana': 0}},
+                                        'sex': {480: {'FEA': 0, 'Biblioteca Brasiliana': 0}, 1140: {'FEA': 0, 'Biblioteca Brasiliana': 0}}},
+                                        {'seg': {480: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}, 1140: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}},
+                                        'ter': {480: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}, 1140: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}},
+                                        'qua': {480: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}, 1140: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}},
+                                        'qui': {480: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}, 1140: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}},
+                                        'sex': {480: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}, 1140: {'FEA': 1.0, 'Biblioteca Brasiliana': 1.0}}}),
+        (demandas_separadas.ida_butanta, {'seg': {480: {'FEA': 50, 'Biblioteca Brasiliana': 10}, 1140: {'FEA': 40, 'Biblioteca Brasiliana': 5}},
+                                        'ter': {480: {'FEA': 50, 'Biblioteca Brasiliana': 10}, 1140: {'FEA': 40, 'Biblioteca Brasiliana': 5}},
+                                        'qua': {480: {'FEA': 50, 'Biblioteca Brasiliana': 10}, 1140: {'FEA': 40, 'Biblioteca Brasiliana': 5}},
+                                        'qui': {480: {'FEA': 50, 'Biblioteca Brasiliana': 10}, 1140: {'FEA': 40, 'Biblioteca Brasiliana': 5}},
+                                        'sex': {480: {'FEA': 50, 'Biblioteca Brasiliana': 10}, 1140: {'FEA': 40, 'Biblioteca Brasiliana': 5}}},
+                                        {'seg': {480: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}, 1140: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}},
+                                        'ter': {480: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}, 1140: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}},
+                                        'qua': {480: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}, 1140: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}},
+                                        'qui': {480: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}, 1140: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}},
+                                        'sex': {480: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}, 1140: {'FEA': 0.5, 'Biblioteca Brasiliana': 0.5}}})
     ])
 
     def test_perc_arrival_per_stop(self, demanda_total, demanda_restante, expected):
